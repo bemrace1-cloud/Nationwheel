@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NationWheel Atlas — Classroom Worldbuilding, Wars & Daily Actions</title>
+  <title>NationWheel Atlas — Geopolitical Worldbuilding, Wars & Daily Actions</title>
   <style>
     :root {
       --bg: #0a111d;
@@ -134,7 +134,7 @@
     }
 
     input:disabled, select:disabled, textarea:disabled, input[readonly] {
-      opacity: 0.72;
+      opacity: 0.74;
       background: #0a101d;
       cursor: not-allowed;
       border-style: dashed;
@@ -154,14 +154,14 @@
     }
     .card h2, .card h3 { margin-top: 0; }
 
-    .map-layout { display: grid; grid-template-columns: minmax(0, 1fr) 365px; gap: 16px; align-items: start; }
+    .map-layout { display: grid; grid-template-columns: minmax(0, 1fr) 375px; gap: 16px; align-items: start; }
     @media (max-width: 1020px) { .map-layout { grid-template-columns: 1fr; } }
 
     .map-wrapper {
       position: relative;
       background: radial-gradient(circle at 45% 45%, #0f213d 0%, #07101f 85%);
       border: 1px solid var(--border); border-radius: var(--radius);
-      overflow: hidden; height: 620px; box-shadow: var(--shadow); user-select: none;
+      overflow: hidden; height: 635px; box-shadow: var(--shadow); user-select: none;
     }
 
     .map-toolbar {
@@ -255,8 +255,9 @@
     .tag-gold { background: var(--gold-dim); color: var(--gold); border-color: rgba(245, 185, 66, 0.35); }
     .tag-green { background: rgba(52, 211, 153, 0.15); color: var(--green); border-color: rgba(52, 211, 153, 0.35); }
     .tag-red { background: rgba(248, 113, 113, 0.15); color: var(--red); border-color: rgba(248, 113, 113, 0.35); }
+    .tag-purple { background: rgba(167, 139, 250, 0.16); color: var(--purple); border-color: rgba(167, 139, 250, 0.4); }
 
-    .nation-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 14px; }
+    .nation-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(305px, 1fr)); gap: 14px; }
 
     .flag-box {
       width: 58px; height: 38px; border-radius: 6px;
@@ -270,14 +271,23 @@
       padding: 10px; border-radius: 8px; word-break: break-all; color: #a5f3fc;
     }
 
-    /* Tactical Lines of Battle Grid */
-    .battle-layout { display: grid; grid-template-columns: 350px minmax(0, 1fr); gap: 16px; align-items: start; }
-    @media (max-width: 1020px) { .battle-layout { grid-template-columns: 1fr; } }
+    .effect-box {
+      background: #0b1424;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 9px 11px;
+      font-size: 0.79rem;
+      line-height: 1.48;
+      margin: 8px 0;
+    }
+
+    .battle-layout { display: grid; grid-template-columns: 335px minmax(0, 1fr); gap: 16px; align-items: start; }
+    @media (max-width: 1060px) { .battle-layout { grid-template-columns: 1fr; } }
 
     .battle-grid {
       display: grid;
-      grid-template-columns: repeat(7, minmax(0, 1fr));
-      gap: 6px;
+      grid-template-columns: repeat(10, minmax(0, 1fr));
+      gap: 5px;
       background: #08101d;
       padding: 10px;
       border-radius: 12px;
@@ -286,7 +296,7 @@
 
     .b-tile {
       aspect-ratio: 1 / 1;
-      border-radius: 8px;
+      border-radius: 7px;
       border: 1px solid #223452;
       background: #122038;
       position: relative;
@@ -297,37 +307,50 @@
       justify-content: center;
       transition: 0.12s ease;
       user-select: none;
-      padding: 3px;
+      padding: 2px;
     }
-    .b-tile.terrain-forest { background: #102a27; border-color: #1f4e45; }
+    .b-tile.terrain-forest { background: #0e2925; border-color: #1f5449; }
     .b-tile.terrain-hill { background: #26231d; border-color: #544b37; }
-    .b-tile.terrain-city { background: #2d1f3a; border-color: #a78bfa; box-shadow: inset 0 0 12px rgba(167, 139, 250, 0.25); }
+    .b-tile.terrain-city { background: #2d1f3a; border-color: #a78bfa; box-shadow: inset 0 0 12px rgba(167, 139, 250, 0.28); }
 
     .b-tile.move-opt { border: 2px solid var(--accent); background: rgba(56, 189, 248, 0.22); }
     .b-tile.atk-opt { border: 2px solid var(--red); background: rgba(248, 113, 113, 0.28); }
     .b-tile.selected-unit { border: 2px solid var(--gold); box-shadow: 0 0 12px rgba(245, 185, 66, 0.45); }
 
-    .b-terrain-tag {
-      position: absolute; top: 2px; left: 4px; font-size: 0.68rem; opacity: 0.78; pointer-events: none;
-    }
+    .b-terrain-tag { position: absolute; top: 1px; left: 3px; font-size: 0.62rem; opacity: 0.8; pointer-events: none; }
 
     .b-unit {
-      width: 86%; height: 74%;
-      border-radius: 7px;
+      width: 88%; height: 76%;
+      border-radius: 6px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       font-weight: 800;
-      font-size: 1.05rem;
+      font-size: 0.92rem;
       border: 2px solid #fff;
       position: relative;
       box-shadow: 0 4px 10px rgba(0,0,0,0.45);
     }
-    .b-unit.spent { opacity: 0.62; filter: grayscale(0.25); }
-    .b-hp-bar {
-      width: 86%; height: 4px; background: rgba(0,0,0,0.65); border-radius: 99px; overflow: hidden; margin-top: 2px;
+    .b-unit.spent { opacity: 0.6; filter: grayscale(0.25); }
+    .b-unit.stealthed {
+      opacity: 0.72;
+      border-style: dashed;
+      box-shadow: 0 0 10px rgba(52, 211, 153, 0.35);
     }
+    .b-stealth-pip {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background: #064e3b;
+      color: #6ee7b7;
+      border: 1px solid #34d399;
+      border-radius: 999px;
+      font-size: 0.56rem;
+      padding: 0 3px;
+      line-height: 1.25;
+    }
+    .b-hp-bar { width: 86%; height: 4px; background: rgba(0,0,0,0.65); border-radius: 99px; overflow: hidden; margin-top: 2px; }
     .b-hp-fill { height: 100%; background: #34d399; transition: width 0.2s ease; }
 
     .battle-hud {
@@ -357,7 +380,7 @@
     <div class="brand-logo"><div class="brand-logo-inner"></div></div>
     <div>
       <h1>NationWheel Atlas</h1>
-      <small id="world-subtitle">Season 1 • Interactive Classroom World</small>
+      <small id="world-subtitle">Season 1 • Interactive Geopolitical World</small>
     </div>
   </div>
 
@@ -376,8 +399,8 @@
 
   <div class="header-actions">
     <span class="pill" id="day-pill">📅 Today: <strong id="current-date-label"></strong></span>
-    <button class="pill" id="host-toggle-btn" style="cursor:pointer" title="Toggle Host/GM Controls">
-      🔒 Classmate View
+    <button class="pill" id="host-toggle-btn" style="cursor:pointer" title="Toggle Admin/GM Controls">
+      🔒 Player View
     </button>
   </div>
 </header>
@@ -444,7 +467,7 @@
 
       <aside class="card" id="map-inspector">
         <h3 style="margin-bottom:6px">🧭 Territory & Nation Inspector</h3>
-        <p class="muted small">Click any region on the map to inspect its land area, owner nation, flag, stats, alliances, wars, and daily action status.</p>
+        <p class="muted small">Click any region on the map to inspect its land area, government subtype bonuses/nerfs, wildcard perk, and active stat effects.</p>
         <div id="inspector-content"></div>
       </aside>
     </div>
@@ -452,10 +475,10 @@
 
   <!-- ==================== TAB 2: SPIN WHEELS ==================== -->
   <section id="view-wheel" class="view">
-    <div id="wheel-classmate-notice" class="card" style="margin-bottom:16px;border-color:rgba(245,185,66,0.45);display:none">
+    <div id="wheel-player-notice" class="card" style="margin-bottom:16px;border-color:rgba(245,185,66,0.45);display:none">
       <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
         <div>
-          <strong>🔒 Classmate View (Canon Locked):</strong> Only the Admin/Host can spin official Nation Wheels and edit/place canon nations. You can run a <em>Practice Spin</em> below, or visit <strong>Requests & Daily Action</strong> to ask the Host for your spin!
+          <strong>🔒 Player View (Canon Locked):</strong> Only the Admin/GM can spin official Nation Wheels and place canon nations. You can run a <em>Practice Spin</em> below, or visit <strong>Requests & Daily Action</strong> to submit your spin request!
         </div>
         <button class="btn btn-sm btn-primary" onclick="document.querySelector('[data-tab=&quot;requests&quot;]').click()">📜 Go to Requests</button>
       </div>
@@ -473,10 +496,10 @@
           <select id="wheel-type-select" onchange="selectWheelType(this.value)">
             <option value="location">📍 Location Wheel (Where the Country Is)</option>
             <option value="landsize">📏 Land Size Wheel (Up to ~1,000,000 km²)</option>
-            <option value="ideology">🏛️ Government & Ideology</option>
+            <option value="ideology">🏛️ Government Style (+ Rare Subtype Roll!)</option>
             <option value="economy">💎 Primary Resource & Economy</option>
             <option value="military">🛡️ Military Doctrine</option>
-            <option value="trait">✨ National Trait / Wildcard</option>
+            <option value="trait">✨ Wildcard Trait (14 Gameplay Perks!)</option>
             <option value="action">⚡ Daily Action Outcome Wheel</option>
           </select>
         </div>
@@ -490,7 +513,7 @@
         </div>
 
         <div class="wheel-result-banner" id="wheel-result-banner">
-          <span class="muted small">Spin Location + Land Size (~200k to ~1,000,000 km²) + Traits!</span>
+          <span class="muted small">Spin Location + Land Size + Government (with rare subtype chance!) + Wildcard Perks!</span>
         </div>
       </div>
 
@@ -500,13 +523,13 @@
           <span class="tag tag-gold" id="builder-lock-badge">🔒 Results Lock After Spin</span>
         </div>
         <p class="muted small" style="margin-top:6px">
-          Rolled results are automatically <strong>locked</strong> after each wheel spin so stats & sizes stay fair. Players can only own <strong>1 nation</strong> unless their nation is destroyed!
+          Rolled results lock automatically after spinning. Players can only rule <strong>1 active nation</strong> unless their nation is destroyed.
         </p>
 
         <div class="two-col">
           <div class="field">
-            <label>Classmate / Leader Name</label>
-            <input type="text" id="builder-player" placeholder="e.g., Alex M." />
+            <label>Player / Leader Name</label>
+            <input type="text" id="builder-player" placeholder="e.g., Alex" />
           </div>
           <div class="field">
             <label>Nation Name</label>
@@ -533,30 +556,40 @@
 
         <div class="two-col">
           <div class="field">
+            <label>🏛️ Government Style (Locked by Spin)</label>
+            <input type="text" id="builder-ideology" class="wheel-locked-input" placeholder="Spin Government wheel..." />
+          </div>
+          <div class="field">
+            <label>⚡ Government Subtype (Auto-Rolled)</label>
+            <input type="text" id="builder-subtype" class="wheel-locked-input" placeholder="Standard or Rare Subtype..." />
+          </div>
+        </div>
+
+        <div id="builder-gov-preview" class="effect-box" style="display:none"></div>
+
+        <div class="two-col">
+          <div class="field">
             <label>Capital / Major City Name</label>
             <input type="text" id="builder-capital" placeholder="e.g., New Solis" />
           </div>
           <div class="field">
-            <label>Ideology (Locked by Spin)</label>
-            <input type="text" id="builder-ideology" class="wheel-locked-input" placeholder="Spin Ideology wheel..." />
+            <label>Economy / Resource (Locked by Spin)</label>
+            <input type="text" id="builder-economy" class="wheel-locked-input" placeholder="Spin Economy wheel..." />
           </div>
         </div>
 
         <div class="two-col">
           <div class="field">
-            <label>Economy / Resource (Locked by Spin)</label>
-            <input type="text" id="builder-economy" class="wheel-locked-input" placeholder="Spin Economy wheel..." />
-          </div>
-          <div class="field">
             <label>Military Doctrine (Locked by Spin)</label>
             <input type="text" id="builder-military" class="wheel-locked-input" placeholder="Spin Military wheel..." />
           </div>
+          <div class="field">
+            <label>✨ Wildcard Trait (Locked by Spin)</label>
+            <input type="text" id="builder-trait" class="wheel-locked-input" placeholder="Spin Wildcard wheel..." />
+          </div>
         </div>
 
-        <div class="field">
-          <label>Wildcard Trait (Locked by Spin)</label>
-          <input type="text" id="builder-trait" class="wheel-locked-input" placeholder="Spin Trait wheel..." />
-        </div>
+        <div id="builder-trait-preview" class="effect-box" style="display:none"></div>
 
         <div style="display:grid;grid-template-columns:1fr 1fr 1fr 110px;gap:10px;align-items:end;margin-bottom:12px">
           <div>
@@ -601,11 +634,10 @@
   <!-- ==================== TAB 3: WARS & TACTICAL BATTLES ==================== -->
   <section id="view-wars" class="view">
     <div class="battle-layout">
-      <!-- Left: War Launcher & Active Battles -->
       <div class="card">
         <h2>⚔️ War Room & Sieges</h2>
         <p class="muted small">
-          Control troops in tactical <strong>Lines of Battle</strong> skirmishes! Attacking a <strong>★ Major City / Capital</strong> puts you in a siege against fortified City Garrisons.
+          Fight on a large <strong>10×7 Tactical Battlefield</strong>! Units in <strong>🌲 Forests</strong> turn <strong>hidden</strong> from the enemy until spotted up close or ambushing!
         </p>
 
         <div class="field">
@@ -622,32 +654,33 @@
           <label>Defender Control Mode</label>
           <select id="war-defender-mode">
             <option value="ai">🤖 Tactical AI Commander (Play Solo or Live)</option>
-            <option value="hotseat">👥 2-Player Hotseat (Classmates Take Turns)</option>
+            <option value="hotseat">👥 2-Player Hotseat (Players Take Turns)</option>
           </select>
         </div>
 
         <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px">
-          <button class="btn btn-danger" onclick="startBattle(true)">⚔️ Start Official Canon Battle (Host)</button>
+          <button class="btn btn-danger" onclick="startBattle(true)">⚔️ Start Official Canon Battle (Admin)</button>
           <button class="btn btn-sm" onclick="startBattle(false)">🧪 Practice Skirmish</button>
         </div>
 
         <div class="divider"></div>
-        <h3 style="margin-bottom:6px">📋 Unit Guide</h3>
+        <h3 style="margin-bottom:6px">🌲 Forest Stealth & Stats Guide</h3>
         <div class="small muted" style="line-height:1.55">
-          <div><strong>🛡️ Infantry:</strong> Move 2 • Range 1 • Tough frontline & city holder</div>
-          <div><strong>🐎 Cavalry:</strong> Move 3 • Range 1 • Fast flanker (+Charge damage!)</div>
-          <div><strong>🎯 Artillery:</strong> Move 1 • Range 3 • Long-range siege battery</div>
-          <div><strong>🏰 Garrison:</strong> Spawns in <strong>★ Major Cities</strong> (+40% Cover)</div>
-          <div style="margin-top:6px;color:var(--gold)">⚡ <strong>Flank Bonus:</strong> Attack with 2+ friendly units adjacent to an enemy for <strong>+35% damage</strong>!</div>
+          <div><strong>🌲 Forest Stealth:</strong> Units inside forests are <strong>hidden</strong> from enemies until adjacent (or within 2 tiles of 🐎 Cavalry scouts)!</div>
+          <div><strong>🗡️ Ambush Strike:</strong> Attacking while hidden deals <strong>+25% Ambush Damage</strong>!</div>
+          <div><strong>🛡️ Military:</strong> +4 HP & +2 ATK per point • Extra squads at 5+ & 8+</div>
+          <div><strong>💎 Economy:</strong> Funds extra Artillery at 5+, extra Cavalry at 8+</div>
+          <div><strong>🤝 Diplomacy:</strong> With an Ally & Dip 4+, an <strong>Allied Guard</strong> joins battle!</div>
+          <div style="margin-top:5px;color:var(--gold)">⚡ <strong>Flank Bonus:</strong> 2+ friendly units adjacent to an enemy = <strong>+35% damage</strong>!</div>
         </div>
       </div>
 
-      <!-- Right: Interactive 7x5 Tactical Grid -->
       <div class="card">
         <div class="battle-hud">
           <div>
-            <strong id="battle-title">Select two warring nations on the left to deploy troops!</strong>
-            <div class="small muted" id="battle-subtitle">Win by defeating all enemy units OR capturing & holding the 🏰 Objective / Major City!</div>
+            <strong id="battle-title">Select two nations on the left to deploy onto the 10×7 Battlefield!</strong>
+            <div class="small muted" id="battle-subtitle">Win by routing all enemy units OR capturing & holding the 🏰 Objective / Major City!</div>
+            <div class="small" id="battle-modifiers-line" style="color:var(--accent);margin-top:3px"></div>
           </div>
           <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
             <span class="tag tag-gold" id="battle-turn-tag">Ready</span>
@@ -671,24 +704,24 @@
   <section id="view-requests" class="view">
     <div class="two-col">
       <div class="card">
-        <h2>🙋 Classmate Request Portal</h2>
+        <h2>🙋 Player Request Portal</h2>
         <p class="muted small">
-          Ask the Host to spin the wheels for your nation (<strong>max 1 active nation per player</strong>), or submit your <strong>1 Daily Action</strong>.
+          Ask the Admin/GM to spin the wheels for your nation (<strong>max 1 active nation per player</strong>), or submit your <strong>1 Daily Action</strong>.
         </p>
 
         <div class="field">
           <label>What would you like to request?</label>
           <select id="req-type" onchange="toggleRequestForm()">
             <option value="nation">🎡 Ask to Spin the Wheels for a New Nation</option>
-            <option value="action">⚡ Ask Host for 1 Daily Action</option>
+            <option value="action">⚡ Ask Admin for 1 Daily Action</option>
           </select>
         </div>
 
         <div id="req-nation-fields">
           <div id="req-already-owns-warning" class="list-item" style="display:none;border-color:var(--red);background:rgba(248,113,113,0.1)"></div>
           <div class="field">
-            <label>Your Name (Classmate)</label>
-            <input type="text" id="req-player-name" placeholder="e.g., Jordan K." oninput="checkPlayerEligibilityNotice()" />
+            <label>Your Name (Player / Leader)</label>
+            <input type="text" id="req-player-name" placeholder="e.g., Jordan" oninput="checkPlayerEligibilityNotice()" />
           </div>
           <div class="two-col">
             <div class="field">
@@ -725,18 +758,18 @@
             </select>
           </div>
           <div class="field">
-            <label>Describe Your 1 Daily Action for the Host</label>
-            <textarea id="req-action-text" rows="3" placeholder="Example: Invade Thornwall, or invest in our economy, or propose an alliance with Aurelia."></textarea>
+            <label>Describe Your 1 Daily Action</label>
+            <textarea id="req-action-text" rows="3" placeholder="Example: Invade Thornwall, invest in our economy, or propose an alliance with Aurelia."></textarea>
           </div>
         </div>
 
         <div style="display:flex;gap:10px;flex-wrap:wrap">
-          <button class="btn btn-primary" onclick="submitLocalRequest()">📥 Add to Classroom Queue</button>
-          <button class="btn btn-accent" onclick="generateRequestCode()">🔗 Generate Request Code (Send to Host)</button>
+          <button class="btn btn-primary" onclick="submitLocalRequest()">📥 Add to Request Queue</button>
+          <button class="btn btn-accent" onclick="generateRequestCode()">🔗 Generate Request Code (Send to Admin)</button>
         </div>
 
         <div id="generated-code-wrap" style="display:none;margin-top:14px">
-          <label>Copy & send this code to your Host (Discord, Classroom, Text):</label>
+          <label>Copy & send this code to your Admin/GM:</label>
           <div class="code-box" id="generated-code-box"></div>
           <button class="btn btn-sm" style="margin-top:8px" onclick="copyTextById('generated-code-box')">📋 Copy Code</button>
         </div>
@@ -744,20 +777,20 @@
 
       <div class="card">
         <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap">
-          <h2 style="margin:0">👑 Host / GM Action Desk</h2>
-          <span class="tag tag-gold" id="gm-status-tag">Host Mode Required to Resolve</span>
+          <h2 style="margin:0">👑 Admin / GM Action Desk</h2>
+          <span class="tag tag-gold" id="gm-status-tag">Admin Mode Required to Resolve</span>
         </div>
         <p class="muted small" style="margin-top:6px">
-          Paste Request Codes from classmates here, spin the Nation or Action Outcome Wheel, and apply canon updates.
+          Paste Request Codes from players here, spin the Nation or Action Outcome Wheel (weighted by Nation Stats!), and apply canon updates.
         </p>
 
         <div style="display:flex;gap:8px;margin-bottom:14px">
-          <input type="text" id="import-req-code" placeholder="Paste classmate Request Code (NW-REQ:...)" />
+          <input type="text" id="import-req-code" placeholder="Paste player Request Code (NW-REQ:...)" />
           <button class="btn btn-accent" onclick="importRequestCode()">Import</button>
         </div>
 
         <div class="divider"></div>
-        <h3 style="margin-bottom:8px">Pending Classroom Queue</h3>
+        <h3 style="margin-bottom:8px">Pending Request Queue</h3>
         <div id="request-queue-list"></div>
 
         <div id="gm-action-resolver" style="display:none;margin-top:14px;padding:12px;border-radius:10px;background:#0d1626;border:1px solid var(--gold)">
@@ -790,11 +823,11 @@
             <select id="resolver-target"></select>
           </div>
           <div class="field">
-            <label>Host Ruling / Canon Log Entry</label>
+            <label>Admin Ruling / Canon Log Entry</label>
             <input type="text" id="resolver-note" placeholder="What happened in the world?" />
           </div>
           <div style="display:flex;gap:8px;flex-wrap:wrap">
-            <button class="btn btn-primary btn-sm" onclick="spinOutcomeForResolver()">🎡 Spin Action Wheel</button>
+            <button class="btn btn-primary btn-sm" onclick="spinOutcomeForResolver()">🎡 Spin Stat-Weighted Action Wheel</button>
             <button class="btn btn-green btn-sm" onclick="confirmResolveAction()">✅ Apply to Canon</button>
             <button class="btn btn-sm" onclick="closeResolver()">Cancel</button>
           </div>
@@ -808,7 +841,7 @@
     <div class="card" style="margin-bottom:16px">
       <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px">
         <h2 style="margin:0">🏛️ Canon Nations Directory</h2>
-        <input type="text" id="nation-search" placeholder="Search nation, leader, or size..." style="max-width:290px" oninput="renderNationsDirectory()" />
+        <input type="text" id="nation-search" placeholder="Search nation, leader, subtype, or trait..." style="max-width:300px" oninput="renderNationsDirectory()" />
       </div>
       <div class="divider"></div>
       <div class="nation-cards" id="nations-directory"></div>
@@ -816,7 +849,7 @@
 
     <div class="card">
       <h2>📜 Canon World Chronicle</h2>
-      <p class="muted small">Every wheel spin, founding, treaty, battle, and daily action is permanently logged here.</p>
+      <p class="muted small">Every wheel spin, rare subtype twist, treaty, battle, and daily action is permanently logged here.</p>
       <div id="canon-timeline"></div>
     </div>
   </section>
@@ -825,8 +858,8 @@
   <section id="view-admin" class="view">
     <div id="admin-locked-banner" class="card" style="margin-bottom:16px;text-align:center;display:none">
       <h2>🔒 Admin Tools Locked</h2>
-      <p class="muted">You are currently in <strong>Classmate View</strong>. Switch to <strong>Host / GM Mode</strong> to edit nations, transfer regions, manage wars/alliances, or reset daily actions.</p>
-      <button class="btn btn-primary" onclick="document.getElementById('host-toggle-btn').click()">👑 Unlock Host / GM Mode</button>
+      <p class="muted">You are currently in <strong>Player View</strong>. Switch to <strong>Admin / GM Mode</strong> to edit nations, transfer regions, manage wars/alliances, or reset daily actions.</p>
+      <button class="btn btn-primary" onclick="document.getElementById('host-toggle-btn').click()">👑 Unlock Admin / GM Mode</button>
     </div>
 
     <div id="admin-tools-grid" class="two-col">
@@ -838,11 +871,15 @@
         </div>
         <div class="two-col">
           <div class="field"><label>Nation Name</label><input type="text" id="admin-ed-name" /></div>
-          <div class="field"><label>Leader (Classmate)</label><input type="text" id="admin-ed-player" /></div>
+          <div class="field"><label>Leader (Player)</label><input type="text" id="admin-ed-player" /></div>
         </div>
         <div class="two-col">
           <div class="field"><label>Capital City</label><input type="text" id="admin-ed-capital" /></div>
-          <div class="field"><label>Ideology</label><input type="text" id="admin-ed-ideology" /></div>
+          <div class="field"><label>Government Style</label><input type="text" id="admin-ed-ideology" /></div>
+        </div>
+        <div class="two-col">
+          <div class="field"><label>Government Subtype</label><input type="text" id="admin-ed-subtype" /></div>
+          <div class="field"><label>Wildcard Trait</label><input type="text" id="admin-ed-trait" /></div>
         </div>
         <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px;margin-bottom:12px">
           <div><label>Economy</label><input type="number" id="admin-ed-eco" min="1" /></div>
@@ -905,7 +942,7 @@
       <div class="card">
         <h2>💾 Save, Export & Share World</h2>
         <p class="muted small">
-          Everything saves automatically in your browser. To share updates with classmates on a hosted website (like GitHub Pages), export <code>world.json</code> and place it in the same folder as <code>index.html</code>!
+          Everything saves automatically in your browser. To share updates with players on a hosted website (like GitHub Pages), export <code>world.json</code> and upload it to the same folder as <code>index.html</code>!
         </p>
 
         <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px">
@@ -927,7 +964,7 @@
           <label>Daily Action Cooldown Mode</label>
           <select id="setting-day-mode" onchange="saveDayMode(this.value)">
             <option value="realtime">Real Calendar Date (1 Action per Day)</option>
-            <option value="turn">Manual Game Day (Host clicks Next Day)</option>
+            <option value="turn">Manual Game Day (Admin clicks Next Day)</option>
           </select>
         </div>
 
@@ -937,13 +974,13 @@
       </div>
 
       <div class="card">
-        <h2>👑 Host / GM Security & Reset</h2>
+        <h2>👑 Admin / GM Security & Reset</h2>
         <p class="muted small">
-          Optionally set a Host PIN so classmates using your shared screen or link stay in Classmate View unless they know the PIN.
+          Set an Admin PIN so players using the shared link or screen stay in Player View unless they know the PIN.
         </p>
 
         <div class="field">
-          <label>Set / Change Host PIN (leave blank for no PIN)</label>
+          <label>Set / Change Admin PIN (leave blank for no PIN)</label>
           <div style="display:flex;gap:8px">
             <input type="password" id="setting-pin" placeholder="e.g., 1234" />
             <button class="btn" onclick="saveHostPin()">Set PIN</button>
@@ -952,7 +989,7 @@
 
         <div class="divider"></div>
         <h3>🧪 Demo & Reset</h3>
-        <p class="muted small">Load a sample world with 4 nations (including an active war ready for battle!), or clear everything for a fresh season.</p>
+        <p class="muted small">Load a 4-nation sample world (with rare subtypes, wildcard perks, and an active war!), or reset for a fresh season.</p>
         <div style="display:flex;gap:10px;flex-wrap:wrap">
           <button class="btn" onclick="loadSampleWorld()">🌍 Load Sample World</button>
           <button class="btn btn-danger" onclick="resetWorldAll()">🗑️ Start Blank Season</button>
@@ -965,9 +1002,6 @@
 <div class="toast" id="toast"></div>
 
 <script>
-// ============================================================
-// 1. WORLD MAP TERRITORIES (28 Regions, max Land Size ~1,000,000 km²)
-// ============================================================
 const CONTINENT_COLORS = {
   "Asteria": "#2563eb",
   "Meridian": "#059669",
@@ -1009,9 +1043,179 @@ const TERRITORIES = [
   { id: "starfall_point", name: "Starfall Cape", continent: "South Isles", biome: "Observatory Peninsula", areaKm2: 195000, cx: 965, cy: 585, pts: "895,535 1030,545 1045,625 945,655 885,610", adj: ["mistwood", "emerald_wilds"] }
 ];
 
-// ============================================================
-// 2. WHEELS
-// ============================================================
+const GOV_CATALOG = {
+  "Theocracy": {
+    standard: {
+      name: "Sacred Theocracy", rare: false,
+      eco: -1, mil: 0, dip: 2, combat: { garrisonHp: 30 },
+      bonus: "+2 Diplomacy, +30 City Garrison HP",
+      nerf: "-1 Economy (tithe rigidness)"
+    },
+    rare: {
+      name: "Radical Secular State", rare: true,
+      eco: 2, mil: 0, dip: -2, combat: { artDmgMult: 1.2 },
+      bonus: "+2 Economy, +20% Artillery/Tech Damage",
+      nerf: "-2 Diplomacy (anti-clerical tension)"
+    }
+  },
+  "Democratic Republic": {
+    standard: {
+      name: "Parliamentary Republic", rare: false,
+      eco: 1, mil: -1, dip: 2, combat: { maxAllyBonus: 1 },
+      bonus: "+2 Diplomacy, +1 Economy, +1 Max Ally Slot",
+      nerf: "-1 Military (slow war mobilization)"
+    },
+    rare: {
+      name: "Populist Direct Democracy", rare: true,
+      eco: 2, mil: 0, dip: -1, combat: { infHp: 20 },
+      bonus: "+2 Economy, +20 Infantry HP",
+      nerf: "-1 Diplomacy (volatile foreign policy)"
+    }
+  },
+  "Technocracy": {
+    standard: {
+      name: "Scientific Directorate", rare: false,
+      eco: 2, mil: 0, dip: -1, combat: { artDmgMult: 1.15 },
+      bonus: "+2 Economy, +15% Artillery Damage",
+      nerf: "-1 Diplomacy (cold bureaucracy)"
+    },
+    rare: {
+      name: "Rogue AI Singularity", rare: true,
+      eco: 1, mil: 2, dip: -2, combat: { artDmgMult: 1.2, infHp: -15 },
+      bonus: "+2 Military, +1 Economy, +20% Artillery Damage",
+      nerf: "-2 Diplomacy, -15 Infantry HP"
+    }
+  },
+  "Constitutional Monarchy": {
+    standard: {
+      name: "Royal Crownlands", rare: false,
+      eco: 1, mil: -1, dip: 2, combat: {},
+      bonus: "+2 Diplomacy, +1 Economy",
+      nerf: "-1 Military"
+    },
+    rare: {
+      name: "Absolutist Sun Crown", rare: true,
+      eco: -2, mil: 2, dip: 1, combat: { cavDmgMult: 1.2 },
+      bonus: "+2 Military, +1 Diplomacy, +20% Cavalry Damage",
+      nerf: "-2 Economy (lavish royal court)"
+    }
+  },
+  "Merchant Guild": {
+    standard: {
+      name: "Free Trade League", rare: false,
+      eco: 3, mil: -2, dip: 1, combat: {},
+      bonus: "+3 Economy, +1 Diplomacy",
+      nerf: "-2 Military (relies on hired guards)"
+    },
+    rare: {
+      name: "Mercenary Cartel", rare: true,
+      eco: 1, mil: 2, dip: -2, combat: { cavDmgMult: 1.15 },
+      bonus: "+2 Military, +1 Economy, +15% Cavalry Damage",
+      nerf: "-2 Diplomacy (distrusted profiteers)"
+    }
+  },
+  "Military Stratocracy": {
+    standard: {
+      name: "Spartan Stratocracy", rare: false,
+      eco: -2, mil: 3, dip: 0, combat: { infDmgMult: 1.15 },
+      bonus: "+3 Military, +15% Infantry Damage",
+      nerf: "-2 Economy (total war spending)"
+    },
+    rare: {
+      name: "Shadow Junta", rare: true,
+      eco: 0, mil: 2, dip: -2, combat: { flankBonus: 0.2 },
+      bonus: "+2 Military, +20% Extra Flank Damage",
+      nerf: "-2 Diplomacy (pariah regime)"
+    }
+  },
+  "Imperial Autocracy": {
+    standard: {
+      name: "Iron Empire", rare: false,
+      eco: 1, mil: 2, dip: -2, combat: { garrisonHp: 20 },
+      bonus: "+2 Military, +1 Economy, +20 Garrison HP",
+      nerf: "-2 Diplomacy (expansionist fear)"
+    },
+    rare: {
+      name: "Enlightened Despotism", rare: true,
+      eco: 2, mil: -1, dip: 1, combat: {},
+      bonus: "+2 Economy, +1 Diplomacy",
+      nerf: "-1 Military"
+    }
+  },
+  "Cyber-Parliament": {
+    standard: {
+      name: "Digital Senate", rare: false,
+      eco: 2, mil: -1, dip: 1, combat: {},
+      bonus: "+2 Economy, +1 Diplomacy",
+      nerf: "-1 Military"
+    },
+    rare: {
+      name: "Cyber-Anarchist Grid", rare: true,
+      eco: -2, mil: 2, dip: 0, combat: { flankBonus: 0.2 },
+      bonus: "+2 Military, +20% Extra Flank Damage",
+      nerf: "-2 Economy (zero centralized tax)"
+    }
+  },
+  "Tribal Confederacy": {
+    standard: {
+      name: "Highland Clans", rare: false,
+      eco: -1, mil: 2, dip: 0, combat: { coverBonus: 0.15 },
+      bonus: "+2 Military, +15% Forest/Hill Cover",
+      nerf: "-1 Economy"
+    },
+    rare: {
+      name: "Nomad Steppe Horde", rare: true,
+      eco: -2, mil: 2, dip: 0, combat: { cavMove: 1, cavCharge: 8 },
+      bonus: "+2 Military, +1 Cavalry Move & +8 Charge Dmg",
+      nerf: "-2 Economy (unsettled infrastructure)"
+    }
+  },
+  "Syndicalist Commonwealth": {
+    standard: {
+      name: "Workers' Federation", rare: false,
+      eco: 2, mil: -1, dip: 1, combat: { infHp: 15 },
+      bonus: "+2 Economy, +1 Diplomacy, +15 Infantry HP",
+      nerf: "-1 Military"
+    },
+    rare: {
+      name: "Revolutionary Vanguard", rare: true,
+      eco: -2, mil: 2, dip: 1, combat: { infDmgMult: 1.15 },
+      bonus: "+2 Military, +1 Diplomacy, +15% Infantry Damage",
+      nerf: "-2 Economy (sanctions & upheaval)"
+    }
+  }
+};
+
+function findGovSubtypeMeta(subtypeName) {
+  for (const style of Object.keys(GOV_CATALOG)) {
+    const entry = GOV_CATALOG[style];
+    if (entry.standard.name === subtypeName) return entry.standard;
+    if (entry.rare.name === subtypeName) return entry.rare;
+  }
+  return null;
+}
+
+const TRAIT_CATALOG = [
+  { name: "Underground Bunkers", eco: 0, mil: 1, dip: 0, summary: "+1 Military • Defending troops take -20% damage in battle", combat: { defDmgReduction: 0.2 } },
+  { name: "Engineering Prodigies", eco: 1, mil: 0, dip: 0, summary: "+1 Economy • Artillery deals +25% damage in battle", combat: { artDmgMult: 1.25 } },
+  { name: "Culinary Soft Power", eco: 1, mil: 0, dip: 2, summary: "+2 Diplomacy, +1 Economy • Cultural trade magnet", combat: {} },
+  { name: "Spaceport Megahub", eco: 2, mil: 0, dip: 0, summary: "+2 Economy • Boosts Economy & Expansion action wheel odds", combat: { ecoActionBoost: true } },
+  { name: "Ancient Sacred Totems", eco: 0, mil: 0, dip: 1, summary: "+1 Diplomacy • City Garrisons gain +35 HP & +15% ATK", combat: { garrisonHp: 35, garrisonDmgMult: 1.15 } },
+  { name: "Master Negotiators", eco: 0, mil: 0, dip: 2, summary: "+2 Diplomacy • +1 Max Ally Slot & Diplomacy action boost", combat: { maxAllyBonus: 1 } },
+  { name: "Secret Intelligence Ring", eco: 0, mil: 1, dip: 1, summary: "+1 Military, +1 Diplomacy • Spots hidden forest units at Range 2 + +15% Flank Dmg", combat: { flankBonus: 0.15, scoutRange: 2 } },
+  { name: "Cultural Renaissance", eco: 1, mil: 0, dip: 2, summary: "+2 Diplomacy, +1 Economy • Boosts diplomatic influence", combat: {} },
+  { name: "Nomadic Warbands", eco: 0, mil: 1, dip: 0, summary: "+1 Military • Cavalry gets +1 Move & +10 Charge Damage", combat: { cavMove: 1, cavCharge: 10 } },
+  { name: "Fortress Archipelago", eco: 0, mil: 1, dip: 0, summary: "+1 Military • All units gain +15% Terrain Cover on Hills/Cities", combat: { coverBonus: 0.15 } },
+  { name: "Black Market Network", eco: 2, mil: 0, dip: -1, summary: "+2 Economy, -1 Diplomacy • Smuggler wealth", combat: {} },
+  { name: "Zealous Crusaders", eco: 0, mil: 2, dip: -1, summary: "+2 Military, -1 Diplomacy • Infantry deals +15% damage", combat: { infDmgMult: 1.15 } },
+  { name: "Agrarian Breadbasket", eco: 1, mil: 0, dip: 0, summary: "+1 Economy • All units start battles with +20 HP", combat: { allHp: 20 } },
+  { name: "Orbital Defense Grid", eco: 0, mil: 1, dip: 0, summary: "+1 Military • Defending Artillery gets +1 Range (Range 4!)", combat: { defArtRange: 1 } }
+];
+
+function findTraitMeta(traitName) {
+  return TRAIT_CATALOG.find(t => t.name === traitName) || null;
+}
+
 const LAND_SIZE_TIERS = { 1: "Microstate", 2: "Small Nation", 3: "Medium Country", 4: "Large Power", 5: "Giant Empire" };
 
 const WHEEL_DATA = {
@@ -1028,11 +1232,7 @@ const WHEEL_DATA = {
     { label: "~600,000 km² (3 Regions)", value: 3, color: "#10b981" },
     { label: "~800,000 km² (4 Regions)", value: 4, color: "#ea580c" }
   ],
-  ideology: [
-    "Democratic Republic", "Technocracy", "Constitutional Monarchy", "Merchant Guild",
-    "Military Stratocracy", "Sacred Theocracy", "Cyber-Parliament", "Tribal Confederacy",
-    "Imperial Autocracy", "Syndicalist Commonwealth"
-  ],
+  ideology: Object.keys(GOV_CATALOG),
   economy: [
     "Rare Minerals & Oil", "High-Tech & AI", "Maritime Trade Hub", "Agriculture & Spices",
     "Geothermal & Clean Energy", "Heavy Industry", "Banking & Tax Haven", "Timber & Artisans"
@@ -1041,10 +1241,7 @@ const WHEEL_DATA = {
     "Fortress Defense", "Naval Supremacy", "Orbital & Missile Array", "Agile Nomadic Forces",
     "Elite Special Ops", "Automated Drones", "Mass Citizen Guard", "Diplomatic Neutrality"
   ],
-  trait: [
-    "Culinary Soft Power", "Underground Bunkers", "Ancient Sacred Totems", "Spaceport Megahub",
-    "Master Negotiators", "Secret Intelligence Ring", "Cultural Renaissance", "Engineering Prodigies"
-  ],
+  trait: TRAIT_CATALOG.map(t => t.name),
   action: [
     { label: "Critical Triumph!", outcome: "crit", color: "#f5b942" },
     { label: "Clean Success", outcome: "success", color: "#34d399" },
@@ -1057,22 +1254,19 @@ const WHEEL_DATA = {
 
 const WHEEL_COLORS = ["#2563eb", "#0891b2", "#059669", "#d97706", "#dc2626", "#7c3aed", "#db2777", "#4f46e5", "#0d9488", "#ea580c"];
 
-// ============================================================
-// 3. STATE MANAGEMENT & LOCKS
-// ============================================================
-const STORAGE_KEY = "nationwheel_atlas_v4";
+const STORAGE_KEY = "nationwheel_atlas_v6";
 const MY_NATION_KEY = "nationwheel_my_nation_id";
 
 function getDefaultWorld() {
   return {
-    worldName: "Season 1 • Classroom Chronicles",
+    worldName: "Season 1 • Geopolitical Chronicles",
     dayMode: "realtime",
     gameDay: 1,
     hostPin: "",
     nations: [],
     requests: [],
     chronicle: [
-      { id: "init", date: todayStr(), text: "The World Atlas was charted. Spin the Location & Land Size wheels (up to ~1,000,000 km²) to found nations!" }
+      { id: "init", date: todayStr(), text: "The World Atlas was charted. Spin Location, Land Size (up to ~1,000,000 km²), Government Subtypes & Wildcards to found nations!" }
     ]
   };
 }
@@ -1135,9 +1329,6 @@ async function initWorld() {
   }
 }
 
-// ============================================================
-// 4. UTILITIES, ONE-NATION-PER-PLAYER & SOUND
-// ============================================================
 function escapeHtml(str) {
   return String(str ?? "")
     .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
@@ -1193,22 +1384,15 @@ function toggleSound() {
 
 function getPlayerActiveNation(playerName) {
   const norm = (playerName || "").trim().toLowerCase();
-  if (norm) {
-    const match = world.nations.find(n => (n.player || "").trim().toLowerCase() === norm);
-    if (match) return match;
-  }
-  return null;
+  if (!norm) return null;
+  return world.nations.find(n => (n.player || "").trim().toLowerCase() === norm) || null;
 }
 
 function getDeviceActiveNation() {
   const savedId = localStorage.getItem(MY_NATION_KEY);
   if (!savedId) return null;
   const found = world.nations.find(n => n.id === savedId);
-  if (!found) {
-    // Nation was destroyed — unlock player!
-    localStorage.removeItem(MY_NATION_KEY);
-    return null;
-  }
+  if (!found) { localStorage.removeItem(MY_NATION_KEY); return null; }
   return found;
 }
 
@@ -1224,6 +1408,32 @@ function getNationSizeLabel(nation) {
   const count = (nation.territories || []).length;
   const tier = LAND_SIZE_TIERS[Math.min(5, Math.max(1, count))] || "Superpower";
   return count > 5 ? `Continental Hegemon (${count} Regions)` : `${tier} (${count} Region${count > 1 ? "s" : ""})`;
+}
+
+function getMaxAllies(nation) {
+  const gov = findGovSubtypeMeta(nation.govSubtype);
+  const tr = findTraitMeta(nation.trait);
+  const bonus = (gov?.combat?.maxAllyBonus || 0) + (tr?.combat?.maxAllyBonus || 0);
+  return 1 + Math.floor((nation.stats.diplomacy || 3) / 3) + bonus;
+}
+
+function getNationStatPerksHtml(nation) {
+  const eco = nation.stats.economy || 3;
+  const mil = nation.stats.military || 3;
+  const dip = nation.stats.diplomacy || 3;
+  const maxAllies = getMaxAllies(nation);
+
+  const ecoUnit = eco >= 8 ? "+2 Supply Squads" : eco >= 5 ? "+1 Artillery Squad" : "Base Supply";
+  const milUnit = mil >= 8 ? "+2 Combat Squads" : mil >= 5 ? "+1 Cavalry Squad" : "Standard Army";
+  const dipPerk = (nation.allies?.length && dip >= 4) ? "Allied Guard Active" : (dip >= 4 ? "Allied Guard Ready" : "Need Dip 4+ for Allied Guard");
+
+  return `
+    <div class="effect-box">
+      <div>💎 <strong>Economy (${eco}):</strong> ${ecoUnit} • +${eco * 5}% Action Odds</div>
+      <div>🛡️ <strong>Military (${mil}):</strong> +${mil * 4} Unit HP, +${mil * 2} ATK • ${milUnit}</div>
+      <div>🤝 <strong>Diplomacy (${dip}):</strong> Max ${maxAllies} Allies (${nation.allies?.length || 0}/${maxAllies}) • ${dipPerk}</div>
+    </div>
+  `;
 }
 
 function renderFlagSvg(flag) {
@@ -1247,9 +1457,6 @@ function renderFlagSvg(flag) {
   return `<svg viewBox="0 0 100 60" width="100%" height="100%" preserveAspectRatio="none">${shapes}</svg>`;
 }
 
-// ============================================================
-// 5. NAVIGATION & HOST MODE
-// ============================================================
 document.querySelectorAll(".tab-btn").forEach(btn => {
   btn.addEventListener("click", () => {
     document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
@@ -1263,22 +1470,22 @@ document.querySelectorAll(".tab-btn").forEach(btn => {
 document.getElementById("host-toggle-btn").addEventListener("click", () => {
   if (!isHost) {
     if (world.hostPin) {
-      const attempt = prompt("Enter Host / GM PIN:");
-      if (attempt !== world.hostPin) return toast("❌ Incorrect Host PIN");
+      const attempt = prompt("Enter Admin / GM PIN:");
+      if (attempt !== world.hostPin) return toast("❌ Incorrect Admin PIN");
     }
     isHost = true;
-    toast("👑 Host / GM Mode Enabled");
+    toast("👑 Admin / GM Mode Enabled");
   } else {
     isHost = false;
     builderOverrideUnlocked = false;
-    toast("🔒 Switched to Classmate View");
+    toast("🔒 Switched to Player View");
   }
   refreshUI();
 });
 
 function requireHost() {
   if (!isHost) {
-    toast("🔒 Switch to Host / GM Mode in the top-right to edit canon!");
+    toast("🔒 Switch to Admin / GM Mode in the top-right to edit canon!");
     return false;
   }
   return true;
@@ -1292,15 +1499,11 @@ function toggleBuilderOverride() {
 }
 
 function applyBuilderLocks() {
-  const lockedFields = ["builder-region", "builder-landsize", "builder-ideology", "builder-economy", "builder-military", "builder-trait"];
+  const lockedFields = ["builder-region", "builder-landsize", "builder-ideology", "builder-subtype", "builder-economy", "builder-military", "builder-trait"];
   const allBuilderFields = ["builder-player", "builder-name", "builder-capital", "builder-color1", "builder-color2", "builder-pattern", "builder-lore"];
 
-  // Non-admins CANNOT edit anything in the Canon Nation Builder
-  allBuilderFields.forEach(id => {
-    document.getElementById(id).disabled = !isHost;
-  });
+  allBuilderFields.forEach(id => { document.getElementById(id).disabled = !isHost; });
 
-  // Rolled fields are locked even for Host unless Admin Override is explicitly toggled
   lockedFields.forEach(id => {
     const el = document.getElementById(id);
     if (el.tagName === "SELECT") el.disabled = !isHost || !builderOverrideUnlocked;
@@ -1310,21 +1513,18 @@ function applyBuilderLocks() {
     }
   });
 
-  document.getElementById("wheel-classmate-notice").style.display = isHost ? "none" : "block";
+  document.getElementById("wheel-player-notice").style.display = isHost ? "none" : "block";
   document.getElementById("found-nation-btn").disabled = !isHost;
   document.getElementById("randomize-names-btn").disabled = !isHost;
   document.getElementById("admin-override-lock-btn").style.display = isHost ? "inline-flex" : "none";
   document.getElementById("admin-override-lock-btn").textContent = builderOverrideUnlocked ? "🔒 Re-Lock Wheel Fields" : "🔓 Admin Override Lock";
   document.getElementById("builder-lock-badge").textContent = isHost
     ? (builderOverrideUnlocked ? "🔓 Admin Override Active" : "🔒 Results Locked by Wheel")
-    : "🔒 Host Mode Required";
+    : "🔒 Admin Mode Required";
   document.getElementById("spin-btn").textContent = isHost ? "🎡 SPIN WHEEL" : "🧪 Practice Spin (Preview)";
   document.getElementById("full-spin-btn").style.display = isHost ? "inline-flex" : "none";
 }
 
-// ============================================================
-// 6. INTERACTIVE MAP RENDERING & PAN/ZOOM
-// ============================================================
 function getOwnerNation(territoryId) {
   return world.nations.find(n => n.territories.includes(territoryId));
 }
@@ -1537,6 +1737,8 @@ function renderInspector() {
   const usedToday = owner.lastActionDay === activeDayKey();
   const area = getNationAreaKm2(owner);
   const sizeLabel = getNationSizeLabel(owner);
+  const govMeta = findGovSubtypeMeta(owner.govSubtype);
+  const traitMeta = findTraitMeta(owner.trait);
   const allyNames = (owner.allies || []).map(id => world.nations.find(x => x.id === id)?.name).filter(Boolean);
   const warNames = (owner.wars || []).map(id => world.nations.find(x => x.id === id)?.name).filter(Boolean);
 
@@ -1549,17 +1751,32 @@ function renderInspector() {
       </div>
     </div>
 
-    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px">
+    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px">
       <span class="tag tag-gold">${escapeHtml(sizeLabel)}</span>
-      <span class="tag">${escapeHtml(owner.ideology)}</span>
+      <span class="tag ${owner.govIsRare ? "tag-purple" : ""}">${owner.govIsRare ? "⚡ RARE: " : ""}${escapeHtml(owner.govSubtype || owner.ideology)}</span>
       <span class="tag ${usedToday ? "tag-red" : "tag-green"}">${usedToday ? "⏳ Daily Action Used" : "⚡ 1 Daily Action Ready"}</span>
     </div>
 
+    ${govMeta ? `
+      <div class="effect-box">
+        <div><strong>🏛️ ${escapeHtml(owner.ideology)} → ${escapeHtml(govMeta.name)}</strong></div>
+        <div style="color:var(--green)">▲ Bonus: ${escapeHtml(govMeta.bonus)}</div>
+        <div style="color:var(--red)">▼ Nerf: ${escapeHtml(govMeta.nerf)}</div>
+      </div>
+    ` : ""}
+
+    ${traitMeta ? `
+      <div class="effect-box">
+        <div><strong>✨ Wildcard: ${escapeHtml(traitMeta.name)}</strong></div>
+        <div class="muted">${escapeHtml(traitMeta.summary)}</div>
+      </div>
+    ` : ""}
+
+    ${getNationStatPerksHtml(owner)}
+
     <div class="small" style="line-height:1.55">
       <div><strong>Total Land Area:</strong> ${area.toLocaleString()} km² (${owner.territories.length} region${owner.territories.length > 1 ? "s" : ""})</div>
-      <div><strong>Economy:</strong> ${escapeHtml(owner.economy)}</div>
-      <div><strong>Military:</strong> ${escapeHtml(owner.military)}</div>
-      <div><strong>Trait:</strong> ${escapeHtml(owner.trait)}</div>
+      <div><strong>Economy:</strong> ${escapeHtml(owner.economy)} • <strong>Military:</strong> ${escapeHtml(owner.military)}</div>
       <div><strong>Regions Held:</strong> ${owner.territories.map(id => TERRITORIES.find(x => x.id === id)?.name).join(", ")}</div>
       ${allyNames.length ? `<div><strong>Allies:</strong> <span style="color:var(--green)">${escapeHtml(allyNames.join(", "))}</span></div>` : ""}
       ${warNames.length ? `<div><strong>Wars / Rivals:</strong> <span style="color:var(--red)">${escapeHtml(warNames.join(", "))}</span></div>` : ""}
@@ -1596,9 +1813,6 @@ function jumpToWarRoom(nationId) {
   refreshWarTargets();
 }
 
-// ============================================================
-// 7. SPIN WHEEL ENGINE
-// ============================================================
 function getWheelItems(type) {
   if (type === "location") {
     const free = getUnclaimedTerritories();
@@ -1649,7 +1863,7 @@ function drawWheel() {
     ctx.rotate(start + slice / 2);
     ctx.textAlign = "right";
     ctx.fillStyle = "#ffffff";
-    ctx.font = `bold ${items.length > 18 ? 11 : currentWheelType === "landsize" ? 12 : 13.5}px Inter, sans-serif`;
+    ctx.font = `bold ${items.length > 18 ? 11 : currentWheelType === "landsize" ? 12 : 13}px Inter, sans-serif`;
     ctx.shadowColor = "rgba(0,0,0,0.65)";
     ctx.shadowBlur = 4;
     const txt = item.label.length > 27 ? item.label.slice(0, 25) + "…" : item.label;
@@ -1681,7 +1895,7 @@ function spinCurrentWheel(onDone) {
   const extraRotations = 5 + Math.random() * 4;
   const totalDelta = extraRotations * Math.PI * 2 + Math.random() * Math.PI * 2;
   const startAngle = wheelAngle;
-  const duration = 2600;
+  const duration = 2500;
   const startTime = performance.now();
   const slice = (Math.PI * 2) / items.length;
   let lastSliceIdx = -1;
@@ -1714,24 +1928,76 @@ function spinCurrentWheel(onDone) {
   requestAnimationFrame(frame);
 }
 
+function updateBuilderModifierPreviews() {
+  const subName = document.getElementById("builder-subtype").value.trim();
+  const govMeta = findGovSubtypeMeta(subName);
+  const govBox = document.getElementById("builder-gov-preview");
+  if (govMeta) {
+    govBox.style.display = "block";
+    govBox.innerHTML = `
+      <div><strong>${govMeta.rare ? "⚡ RARE SUBTYPE! " : "🏛️ Subtype: "}${escapeHtml(govMeta.name)}</strong></div>
+      <div style="color:var(--green)">▲ Bonus: ${escapeHtml(govMeta.bonus)}</div>
+      <div style="color:var(--red)">▼ Nerf: ${escapeHtml(govMeta.nerf)}</div>
+    `;
+  } else {
+    govBox.style.display = "none";
+  }
+
+  const traitName = document.getElementById("builder-trait").value.trim();
+  const traitMeta = findTraitMeta(traitName);
+  const traitBox = document.getElementById("builder-trait-preview");
+  if (traitMeta) {
+    traitBox.style.display = "block";
+    traitBox.innerHTML = `<strong>✨ ${escapeHtml(traitMeta.name)}:</strong> <span style="color:var(--green)">${escapeHtml(traitMeta.summary)}</span>`;
+  } else {
+    traitBox.style.display = "none";
+  }
+}
+
 function applySpinResult(type, winner) {
   const banner = document.getElementById("wheel-result-banner");
   const modeTag = isHost ? "CANON SPIN (LOCKED)" : "PRACTICE PREVIEW ONLY";
-  banner.innerHTML = `<span class="tag tag-gold">${modeTag}</span><div style="font-size:1.1rem;font-weight:800;margin-top:4px">${escapeHtml(winner.label)}</div>`;
 
-  // Non-admins CANNOT write wheel results into the Canon Nation Builder
-  if (!isHost) return;
+  if (type === "ideology") {
+    const govEntry = GOV_CATALOG[winner.value];
+    const isRare = Math.random() < 0.25;
+    const subtype = govEntry ? (isRare ? govEntry.rare : govEntry.standard) : null;
 
-  if (type === "location" && winner.value) document.getElementById("builder-region").value = winner.value;
-  else if (type === "landsize" && winner.value) document.getElementById("builder-landsize").value = String(winner.value);
-  else if (type === "ideology") document.getElementById("builder-ideology").value = winner.value;
-  else if (type === "economy") document.getElementById("builder-economy").value = winner.value;
-  else if (type === "military") document.getElementById("builder-military").value = winner.value;
-  else if (type === "trait") document.getElementById("builder-trait").value = winner.value;
+    banner.innerHTML = `
+      <span class="tag ${isRare ? "tag-purple" : "tag-gold"}">${isRare ? "⚡ RARE SUBTYPE TWIST!" : modeTag}</span>
+      <div style="font-size:1.08rem;font-weight:800;margin-top:4px">${escapeHtml(winner.label)} → ${escapeHtml(subtype?.name || "")}</div>
+      ${subtype ? `<div class="small" style="margin-top:4px"><span style="color:var(--green)">+${escapeHtml(subtype.bonus)}</span> | <span style="color:var(--red)">${escapeHtml(subtype.nerf)}</span></div>` : ""}
+    `;
+    if (isHost && subtype) {
+      document.getElementById("builder-ideology").value = winner.value;
+      document.getElementById("builder-subtype").value = subtype.name;
+      updateBuilderModifierPreviews();
+    }
+  } else if (type === "trait") {
+    const tMeta = findTraitMeta(winner.value);
+    banner.innerHTML = `
+      <span class="tag tag-gold">${modeTag}</span>
+      <div style="font-size:1.08rem;font-weight:800;margin-top:4px">${escapeHtml(winner.label)}</div>
+      ${tMeta ? `<div class="small" style="color:var(--green);margin-top:4px">${escapeHtml(tMeta.summary)}</div>` : ""}
+    `;
+    if (isHost) {
+      document.getElementById("builder-trait").value = winner.value;
+      updateBuilderModifierPreviews();
+    }
+  } else {
+    banner.innerHTML = `<span class="tag tag-gold">${modeTag}</span><div style="font-size:1.1rem;font-weight:800;margin-top:4px">${escapeHtml(winner.label)}</div>`;
+    if (isHost) {
+      if (type === "location" && winner.value) document.getElementById("builder-region").value = winner.value;
+      else if (type === "landsize" && winner.value) document.getElementById("builder-landsize").value = String(winner.value);
+      else if (type === "economy") document.getElementById("builder-economy").value = winner.value;
+      else if (type === "military") document.getElementById("builder-military").value = winner.value;
+    }
+  }
 
-  // Automatically re-lock rolled fields after spinning
-  builderOverrideUnlocked = false;
-  applyBuilderLocks();
+  if (isHost) {
+    builderOverrideUnlocked = false;
+    applyBuilderLocks();
+  }
 }
 
 function runFullNationSpin() {
@@ -1745,14 +2011,11 @@ function runFullNationSpin() {
     }
     selectWheelType(order[step]);
     step++;
-    spinCurrentWheel(() => setTimeout(next, 300));
+    spinCurrentWheel(() => setTimeout(next, 320));
   }
   next();
 }
 
-// ============================================================
-// 8. NATION BUILDER (1-NATION-PER-PLAYER + LOCKED STATS)
-// ============================================================
 const RANDOM_PREFIXES = ["Aurelia", "Valoria", "Katzash", "Solara", "Nervella", "Primis", "Techlandia", "Drakonia", "Vespera", "Zephyria", "Novaria", "Eldoria"];
 const RANDOM_CAPITALS = ["New Solis", "Velkara", "Ironspire", "Dawnport", "Skyhaven", "Citadel Prime", "Frostgate", "Luminis"];
 
@@ -1819,22 +2082,33 @@ function foundNationFromBuilder() {
   const regionId = document.getElementById("builder-region").value;
   const landSizeCount = Number(document.getElementById("builder-landsize").value) || 1;
   const ideology = document.getElementById("builder-ideology").value.trim() || "Democratic Republic";
+  let govSubtype = document.getElementById("builder-subtype").value.trim();
+  if (!govSubtype && GOV_CATALOG[ideology]) govSubtype = GOV_CATALOG[ideology].standard.name;
   const economy = document.getElementById("builder-economy").value.trim() || "Mixed Trade";
   const military = document.getElementById("builder-military").value.trim() || "Defensive Guard";
-  const trait = document.getElementById("builder-trait").value.trim() || "Resilient Citizens";
+  const trait = document.getElementById("builder-trait").value.trim() || "Agrarian Breadbasket";
   const lore = document.getElementById("builder-lore").value.trim();
 
-  if (!player) return toast("Please enter the Classmate / Leader Name!");
+  if (!player) return toast("Please enter the Player / Leader Name!");
   if (!name) return toast("Please enter a Nation Name!");
-  if (!regionId || getOwnerNation(regionId)) return toast("Please spin/choose an unclaimed Starting Location!");
+  if (!regionId || getOwnerNation(regionId)) return toast("Please spin an unclaimed Starting Location!");
 
-  // Enforce 1 nation per player unless destroyed
   const existing = getPlayerActiveNation(player);
   if (existing) {
     return toast(`🚫 ${player} already rules ${existing.name}! They cannot spin a new nation unless it is destroyed.`);
   }
 
   const claimedTerritories = claimRegionsByLandSize(regionId, landSizeCount);
+  const govMeta = findGovSubtypeMeta(govSubtype);
+  const traitMeta = findTraitMeta(trait);
+
+  const baseEco = 3 + Math.floor(claimedTerritories.length / 2);
+  const baseMil = 3 + Math.floor(claimedTerritories.length / 2);
+  const baseDip = 3;
+
+  const finalEco = Math.max(1, baseEco + (govMeta?.eco || 0) + (traitMeta?.eco || 0));
+  const finalMil = Math.max(1, baseMil + (govMeta?.mil || 0) + (traitMeta?.mil || 0));
+  const finalDip = Math.max(1, baseDip + (govMeta?.dip || 0) + (traitMeta?.dip || 0));
 
   const nation = {
     id: "nat_" + Date.now().toString(36) + Math.random().toString(36).slice(2, 5),
@@ -1842,17 +2116,16 @@ function foundNationFromBuilder() {
     capitalTerritoryId: regionId,
     territories: claimedTerritories,
     areaBonusKm2: 0,
-    ideology, economy, military, trait, lore,
+    ideology,
+    govSubtype: govMeta ? govMeta.name : govSubtype,
+    govIsRare: Boolean(govMeta?.rare),
+    economy, military, trait, lore,
     flag: {
       c1: document.getElementById("builder-color1").value,
       c2: document.getElementById("builder-color2").value,
       pattern: document.getElementById("builder-pattern").value
     },
-    stats: {
-      economy: 2 + Math.ceil(claimedTerritories.length / 2),
-      military: 2 + Math.ceil(claimedTerritories.length / 2),
-      diplomacy: 3
-    },
+    stats: { economy: finalEco, military: finalMil, diplomacy: finalDip },
     allies: [], wars: [],
     foundedDate: activeDayKey(), lastActionDay: null
   };
@@ -1865,7 +2138,7 @@ function foundNationFromBuilder() {
   world.chronicle.unshift({
     id: "ev_" + Date.now(),
     date: activeDayKey(),
-    text: `🎡 SPIN CANON: ${name} (${player}) spawned in ${startReg?.name} (${startReg?.continent}) as a ${sizeTier} spanning ${area} km²!`
+    text: `🎡 SPIN CANON: ${name} (${player}) founded in ${startReg?.name} (${sizeTier}, ${area} km²) as a ${nation.govIsRare ? "⚡ RARE " : ""}${nation.govSubtype} with ✨ ${trait}!`
   });
 
   selectedTerritoryId = regionId;
@@ -1888,9 +2161,7 @@ function destroyNation(nationId, reasonText) {
     n.allies = (n.allies || []).filter(id => id !== nationId);
     n.wars = (n.wars || []).filter(id => id !== nationId);
   });
-  if (localStorage.getItem(MY_NATION_KEY) === nationId) {
-    localStorage.removeItem(MY_NATION_KEY);
-  }
+  if (localStorage.getItem(MY_NATION_KEY) === nationId) localStorage.removeItem(MY_NATION_KEY);
   world.chronicle.unshift({
     id: "ev_" + Date.now(),
     date: activeDayKey(),
@@ -1930,9 +2201,34 @@ function hostDeleteNation(nationId) {
 }
 
 // ============================================================
-// 9. TACTICAL "LINES OF BATTLE" WAR ROOM
+// LARGER 10x7 TACTICAL BATTLEFIELD + FOREST STEALTH (HIDDEN UNITS)
 // ============================================================
 let battle = null;
+const BATTLE_ROWS = 7;
+const BATTLE_COLS = 10;
+const CITY_ROW = 3;
+const CITY_COL = 9;
+
+function getNationCombatMods(nation) {
+  const gov = findGovSubtypeMeta(nation.govSubtype)?.combat || {};
+  const tr = findTraitMeta(nation.trait)?.combat || {};
+  return {
+    allHp: (gov.allHp || 0) + (tr.allHp || 0),
+    infHp: (gov.infHp || 0) + (tr.infHp || 0),
+    garrisonHp: (gov.garrisonHp || 0) + (tr.garrisonHp || 0),
+    infDmgMult: (gov.infDmgMult || 1) * (tr.infDmgMult || 1),
+    cavDmgMult: (gov.cavDmgMult || 1) * (tr.cavDmgMult || 1),
+    artDmgMult: (gov.artDmgMult || 1) * (tr.artDmgMult || 1),
+    garrisonDmgMult: (gov.garrisonDmgMult || 1) * (tr.garrisonDmgMult || 1),
+    cavMove: (gov.cavMove || 0) + (tr.cavMove || 0),
+    cavCharge: (gov.cavCharge || 0) + (tr.cavCharge || 0),
+    flankBonus: (gov.flankBonus || 0) + (tr.flankBonus || 0),
+    coverBonus: (gov.coverBonus || 0) + (tr.coverBonus || 0),
+    defDmgReduction: (gov.defDmgReduction || 0) + (tr.defDmgReduction || 0),
+    defArtRange: (gov.defArtRange || 0) + (tr.defArtRange || 0),
+    scoutRange: Math.max(gov.scoutRange || 1, tr.scoutRange || 1)
+  };
+}
 
 function refreshWarTargets() {
   const atkSel = document.getElementById("war-attacker");
@@ -1940,16 +2236,14 @@ function refreshWarTargets() {
   const prevAtk = atkSel.value;
 
   atkSel.innerHTML = world.nations.length
-    ? world.nations.map(n => `<option value="${n.id}">${escapeHtml(n.name)} (Mil ${n.stats.military})</option>`).join("")
+    ? world.nations.map(n => `<option value="${n.id}">${escapeHtml(n.name)} (Eco ${n.stats.economy} • Mil ${n.stats.military} • Dip ${n.stats.diplomacy})</option>`).join("")
     : `<option value="">No nations yet</option>`;
   if (prevAtk && world.nations.some(n => n.id === prevAtk)) atkSel.value = prevAtk;
 
-  const atkId = atkSel.value;
-  const atk = world.nations.find(n => n.id === atkId);
+  const atk = world.nations.find(n => n.id === atkSel.value);
   tgtSel.innerHTML = "";
   if (!atk) return;
 
-  // Adjacent enemy regions first, then any enemy regions
   const adjIds = new Set();
   atk.territories.forEach(tid => {
     const t = TERRITORIES.find(x => x.id === tid);
@@ -1976,40 +2270,86 @@ function refreshWarTargets() {
   });
 }
 
-function buildTerrainGrid(isMajorCity, biome) {
+function buildTerrainGrid(biome) {
   const grid = [];
-  for (let r = 0; r < 5; r++) {
-    for (let c = 0; c < 7; c++) {
+  const forestBias = (biome.includes("Forest") || biome.includes("Jungle")) ? 0.36 : 0.24;
+  for (let r = 0; r < BATTLE_ROWS; r++) {
+    for (let c = 0; c < BATTLE_COLS; c++) {
       let type = "plain";
-      if (c === 6 && r === 2) type = "city";
-      else if ((c === 2 || c === 4) && (r === 1 || r === 3)) type = biome.includes("Forest") || biome.includes("Jungle") || Math.random() < 0.5 ? "forest" : "hill";
-      else if (c === 3 && r === 2) type = "hill";
-      else if (Math.random() < 0.16) type = "forest";
+      if (r === CITY_ROW && c === CITY_COL) {
+        type = "city";
+      } else if (c >= 2 && c <= 7) {
+        const roll = Math.random();
+        if (roll < forestBias) type = "forest";
+        else if (roll < forestBias + 0.16) type = "hill";
+      }
       grid.push({ r, c, type });
     }
   }
-  grid.find(x => x.r === 2 && x.c === 6).type = "city";
+  // Ensure clear tactical forest ambush lanes in mid-map
+  [[1, 4], [2, 3], [4, 5], [5, 4], [2, 6], [4, 7]].forEach(([fr, fc]) => {
+    const cell = grid.find(x => x.r === fr && x.c === fc);
+    if (cell && cell.type === "plain") cell.type = "forest";
+  });
+  grid.find(x => x.r === CITY_ROW && x.c === CITY_COL).type = "city";
   return grid;
 }
 
-function createUnit(side, kind, r, c, nation) {
+function createUnit(side, kind, r, c, nation, isAlliedReinforcement = false) {
   const templates = {
-    inf: { icon: "🛡️", name: "Infantry", hp: 100, maxHp: 100, move: 2, range: 1, atk: 28 },
-    cav: { icon: "🐎", name: "Cavalry", hp: 85, maxHp: 85, move: 3, range: 1, atk: 26 },
-    art: { icon: "🎯", name: "Artillery", hp: 70, maxHp: 70, move: 1, range: 3, atk: 24 },
-    gar: { icon: "🏰", name: "City Garrison", hp: 125, maxHp: 125, move: 1, range: 1, atk: 32 }
+    inf: { icon: isAlliedReinforcement ? "🤝" : "🛡️", name: isAlliedReinforcement ? "Allied Guard" : "Infantry", hp: 100, move: 2, range: 1, atk: 26 },
+    cav: { icon: "🐎", name: "Cavalry", hp: 85, move: 4, range: 1, atk: 24 },
+    art: { icon: "🎯", name: "Artillery", hp: 70, move: 2, range: 3, atk: 22 },
+    gar: { icon: "🏰", name: "City Garrison", hp: 130, move: 1, range: 1, atk: 30 }
   };
   const tpl = templates[kind];
-  const milBonus = Math.floor((nation.stats.military || 3) * 1.8);
+  const mods = getNationCombatMods(nation);
+  const mil = nation.stats.military || 3;
+
+  let hp = tpl.hp + mil * 4 + mods.allHp;
+  if (kind === "inf") hp += mods.infHp;
+  if (kind === "gar") hp += mods.garrisonHp;
+  hp = Math.max(40, hp);
+
+  let move = tpl.move + (kind === "cav" ? mods.cavMove : 0);
+  let range = tpl.range + (side === "def" && kind === "art" ? mods.defArtRange : 0);
+  let atk = tpl.atk + mil * 2;
+
   return {
     id: `${side}_${kind}_${r}_${c}_${Math.random().toString(36).slice(2, 5)}`,
     side, kind, r, c,
-    color: nation.flag?.c1 || (side === "atk" ? "#38bdf8" : "#ef4444"),
+    color: isAlliedReinforcement ? "#10b981" : (nation.flag?.c1 || (side === "atk" ? "#38bdf8" : "#ef4444")),
     icon: tpl.icon, name: tpl.name,
-    hp: tpl.hp + milBonus, maxHp: tpl.hp + milBonus,
-    move: tpl.move, range: tpl.range, atk: tpl.atk + Math.floor((nation.stats.military || 3) * 0.8),
-    hasMoved: false, hasAttacked: false, movedDist: 0
+    hp, maxHp: hp, move, range, atk,
+    hasMoved: false, hasAttacked: false, movedDist: 0,
+    revealed: false
   };
+}
+
+function deployArmyUnits(side, nation, isMajorCity) {
+  const units = [];
+  const eco = nation.stats.economy || 3;
+  const mil = nation.stats.military || 3;
+  const dip = nation.stats.diplomacy || 3;
+  const colFront = side === "atk" ? 1 : 8;
+  const colBack = side === "atk" ? 0 : 9;
+
+  units.push(createUnit(side, side === "def" && isMajorCity ? "gar" : "inf", 3, colBack, nation));
+  units.push(createUnit(side, "inf", 2, colFront, nation));
+  units.push(createUnit(side, "inf", 4, colFront, nation));
+  units.push(createUnit(side, "art", 2, colBack, nation));
+
+  if (mil >= 5) units.push(createUnit(side, "cav", 1, colFront, nation));
+  if (mil >= 8) units.push(createUnit(side, "inf", 5, colFront, nation));
+
+  if (eco >= 5) units.push(createUnit(side, "art", 4, colBack, nation));
+  if (eco >= 8) units.push(createUnit(side, "cav", 5, colBack, nation));
+
+  if ((nation.allies || []).length > 0 && dip >= 4) {
+    units.push(createUnit(side, "inf", 1, colBack, nation, true));
+  }
+
+  return units;
 }
 
 function startBattle(official) {
@@ -2029,21 +2369,8 @@ function startBattle(official) {
 
   const isMajorCity = def.capitalTerritoryId === targetTid;
   const defMode = document.getElementById("war-defender-mode").value;
-  const terrain = buildTerrainGrid(isMajorCity, targetT.biome);
-
-  const units = [
-    createUnit("atk", "inf", 1, 0, atk),
-    createUnit("atk", "inf", 3, 0, atk),
-    createUnit("atk", "cav", 0, 1, atk),
-    createUnit("atk", "art", 2, 0, atk)
-  ];
-  if (atk.stats.military >= 5) units.push(createUnit("atk", "cav", 4, 1, atk));
-
-  units.push(createUnit("def", isMajorCity ? "gar" : "inf", 2, 6, def));
-  units.push(createUnit("def", "inf", 1, 5, def));
-  units.push(createUnit("def", "inf", 3, 5, def));
-  units.push(createUnit("def", "art", 2, 5, def));
-  if (def.stats.military >= 5 || isMajorCity) units.push(createUnit("def", "cav", 0, 5, def));
+  const terrain = buildTerrainGrid(targetT.biome);
+  const units = [...deployArmyUnits("atk", atk, false), ...deployArmyUnits("def", def, isMajorCity)];
 
   battle = {
     official,
@@ -2053,68 +2380,75 @@ function startBattle(official) {
     defMode,
     turn: "atk",
     round: 1,
-    cityHoldTurns: 0,
     selectedUnitId: null,
     terrain,
     units,
     winner: null,
-    log: [`⚔️ ${official ? "OFFICIAL BATTLE" : "PRACTICE SKIRMISH"}: ${atk.name} invades ${targetT.name}${isMajorCity ? ` (★ Siege of ${def.capital}!)` : ""} held by ${def.name}!`]
+    log: [`⚔️ ${official ? "OFFICIAL 10×7 BATTLE" : "PRACTICE 10×7 SKIRMISH"}: ${atk.name} (${units.filter(u => u.side === "atk").length} squads) invades ${targetT.name}${isMajorCity ? ` (★ Siege of ${def.capital}!)` : ""} held by ${def.name} (${units.filter(u => u.side === "def").length} squads)! Units in 🌲 Forests are hidden!`]
   };
 
+  document.getElementById("battle-modifiers-line").textContent =
+    `${atk.name}: ${atk.govSubtype} + ${atk.trait}  |  ${def.name}: ${def.govSubtype} + ${def.trait}`;
   document.getElementById("battle-victory-banner").style.display = "none";
   document.getElementById("battle-end-turn-btn").disabled = false;
   renderBattle();
 }
 
-function getUnitAt(r, c) {
-  return battle?.units.find(u => u.hp > 0 && u.r === r && u.c === c);
+function getUnitAt(r, c) { return battle?.units.find(u => u.hp > 0 && u.r === r && u.c === c); }
+function getTerrainAt(r, c) { return battle?.terrain.find(t => t.r === r && t.c === c); }
+function manhattan(r1, c1, r2, c2) { return Math.abs(r1 - r2) + Math.abs(c1 - c2); }
+
+function isUnitStealthed(unit) {
+  if (!unit || unit.hp <= 0) return false;
+  const ter = getTerrainAt(unit.r, unit.c);
+  return ter?.type === "forest" && !unit.revealed;
 }
 
-function getTerrainAt(r, c) {
-  return battle?.terrain.find(t => t.r === r && t.c === c);
-}
+function isUnitVisibleToViewer(unit, viewerSide) {
+  if (!unit || unit.hp <= 0) return false;
+  if (battle.winner || unit.side === viewerSide) return true;
+  if (!isUnitStealthed(unit)) return true;
 
-function manhattan(r1, c1, r2, c2) {
-  return Math.abs(r1 - r2) + Math.abs(c1 - c2);
+  const viewerNation = world.nations.find(n => n.id === (viewerSide === "atk" ? battle.atkId : battle.defId));
+  const viewerMods = viewerNation ? getNationCombatMods(viewerNation) : { scoutRange: 1 };
+
+  return battle.units.some(spotter => {
+    if (spotter.hp <= 0 || spotter.side !== viewerSide) return false;
+    const spotDist = Math.max(spotter.kind === "cav" ? 2 : 1, viewerMods.scoutRange || 1);
+    return manhattan(spotter.r, spotter.c, unit.r, unit.c) <= spotDist;
+  });
 }
 
 function renderBattle() {
   if (!battle) return;
-  const titleEl = document.getElementById("battle-title");
-  const subEl = document.getElementById("battle-subtitle");
-  const turnTag = document.getElementById("battle-turn-tag");
-  const gridEl = document.getElementById("battle-grid");
+  const viewerSide = (battle.defMode === "hotseat" && battle.turn === "def") ? "def" : "atk";
 
-  titleEl.textContent = `${battle.atkName} vs. ${battle.defName} — ${battle.targetName}${battle.isMajorCity ? " (★ Major City Siege)" : ""}`;
-  subEl.textContent = battle.official
-    ? "OFFICIAL CANON BATTLE: Victory captures this territory on the World Map!"
-    : "PRACTICE SKIRMISH: Map will not change.";
+  document.getElementById("battle-title").textContent = `${battle.atkName} vs. ${battle.defName} — ${battle.targetName}${battle.isMajorCity ? " (★ Major City Siege)" : ""}`;
+  document.getElementById("battle-subtitle").textContent = battle.official
+    ? "OFFICIAL CANON BATTLE (10×7): Victory captures this territory! 🌲 Forests hide units until spotted."
+    : "PRACTICE SKIRMISH (10×7): Map will not change. 🌲 Forests hide units until spotted.";
 
-  turnTag.textContent = battle.winner
+  document.getElementById("battle-turn-tag").textContent = battle.winner
     ? `🏆 ${battle.winner === "atk" ? battle.atkName : battle.defName} Wins!`
     : `Round ${battle.round} • ${battle.turn === "atk" ? battle.atkName + " (Blue)" : battle.defName + " (Red)"} Turn`;
 
   const sel = battle.units.find(u => u.id === battle.selectedUnitId && u.hp > 0);
+  const gridEl = document.getElementById("battle-grid");
   gridEl.innerHTML = "";
 
-  for (let r = 0; r < 5; r++) {
-    for (let c = 0; c < 7; c++) {
+  for (let r = 0; r < BATTLE_ROWS; r++) {
+    for (let c = 0; c < BATTLE_COLS; c++) {
       const ter = getTerrainAt(r, c);
-      const unit = getUnitAt(r, c);
+      const rawUnit = getUnitAt(r, c);
+      const visibleUnit = (rawUnit && isUnitVisibleToViewer(rawUnit, viewerSide)) ? rawUnit : null;
       const tile = document.createElement("div");
       tile.className = `b-tile terrain-${ter.type}`;
 
       let isMoveOpt = false, isAtkOpt = false;
       if (sel && sel.side === battle.turn && !battle.winner) {
         const d = manhattan(sel.r, sel.c, r, c);
-        if (!sel.hasMoved && !unit && d > 0 && d <= sel.move) {
-          isMoveOpt = true;
-          tile.classList.add("move-opt");
-        }
-        if (!sel.hasAttacked && unit && unit.side !== sel.side && d <= sel.range) {
-          isAtkOpt = true;
-          tile.classList.add("atk-opt");
-        }
+        if (!sel.hasMoved && !visibleUnit && d > 0 && d <= sel.move) { isMoveOpt = true; tile.classList.add("move-opt"); }
+        if (!sel.hasAttacked && visibleUnit && visibleUnit.side !== sel.side && d <= sel.range) { isAtkOpt = true; tile.classList.add("atk-opt"); }
       }
       if (sel && sel.r === r && sel.c === c) tile.classList.add("selected-unit");
 
@@ -2123,38 +2457,57 @@ function renderBattle() {
       tTag.textContent = ter.type === "city" ? "🏰" : ter.type === "forest" ? "🌲" : ter.type === "hill" ? "⛰️" : "";
       tile.appendChild(tTag);
 
-      if (unit) {
+      if (visibleUnit) {
+        const stealthed = isUnitStealthed(visibleUnit);
         const uDiv = document.createElement("div");
-        uDiv.className = `b-unit ${unit.hasMoved && unit.hasAttacked ? "spent" : ""}`;
-        uDiv.style.background = unit.color;
-        uDiv.style.borderColor = unit.side === "atk" ? "#38bdf8" : "#f87171";
-        uDiv.innerHTML = `<span>${unit.icon}</span><div class="b-hp-bar"><div class="b-hp-fill" style="width:${Math.max(0, (unit.hp / unit.maxHp) * 100)}%"></div></div>`;
-        uDiv.title = `${unit.name} (${unit.hp}/${unit.maxHp} HP) | Move ${unit.move} | Range ${unit.range}`;
+        uDiv.className = `b-unit ${visibleUnit.hasMoved && visibleUnit.hasAttacked ? "spent" : ""} ${stealthed ? "stealthed" : ""}`;
+        uDiv.style.background = visibleUnit.color;
+        uDiv.style.borderColor = visibleUnit.side === "atk" ? "#38bdf8" : "#f87171";
+        uDiv.innerHTML = `
+          ${stealthed ? `<span class="b-stealth-pip">🌲</span>` : ""}
+          <span>${visibleUnit.icon}</span>
+          <div class="b-hp-bar"><div class="b-hp-fill" style="width:${Math.max(0, (visibleUnit.hp / visibleUnit.maxHp) * 100)}%"></div></div>
+        `;
+        uDiv.title = `${visibleUnit.name} (${visibleUnit.hp}/${visibleUnit.maxHp} HP) | Move ${visibleUnit.move} | Range ${visibleUnit.range}${stealthed ? " • HIDDEN IN FOREST" : ""}`;
         tile.appendChild(uDiv);
       }
 
-      tile.addEventListener("click", () => onBattleTileClick(r, c, isMoveOpt, isAtkOpt));
+      tile.addEventListener("click", () => onBattleTileClick(r, c, isMoveOpt, isAtkOpt, visibleUnit));
       gridEl.appendChild(tile);
     }
   }
 
-  const logEl = document.getElementById("battle-log");
-  logEl.innerHTML = battle.log.slice(0, 14).map(l => `<div>${escapeHtml(l)}</div>`).join("");
+  document.getElementById("battle-log").innerHTML = battle.log.slice(0, 14).map(l => `<div>${escapeHtml(l)}</div>`).join("");
 }
 
-function onBattleTileClick(r, c, isMoveOpt, isAtkOpt) {
+function onBattleTileClick(r, c, isMoveOpt, isAtkOpt, visibleUnit) {
   if (!battle || battle.winner) return;
   if (battle.turn === "def" && battle.defMode === "ai") return;
 
   const sel = battle.units.find(u => u.id === battle.selectedUnitId && u.hp > 0);
-  const clickedUnit = getUnitAt(r, c);
 
   if (isMoveOpt && sel) {
+    const hiddenBlocker = getUnitAt(r, c);
+    if (hiddenBlocker) {
+      hiddenBlocker.revealed = true;
+      sel.hasMoved = true;
+      playTickSound(280);
+      battle.log.unshift(`🌲 AMBUSH SPOTTED! ${sel.name} bumped into hidden ${hiddenBlocker.name} in the forest!`);
+      renderBattle();
+      return;
+    }
+
     sel.movedDist = manhattan(sel.r, sel.c, r, c);
     sel.r = r; sel.c = c;
     sel.hasMoved = true;
+    sel.revealed = false;
     playTickSound(420);
-    if (r === 2 && c === 6 && sel.side === "atk") {
+
+    const newTer = getTerrainAt(r, c);
+    if (newTer?.type === "forest") {
+      battle.log.unshift(`🌲 ${sel.name} slipped into forest cover and is now hidden.`);
+    }
+    if (r === CITY_ROW && c === CITY_COL && sel.side === "atk") {
       battle.log.unshift(`🚩 ${sel.name} stormed the 🏰 Objective / City! Hold until next round to capture!`);
     }
     checkBattleWin();
@@ -2162,15 +2515,15 @@ function onBattleTileClick(r, c, isMoveOpt, isAtkOpt) {
     return;
   }
 
-  if (isAtkOpt && sel && clickedUnit) {
-    executeAttack(sel, clickedUnit);
+  if (isAtkOpt && sel && visibleUnit) {
+    executeAttack(sel, visibleUnit);
     checkBattleWin();
     renderBattle();
     return;
   }
 
-  if (clickedUnit && clickedUnit.side === battle.turn) {
-    battle.selectedUnitId = clickedUnit.id;
+  if (visibleUnit && visibleUnit.side === battle.turn) {
+    battle.selectedUnitId = visibleUnit.id;
     renderBattle();
   } else {
     battle.selectedUnitId = null;
@@ -2179,27 +2532,49 @@ function onBattleTileClick(r, c, isMoveOpt, isAtkOpt) {
 }
 
 function executeAttack(attacker, defender) {
-  const ter = getTerrainAt(defender.r, defender.c);
-  const defMult = ter.type === "city" ? 0.6 : ter.type === "hill" ? 0.7 : ter.type === "forest" ? 0.75 : 1.0;
+  const atkNation = world.nations.find(n => n.id === (attacker.side === "atk" ? battle.atkId : battle.defId));
+  const defNation = world.nations.find(n => n.id === (defender.side === "atk" ? battle.atkId : battle.defId));
+  const atkMods = atkNation ? getNationCombatMods(atkNation) : {};
+  const defMods = defNation ? getNationCombatMods(defNation) : {};
 
-  // Flanking bonus: another friendly unit adjacent to defender
+  const wasAmbush = isUnitStealthed(attacker);
+  const ter = getTerrainAt(defender.r, defender.c);
+  let defMult = ter.type === "city" ? 0.6 : ter.type === "hill" ? 0.7 : ter.type === "forest" ? 0.75 : 1.0;
+  if (ter.type === "city" || ter.type === "hill" || ter.type === "forest") {
+    defMult = Math.max(0.35, defMult - (defMods.coverBonus || 0));
+  }
+  if (defender.side === "def" && defMods.defDmgReduction) {
+    defMult *= (1 - defMods.defDmgReduction);
+  }
+
   const flankingAllies = battle.units.filter(u =>
     u.hp > 0 && u.side === attacker.side && u.id !== attacker.id && manhattan(u.r, u.c, defender.r, defender.c) === 1
   ).length;
 
   let dmg = attacker.atk;
-  if (attacker.kind === "cav" && attacker.movedDist >= 2) dmg += 9;
-  if (attacker.kind === "art" && manhattan(attacker.r, attacker.c, defender.r, defender.c) === 1) dmg = Math.round(dmg * 0.55);
-  if (flankingAllies > 0) dmg = Math.round(dmg * 1.35);
+  if (attacker.kind === "inf") dmg *= (atkMods.infDmgMult || 1);
+  if (attacker.kind === "cav") {
+    dmg *= (atkMods.cavDmgMult || 1);
+    if (attacker.movedDist >= 2) dmg += 8 + (atkMods.cavCharge || 0);
+  }
+  if (attacker.kind === "art") {
+    dmg *= (atkMods.artDmgMult || 1);
+    if (manhattan(attacker.r, attacker.c, defender.r, defender.c) === 1) dmg *= 0.55;
+  }
+  if (attacker.kind === "gar") dmg *= (atkMods.garrisonDmgMult || 1);
+
+  if (wasAmbush) dmg *= 1.25;
+  if (flankingAllies > 0) dmg *= (1.35 + (atkMods.flankBonus || 0));
   dmg = Math.max(6, Math.round(dmg * defMult + (Math.random() * 6 - 3)));
 
   defender.hp = Math.max(0, defender.hp - dmg);
   attacker.hasAttacked = true;
+  attacker.revealed = true;
+  defender.revealed = true;
   playTickSound(defender.hp === 0 ? 220 : 320);
 
-  const flankTxt = flankingAllies > 0 ? " ⚡FLANK!" : "";
-  battle.log.unshift(`${attacker.icon} ${attacker.name} dealt ${dmg} dmg${flankTxt} to ${defender.icon} ${defender.name} (${defender.hp} HP left)`);
-
+  const tags = `${wasAmbush ? " 🌲AMBUSH!" : ""}${flankingAllies > 0 ? " ⚡FLANK!" : ""}`;
+  battle.log.unshift(`${attacker.icon} ${attacker.name} dealt ${dmg} dmg${tags} to ${defender.icon} ${defender.name} (${defender.hp} HP left)`);
   if (defender.hp <= 0) {
     battle.log.unshift(`💥 ${defender.side === "atk" ? battle.atkName : battle.defName}'s ${defender.name} was routed!`);
   }
@@ -2209,7 +2584,6 @@ function checkBattleWin() {
   if (!battle || battle.winner) return;
   const atkAlive = battle.units.filter(u => u.side === "atk" && u.hp > 0).length;
   const defAlive = battle.units.filter(u => u.side === "def" && u.hp > 0).length;
-
   if (defAlive === 0) return finishBattle("atk", "All defending forces were routed!");
   if (atkAlive === 0) return finishBattle("def", "All attacking forces were repelled!");
 }
@@ -2228,8 +2602,7 @@ function endBattleTurn() {
     battle.round += 1;
     battle.units.filter(u => u.side === "atk").forEach(u => { u.hasMoved = false; u.hasAttacked = false; u.movedDist = 0; });
 
-    // Check if Attacker held the Objective City tile at start of their new round
-    const capturer = getUnitAt(2, 6);
+    const capturer = getUnitAt(CITY_ROW, CITY_COL);
     if (capturer && capturer.side === "atk") {
       return finishBattle("atk", `${battle.atkName} captured and held the 🏰 Objective / City!`);
     }
@@ -2250,36 +2623,48 @@ function runAiTurn() {
     const u = aiUnits[i++];
     if (u.hp <= 0) return step();
 
-    const enemies = battle.units.filter(e => e.side === "atk" && e.hp > 0);
-    if (!enemies.length) return checkBattleWin();
+    const visibleEnemies = battle.units.filter(e => e.side === "atk" && e.hp > 0 && isUnitVisibleToViewer(e, "def"));
+    const allEnemies = battle.units.filter(e => e.side === "atk" && e.hp > 0);
+    if (!allEnemies.length) return checkBattleWin();
 
-    // Try attack first if target in range
-    let inRange = enemies.filter(e => manhattan(u.r, u.c, e.r, e.c) <= u.range).sort((a, b) => a.hp - b.hp);
+    let inRange = visibleEnemies.filter(e => manhattan(u.r, u.c, e.r, e.c) <= u.range).sort((a, b) => a.hp - b.hp);
     if (inRange.length) {
       executeAttack(u, inRange[0]);
       checkBattleWin();
       renderBattle();
-      return setTimeout(step, 280);
+      return setTimeout(step, 240);
     }
 
-    // Move toward closest enemy (Garrison stays near city unless threat is close)
     if (u.kind !== "gar") {
-      const target = enemies.sort((a, b) => manhattan(u.r, u.c, a.r, a.c) - manhattan(u.r, u.c, b.r, b.c))[0];
+      const targetList = visibleEnemies.length ? visibleEnemies : [{ r: CITY_ROW, c: 2 }];
+      const target = targetList.sort((a, b) => manhattan(u.r, u.c, a.r, a.c) - manhattan(u.r, u.c, b.r, b.c))[0];
       let bestTile = null, bestDist = manhattan(u.r, u.c, target.r, target.c);
-      for (let r = 0; r < 5; r++) {
-        for (let c = 0; c < 7; c++) {
-          if (!getUnitAt(r, c) && manhattan(u.r, u.c, r, c) <= u.move) {
-            const d = manhattan(r, c, target.r, target.c);
-            if (d < bestDist) { bestDist = d; bestTile = { r, c }; }
+      for (let r = 0; r < BATTLE_ROWS; r++) {
+        for (let c = 0; c < BATTLE_COLS; c++) {
+          const d = manhattan(u.r, u.c, r, c);
+          const occupant = getUnitAt(r, c);
+          const canSeeOccupant = occupant && isUnitVisibleToViewer(occupant, "def");
+          if (!canSeeOccupant && d > 0 && d <= u.move) {
+            const distToTarget = manhattan(r, c, target.r, target.c);
+            if (distToTarget < bestDist) { bestDist = distToTarget; bestTile = { r, c }; }
           }
         }
       }
       if (bestTile) {
-        u.movedDist = manhattan(u.r, u.c, bestTile.r, bestTile.c);
-        u.r = bestTile.r; u.c = bestTile.c;
-        u.hasMoved = true;
+        const hiddenBlocker = getUnitAt(bestTile.r, bestTile.c);
+        if (hiddenBlocker) {
+          hiddenBlocker.revealed = true;
+          u.hasMoved = true;
+          battle.log.unshift(`🌲 AI stumbled into hidden ${hiddenBlocker.name} in the forest!`);
+        } else {
+          u.movedDist = manhattan(u.r, u.c, bestTile.r, bestTile.c);
+          u.r = bestTile.r; u.c = bestTile.c;
+          u.hasMoved = true;
+          u.revealed = false;
+        }
       }
-      inRange = enemies.filter(e => manhattan(u.r, u.c, e.r, e.c) <= u.range).sort((a, b) => a.hp - b.hp);
+      const postVisible = battle.units.filter(e => e.side === "atk" && e.hp > 0 && isUnitVisibleToViewer(e, "def"));
+      inRange = postVisible.filter(e => manhattan(u.r, u.c, e.r, e.c) <= u.range).sort((a, b) => a.hp - b.hp);
       if (inRange.length) {
         executeAttack(u, inRange[0]);
         checkBattleWin();
@@ -2287,9 +2672,9 @@ function runAiTurn() {
     }
 
     renderBattle();
-    setTimeout(step, 280);
+    setTimeout(step, 240);
   }
-  setTimeout(step, 300);
+  setTimeout(step, 260);
 }
 
 function finishBattle(winnerSide, reason) {
@@ -2306,7 +2691,6 @@ function finishBattle(winnerSide, reason) {
     const def = world.nations.find(n => n.id === battle.defId);
 
     if (atk && def) {
-      // Ensure they are marked at war
       if (!atk.wars.includes(def.id)) atk.wars.push(def.id);
       if (!def.wars.includes(atk.id)) def.wars.push(atk.id);
 
@@ -2341,9 +2725,6 @@ function finishBattle(winnerSide, reason) {
   renderBattle();
 }
 
-// ============================================================
-// 10. REQUESTS & 1 DAILY ACTION SYSTEM (WITH 1-NATION LOCK)
-// ============================================================
 function toggleRequestForm() {
   const type = document.getElementById("req-type").value;
   document.getElementById("req-nation-fields").style.display = type === "nation" ? "block" : "none";
@@ -2355,9 +2736,7 @@ function toggleRequestForm() {
 function checkPlayerEligibilityNotice() {
   const box = document.getElementById("req-already-owns-warning");
   const nameInput = document.getElementById("req-player-name").value.trim();
-  const byName = getPlayerActiveNation(nameInput);
-  const byDevice = getDeviceActiveNation();
-  const owned = byName || byDevice;
+  const owned = getPlayerActiveNation(nameInput) || getDeviceActiveNation();
 
   if (owned) {
     box.style.display = "block";
@@ -2438,7 +2817,7 @@ function submitLocalRequest() {
   world.requests.push(req);
   saveWorld();
   refreshUI();
-  toast("📥 Request added to the Classroom Queue!");
+  toast("📥 Request added to the Queue!");
   document.getElementById("req-nation-pitch").value = "";
   document.getElementById("req-action-text").value = "";
 }
@@ -2449,7 +2828,7 @@ function generateRequestCode() {
   const code = "NW-REQ:" + encodeBase64Utf8(req);
   document.getElementById("generated-code-box").textContent = code;
   document.getElementById("generated-code-wrap").style.display = "block";
-  toast("🔗 Request Code generated! Send it to your Host.");
+  toast("🔗 Request Code generated! Send it to your Admin.");
 }
 
 function importRequestCode() {
@@ -2473,7 +2852,7 @@ function importRequestCode() {
       refreshUI();
     }
     document.getElementById("import-req-code").value = "";
-    toast("✅ Classmate request imported into Queue!");
+    toast("✅ Player request imported into Queue!");
   } catch (e) {
     toast("❌ Could not decode Request Code.");
   }
@@ -2592,11 +2971,27 @@ function populateResolverTargets() {
 }
 
 function spinOutcomeForResolver() {
-  const outcomes = WHEEL_DATA.action;
-  const pick = outcomes[Math.floor(Math.random() * outcomes.length)];
-  document.getElementById("resolver-outcome").value = pick.outcome;
+  const req = world.requests.find(x => x.id === activeResolverReqId);
+  const nation = req ? world.nations.find(n => n.id === req.nationId) : null;
+  const eff = document.getElementById("resolver-effect").value;
+
+  let relevantStat = 3;
+  if (nation) {
+    if (eff === "economy" || eff === "expand") relevantStat = nation.stats.economy;
+    else if (eff === "military" || eff === "war") relevantStat = nation.stats.military;
+    else if (eff === "diplomacy" || eff === "ally") relevantStat = nation.stats.diplomacy;
+  }
+
+  const roll = Math.random() * 100 + (relevantStat - 3) * 5;
+  let outcome = "success", label = "Clean Success";
+  if (roll >= 85) { outcome = "crit"; label = "Critical Triumph!"; }
+  else if (roll >= 42) { outcome = "success"; label = "Major Success"; }
+  else if (roll >= 18) { outcome = "mixed"; label = "Mixed Outcome"; }
+  else { outcome = "fail"; label = "Costly Setback"; }
+
+  document.getElementById("resolver-outcome").value = outcome;
   playWinSound();
-  toast(`🎡 Action Wheel rolled: ${pick.label}`);
+  toast(`🎡 Stat-Weighted Roll (Stat ${relevantStat}): ${label}`);
 }
 
 function confirmResolveAction() {
@@ -2620,6 +3015,10 @@ function confirmResolveAction() {
   } else if (eff === "ally" && outcome !== "fail") {
     const other = world.nations.find(x => x.id === targetVal);
     if (other) {
+      const maxA = getMaxAllies(nation);
+      if ((nation.allies || []).length >= maxA) {
+        return toast(`⚠️ ${nation.name} already reached its Diplomacy cap of ${maxA} allies!`);
+      }
       if (!nation.allies.includes(other.id)) nation.allies.push(other.id);
       if (!other.allies.includes(nation.id)) other.allies.push(nation.id);
       nation.wars = nation.wars.filter(id => id !== other.id);
@@ -2646,9 +3045,6 @@ function confirmResolveAction() {
   toast("✅ Daily Action applied to Canon!");
 }
 
-// ============================================================
-// 11. ADMIN TOOLS TAB
-// ============================================================
 function renderAdminPanel() {
   document.getElementById("admin-locked-banner").style.display = isHost ? "none" : "block";
   document.getElementById("admin-tools-grid").style.display = isHost ? "grid" : "none";
@@ -2688,6 +3084,8 @@ function loadAdminNationEditor() {
   document.getElementById("admin-ed-player").value = n.player;
   document.getElementById("admin-ed-capital").value = n.capital;
   document.getElementById("admin-ed-ideology").value = n.ideology;
+  document.getElementById("admin-ed-subtype").value = n.govSubtype || "";
+  document.getElementById("admin-ed-trait").value = n.trait || "";
   document.getElementById("admin-ed-eco").value = n.stats.economy;
   document.getElementById("admin-ed-mil").value = n.stats.military;
   document.getElementById("admin-ed-dip").value = n.stats.diplomacy;
@@ -2705,6 +3103,9 @@ function saveAdminNationEdits() {
   n.player = document.getElementById("admin-ed-player").value.trim() || n.player;
   n.capital = document.getElementById("admin-ed-capital").value.trim() || n.capital;
   n.ideology = document.getElementById("admin-ed-ideology").value.trim() || n.ideology;
+  n.govSubtype = document.getElementById("admin-ed-subtype").value.trim() || n.govSubtype;
+  n.govIsRare = Boolean(findGovSubtypeMeta(n.govSubtype)?.rare);
+  n.trait = document.getElementById("admin-ed-trait").value.trim() || n.trait;
   n.stats.economy = Math.max(1, Number(document.getElementById("admin-ed-eco").value) || 1);
   n.stats.military = Math.max(1, Number(document.getElementById("admin-ed-mil").value) || 1);
   n.stats.diplomacy = Math.max(1, Number(document.getElementById("admin-ed-dip").value) || 1);
@@ -2807,40 +3208,44 @@ function adminPostAnnouncement() {
   saveWorld(); refreshUI(); toast("📢 Posted to Canon Chronicle!");
 }
 
-// ============================================================
-// 12. DIRECTORY, CHRONICLE & SAVE/SHARE
-// ============================================================
 function renderNationsDirectory() {
   const q = (document.getElementById("nation-search").value || "").toLowerCase();
   const list = world.nations.filter(n =>
     n.name.toLowerCase().includes(q) || n.player.toLowerCase().includes(q) ||
-    n.ideology.toLowerCase().includes(q) || getNationSizeLabel(n).toLowerCase().includes(q)
+    (n.govSubtype || n.ideology).toLowerCase().includes(q) ||
+    (n.trait || "").toLowerCase().includes(q) ||
+    getNationSizeLabel(n).toLowerCase().includes(q)
   );
   const el = document.getElementById("nations-directory");
   if (!list.length) {
-    el.innerHTML = `<p class="muted small">No nations found yet. Spin the Location + Land Size wheels to create the first nation!</p>`;
+    el.innerHTML = `<p class="muted small">No nations found yet. Spin the wheels to create the first nation!</p>`;
   } else {
-    el.innerHTML = list.map(n => `
-      <div class="list-item" style="margin:0">
-        <div style="display:flex;gap:10px;align-items:center;margin-bottom:8px">
-          <div class="flag-box">${renderFlagSvg(n.flag)}</div>
-          <div>
-            <strong style="font-size:1rem">${escapeHtml(n.name)}</strong>
-            <div class="small muted">Leader: ${escapeHtml(n.player)} • ★ ${escapeHtml(n.capital)}</div>
+    el.innerHTML = list.map(n => {
+      const tMeta = findTraitMeta(n.trait);
+      return `
+        <div class="list-item" style="margin:0">
+          <div style="display:flex;gap:10px;align-items:center;margin-bottom:8px">
+            <div class="flag-box">${renderFlagSvg(n.flag)}</div>
+            <div>
+              <strong style="font-size:1rem">${escapeHtml(n.name)}</strong>
+              <div class="small muted">Leader: ${escapeHtml(n.player)} • ★ ${escapeHtml(n.capital)}</div>
+            </div>
           </div>
-        </div>
-        <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px">
-          <span class="tag tag-gold">${escapeHtml(getNationSizeLabel(n))}</span>
-          <span class="tag">${escapeHtml(n.ideology)}</span>
-        </div>
-        <div class="small muted">
-          Area: <strong>${getNationAreaKm2(n).toLocaleString()} km²</strong> • Eco: <strong>${n.stats.economy}</strong> • Mil: <strong>${n.stats.military}</strong> • Dip: <strong>${n.stats.diplomacy}</strong>
-        </div>
-        <div style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap">
-          <button class="btn btn-sm" onclick="focusNationOnMap('${n.capitalTerritoryId}')">🗺️ View on Map</button>
-        </div>
-      </div>
-    `).join("");
+          <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px">
+            <span class="tag tag-gold">${escapeHtml(getNationSizeLabel(n))}</span>
+            <span class="tag ${n.govIsRare ? "tag-purple" : ""}">${n.govIsRare ? "⚡ " : ""}${escapeHtml(n.govSubtype || n.ideology)}</span>
+          </div>
+          <div class="small muted" style="margin-bottom:6px">
+            ✨ <strong>${escapeHtml(n.trait)}</strong>${tMeta ? ` — ${escapeHtml(tMeta.summary)}` : ""}
+          </div>
+          <div class="small muted">
+            Area: <strong>${getNationAreaKm2(n).toLocaleString()} km²</strong> • Eco: <strong>${n.stats.economy}</strong> • Mil: <strong>${n.stats.military}</strong> • Dip: <strong>${n.stats.diplomacy}</strong>
+          </div>
+          <div style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap">
+            <button class="btn btn-sm" onclick="focusNationOnMap('${n.capitalTerritoryId}')">🗺️ View on Map</button>
+          </div>
+        </div>`;
+    }).join("");
   }
 
   document.getElementById("canon-timeline").innerHTML = world.chronicle.map(ev => `
@@ -2911,11 +3316,11 @@ function advanceGameDay() {
 function saveHostPin() {
   if (!requireHost()) return;
   world.hostPin = document.getElementById("setting-pin").value;
-  saveWorld(); toast(world.hostPin ? "🔒 Host PIN updated!" : "🔓 Host PIN removed.");
+  saveWorld(); toast(world.hostPin ? "🔒 Admin PIN updated!" : "🔓 Admin PIN removed.");
 }
 
 function loadSampleWorld() {
-  if (!confirm("Load a 4-nation sample world (with active war ready for Lines of Battle!)?")) return;
+  if (!confirm("Load a 4-nation sample world showcasing rare subtypes, wildcard perks, and an active war?")) return;
   const d = activeDayKey();
   world = {
     ...getDefaultWorld(),
@@ -2923,42 +3328,46 @@ function loadSampleWorld() {
       {
         id: "nat_aurelia", player: "Maya", name: "Aurelian Empire", capital: "New Solis",
         capitalTerritoryId: "aurelia", territories: ["aurelia", "silverspire", "borealis", "sandstone", "velkara"],
-        areaBonusKm2: 0, ideology: "Democratic Republic", economy: "High-Tech & AI", military: "Fortress Defense",
-        trait: "Master Negotiators", lore: "Rolled ~1,000,000 km² Giant Empire across central Meridian!",
+        areaBonusKm2: 0, ideology: "Democratic Republic", govSubtype: "Parliamentary Republic", govIsRare: false,
+        economy: "High-Tech & AI", military: "Fortress Defense", trait: "Master Negotiators",
+        lore: "Rolled ~1,000,000 km² Giant Empire across central Meridian!",
         flag: { c1: "#2563eb", c2: "#f5b942", pattern: "nordic" },
-        stats: { economy: 5, military: 5, diplomacy: 6 }, allies: ["nat_goldport"], wars: [],
+        stats: { economy: 6, military: 4, diplomacy: 7 }, allies: ["nat_goldport"], wars: [],
         foundedDate: d, lastActionDay: null
       },
       {
-        id: "nat_goldport", player: "Liam", name: "Goldport Free City", capital: "Harbor Prime",
+        id: "nat_goldport", player: "Liam", name: "Goldport Secularists", capital: "Harbor Prime",
         capitalTerritoryId: "goldport", territories: ["goldport"],
-        areaBonusKm2: 0, ideology: "Merchant Guild", economy: "Maritime Trade Hub", military: "Naval Supremacy",
-        trait: "Spaceport Megahub", lore: "Rolled Microstate (~175,000 km²) — compact coastal trading powerhouse.",
+        areaBonusKm2: 0, ideology: "Theocracy", govSubtype: "Radical Secular State", govIsRare: true,
+        economy: "Maritime Trade Hub", military: "Naval Supremacy", trait: "Spaceport Megahub",
+        lore: "Rolled Theocracy and hit the rare Radical Secular revolution!",
         flag: { c1: "#059669", c2: "#fbbf24", pattern: "chevron" },
-        stats: { economy: 7, military: 3, diplomacy: 5 }, allies: ["nat_aurelia"], wars: ["nat_crimson"],
+        stats: { economy: 7, military: 3, diplomacy: 2 }, allies: ["nat_aurelia"], wars: ["nat_crimson"],
         foundedDate: d, lastActionDay: null
       },
       {
         id: "nat_crimson", player: "Noah", name: "Crimson Caldera", capital: "Ironforge",
         capitalTerritoryId: "crimson_basin", territories: ["crimson_basin", "dragonspine", "jade_reach"],
-        areaBonusKm2: 0, ideology: "Military Stratocracy", economy: "Heavy Industry", military: "Automated Drones",
-        trait: "Underground Bunkers", lore: "Rolled Medium Country (~600,000 km²) across eastern Zephyria.",
+        areaBonusKm2: 0, ideology: "Military Stratocracy", govSubtype: "Shadow Junta", govIsRare: true,
+        economy: "Heavy Industry", military: "Automated Drones", trait: "Underground Bunkers",
+        lore: "Fortified inside the volcanic eastern caldera with Underground Bunkers.",
         flag: { c1: "#dc2626", c2: "#111827", pattern: "diagonal" },
-        stats: { economy: 4, military: 6, diplomacy: 2 }, allies: [], wars: ["nat_goldport"],
+        stats: { economy: 4, military: 7, diplomacy: 1 }, allies: [], wars: ["nat_goldport"],
         foundedDate: d, lastActionDay: null
       },
       {
         id: "nat_frost", player: "Sofia", name: "Valemoor League", capital: "Frostgate",
         capitalTerritoryId: "valemoor", territories: ["valemoor", "frostcrown"],
-        areaBonusKm2: 0, ideology: "Technocracy", economy: "Geothermal & Clean Energy", military: "Orbital & Missile Array",
-        trait: "Engineering Prodigies", lore: "Rolled Small Nation (~405,000 km²) on the northwest fjords.",
+        areaBonusKm2: 0, ideology: "Technocracy", govSubtype: "Scientific Directorate", govIsRare: false,
+        economy: "Geothermal & Clean Energy", military: "Orbital & Missile Array", trait: "Engineering Prodigies",
+        lore: "Artillery specialists harnessing glacial geothermal vents.",
         flag: { c1: "#0891b2", c2: "#e0f2fe", pattern: "sun" },
-        stats: { economy: 5, military: 4, diplomacy: 4 }, allies: [], wars: [],
+        stats: { economy: 7, military: 4, diplomacy: 2 }, allies: [], wars: [],
         foundedDate: d, lastActionDay: null
       }
     ],
     chronicle: [
-      { id: "s1", date: d, text: "🌍 Sample Season loaded! Goldport and Crimson Caldera are at War—visit Wars & Battles to fight!" }
+      { id: "s1", date: d, text: "🌍 Sample Season loaded! Goldport (⚡ Radical Secular State) and Crimson Caldera (⚡ Shadow Junta) are at War!" }
     ]
   };
   selectedTerritoryId = "aurelia";
@@ -2972,9 +3381,6 @@ function resetWorldAll() {
   saveWorld(); refreshUI(); toast("Fresh blank season started!");
 }
 
-// ============================================================
-// 13. UI REFRESH & BOOTSTRAP
-// ============================================================
 function refreshUI() {
   const claimedCount = world.nations.reduce((s, n) => s + n.territories.length, 0);
   document.getElementById("world-subtitle").textContent = `${world.worldName} • ${world.nations.length} Nations (${claimedCount}/${TERRITORIES.length} Regions)`;
@@ -2984,9 +3390,9 @@ function refreshUI() {
   document.getElementById("manual-day-controls").style.display = world.dayMode === "turn" ? "block" : "none";
 
   const hostBtn = document.getElementById("host-toggle-btn");
-  hostBtn.textContent = isHost ? "👑 Host / GM Mode" : "🔒 Classmate View";
+  hostBtn.textContent = isHost ? "👑 Admin / GM Mode" : "🔒 Player View";
   hostBtn.classList.toggle("host-on", isHost);
-  document.getElementById("gm-status-tag").textContent = isHost ? "👑 Host Mode Active" : "🔒 Host Mode Required to Resolve";
+  document.getElementById("gm-status-tag").textContent = isHost ? "👑 Admin Mode Active" : "🔒 Admin Mode Required to Resolve";
 
   const regSel = document.getElementById("builder-region");
   const prevReg = regSel.value;
@@ -3003,6 +3409,7 @@ function refreshUI() {
   if (prevAct && world.nations.some(n => n.id === prevAct)) actSel.value = prevAct;
 
   applyBuilderLocks();
+  updateBuilderModifierPreviews();
   updateFlagPreview();
   renderMap();
   renderInspector();
