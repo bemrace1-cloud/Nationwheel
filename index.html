@@ -5,12 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NationWheel Star-Atlas</title>
   <style>
-    :root {
-      --bg:#080d18; --bg-elev:#10192b; --bg-panel:#16233b; --border:#263859; --border-bright:#3c5785;
-      --text:#eaf0fb; --muted:#93a7cb; --gold:#f5b942; --gold-dim:rgba(245,185,66,.16);
-      --accent:#38bdf8; --accent-dim:rgba(56,189,248,.16); --green:#34d399; --red:#f87171; --purple:#a78bfa;
-      --shadow:0 12px 32px rgba(0,0,0,.5); --radius:12px;
-    }
+    :root{--bg:#080d18;--bg-elev:#10192b;--bg-panel:#16233b;--border:#263859;--border-bright:#3c5785;--text:#eaf0fb;--muted:#93a7cb;--gold:#f5b942;--gold-dim:rgba(245,185,66,.16);--accent:#38bdf8;--accent-dim:rgba(56,189,248,.16);--green:#34d399;--red:#f87171;--purple:#a78bfa;--shadow:0 12px 32px rgba(0,0,0,.5);--radius:12px}
     *{box-sizing:border-box}
     body{margin:0;font-family:Inter,system-ui,-apple-system,sans-serif;background:radial-gradient(circle at top right,#14223d 0%,var(--bg) 58%);color:var(--text);min-height:100vh;display:flex;flex-direction:column}
     header{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;padding:11px 16px;background:rgba(8,13,24,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50}
@@ -46,7 +41,7 @@
     .card{background:var(--bg-elev);border:1px solid var(--border);border-radius:var(--radius);padding:15px;box-shadow:var(--shadow)}
     .card h2,.card h3{margin-top:0}
     .planet-bar{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;align-items:center}
-    .planet-btn{padding:7px 12px;border-radius:9px;border:1px solid var(--border);background:var(--bg-elev);color:var(--muted);cursor:pointer;font-weight:700;font-size:.81rem}
+    .planet-btn{padding:6px 11px;border-radius:9px;border:1px solid var(--border);background:var(--bg-elev);color:var(--muted);cursor:pointer;font-weight:700;font-size:.79rem}
     .planet-btn.active{border-color:var(--accent);color:var(--text);background:var(--accent-dim)}
     .map-layout{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:15px;align-items:start}
     @media(max-width:1040px){.map-layout{grid-template-columns:1fr}}
@@ -92,7 +87,7 @@
     .goods-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:12px}
     @media(max-width:600px){.goods-grid{grid-template-columns:repeat(2,1fr)}}
     .good-chip{background:#0b1322;border:1px solid var(--border);border-radius:8px;padding:8px;font-size:.78rem;display:flex;justify-content:space-between;align-items:center}
-    .battle-layout{display:grid;grid-template-columns:355px minmax(0,1fr);gap:15px;align-items:start}
+    .battle-layout{display:grid;grid-template-columns:360px minmax(0,1fr);gap:15px;align-items:start}
     @media(max-width:1080px){.battle-layout{grid-template-columns:1fr}}
     .battle-grid{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:5px;background:#070e1b;padding:10px;border-radius:12px;border:1px solid var(--border-bright)}
     .battle-grid.space-void{background:radial-gradient(circle at 80% 50%,#1d153b 0%,#040711 75%)}
@@ -108,10 +103,11 @@
     .b-tile.atk-opt{border:2px solid var(--red);background:rgba(248,113,113,.28)}
     .b-tile.selected-unit{border:2px solid var(--gold);box-shadow:0 0 12px rgba(245,185,66,.45)}
     .b-terrain-tag{position:absolute;top:1px;left:3px;font-size:.62rem;opacity:.82;pointer-events:none}
-    .b-unit{width:88%;height:78%;border-radius:6px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:800;font-size:.9rem;border:2px solid #fff;position:relative;box-shadow:0 4px 10px rgba(0,0,0,.45)}
+    .b-unit{width:88%;height:78%;border-radius:6px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:800;font-size:.86rem;border:2px solid #fff;position:relative;box-shadow:0 4px 10px rgba(0,0,0,.45)}
     .b-unit.spent{opacity:.6;filter:grayscale(.25)}
     .b-unit.stealthed{opacity:.72;border-style:dashed;box-shadow:0 0 10px rgba(52,211,153,.35)}
-    .b-unit.esb-ship{border-width:3px;box-shadow:0 0 14px rgba(245,185,66,.5)}
+    .b-unit.esb-ship{border-width:3px;box-shadow:0 0 14px rgba(245,185,66,.55)}
+    .b-unit.allied-unit{box-shadow:0 0 12px rgba(52,211,153,.55)}
     .b-unit.bombarding{border-color:#f59e0b !important;box-shadow:0 0 14px rgba(245,158,11,.7)}
     .b-stealth-pip{position:absolute;top:-5px;right:-5px;background:#064e3b;color:#6ee7b7;border:1px solid #34d399;border-radius:999px;font-size:.55rem;padding:0 3px}
     .b-shield-pip{position:absolute;bottom:-5px;right:-5px;background:#1e3a8a;color:#93c5fd;border:1px solid #38bdf8;border-radius:999px;font-size:.52rem;padding:0 4px;font-weight:800}
@@ -133,7 +129,7 @@
     <div class="brand-logo"><div class="brand-logo-inner"></div></div>
     <div>
       <h1>NationWheel Star-Atlas</h1>
-      <small id="world-subtitle">Season 1 • 5 Planets • 76 Regions</small>
+      <small id="world-subtitle">Season 1 • 7 Planets • 100 Regions</small>
     </div>
   </div>
   <nav class="tabs">
@@ -199,7 +195,7 @@
       </div>
       <aside class="card" id="map-inspector">
         <h3 style="margin-bottom:6px">🧭 Territory & Nation Inspector</h3>
-        <p class="muted small">Click any region across the 5 planets to inspect land size, government subtype bonuses/nerfs, military doctrine, wildcards, and fleets.</p>
+        <p class="muted small">Click any region across the 7 planets (14–16 regions each, 100 total) to inspect land size, Alliance Buffs, subtypes, military doctrine, wildcards & fleets.</p>
         <div id="inspector-content"></div>
       </aside>
     </div>
@@ -209,7 +205,7 @@
   <section id="view-wheel" class="view">
     <div id="wheel-player-notice" class="card" style="margin-bottom:16px;border-color:rgba(245,185,66,.45);display:none">
       <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
-        <div><strong>🔒 Player View:</strong> Only the Admin/GM can spin official Nation Wheels and place canon nations. Use <em>Practice Spin</em> or request a spin in <strong>Daily Actions</strong>!</div>
+        <div><strong>🔒 Player View:</strong> Only Admin/GM can spin official Nation Wheels and place canon nations. Use <em>Practice Spin</em> or request a spin in <strong>Daily Actions</strong>!</div>
         <button class="btn btn-sm btn-primary" onclick="document.querySelector('[data-tab=&quot;requests&quot;]').click()">📜 Go to Requests</button>
       </div>
     </div>
@@ -223,7 +219,7 @@
           <div class="field">
             <label>Select Wheel Type</label>
             <select id="wheel-type-select" onchange="selectWheelType(this.value)">
-              <option value="location">📍 Location (76 Regions)</option>
+              <option value="location">📍 Location (100 Regions)</option>
               <option value="landsize">📏 Land Size (Weighted Odds!)</option>
               <option value="ideology">🏛️ Gov Style (+25% Rare Subtype!)</option>
               <option value="economy">💎 Primary Economy</option>
@@ -235,12 +231,14 @@
           <div class="field">
             <label>Target Planet (for Location)</label>
             <select id="wheel-planet-select" onchange="if(currentWheelType==='location'){drawWheel();renderWheelOdds();}">
-              <option value="all">🌌 All Planets</option>
-              <option value="prime">🌍 Aethelgard Prime</option>
-              <option value="pyrexia">🪐 Pyrexia Forge</option>
-              <option value="sylvaria">🌙 Sylvaria Moon</option>
-              <option value="cryon">❄️ Cryon-9</option>
-              <option value="aetheris">✨ Aetheris Ringworld</option>
+              <option value="all">🌌 All 7 Planets</option>
+              <option value="prime">🌍 Aethelgard Prime (16R)</option>
+              <option value="pyrexia">🪐 Pyrexia Forge (14R)</option>
+              <option value="sylvaria">🌙 Sylvaria Moon (14R)</option>
+              <option value="cryon">❄️ Cryon-9 (14R)</option>
+              <option value="aetheris">✨ Aetheris Ringworld (14R)</option>
+              <option value="solara">🏜️ Solara Dune-World (14R)</option>
+              <option value="thalassia">🌊 Thalassia Oceanus (14R)</option>
             </select>
           </div>
         </div>
@@ -319,8 +317,8 @@
     <div class="card" style="margin-bottom:15px">
       <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px">
         <div>
-          <h2 style="margin:0">⚙️ Nation Management, Economy & Galactic Trade</h2>
-          <div class="small muted">Manage sub-actions whenever you want! Save your <strong>1 Daily Action</strong> for Wars, Orbital Stations, or Off-World Colonies.</div>
+          <h2 style="margin:0">⚙️ Nation Management, Shipyards & Galactic Trade</h2>
+          <div class="small muted">Build Combat Ships, Trade Ships, or invest stats anytime! Allies give <strong>+10% Trade Profit</strong>, <strong>Allied Armies</strong> & <strong>Allied Fleets</strong>.</div>
         </div>
         <div style="min-width:270px"><label>Select Nation</label><select id="manage-nation-select" onchange="renderManageTab()"></select></div>
       </div>
@@ -329,7 +327,7 @@
     <div id="manage-content-wrap" class="two-col">
       <div class="card">
         <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:10px">
-          <h3 style="margin:0">💰 Treasury, Goods & Sub-Actions</h3>
+          <h3 style="margin:0">💰 Treasury, Goods & Fleet</h3>
           <span class="tag tag-gold" id="manage-credits-tag">🪙 0 Credits</span>
         </div>
         <div class="goods-grid" id="manage-goods-grid"></div>
@@ -338,24 +336,34 @@
           <button class="btn btn-primary btn-sm" id="harvest-btn" onclick="subActionHarvest()">🌾 Collect Daily Income & Goods</button>
           <button class="btn btn-accent btn-sm" onclick="subActionRunTradeRoute()">🚢 Run Trade Ship Route (+🪙)</button>
         </div>
+
         <div class="divider"></div>
-        <h3>🛠️ Anytime Sub-Actions</h3>
-        <div class="two-col">
+        <h3>🛠️ Economic & Stat Sub-Actions</h3>
+        <div class="two-col" style="margin-bottom:10px">
           <button class="btn btn-sm" onclick="subActionBuildTradeShip()">🚢 Build Trade Ship<br><span class="small muted">(150 🪙 + 2 Alloys)</span></button>
           <button class="btn btn-sm" onclick="subActionInvest('economy')">💎 Invest Economy (+1)<br><span class="small muted">(250 🪙 + 2 Tech)</span></button>
           <button class="btn btn-sm" onclick="subActionInvest('military')">🛡️ Invest Military (+1)<br><span class="small muted">(250 🪙 + 2 Alloys)</span></button>
           <button class="btn btn-sm" onclick="subActionInvest('diplomacy')">🤝 Diplomatic Gala (+1)<br><span class="small muted">(200 🪙 + 2 Grain)</span></button>
         </div>
+
         <div class="divider"></div>
-        <h3>🛡️ Anti-Orbital Batteries & ESB Shipyards</h3>
+        <h3>🚀 Warship Shipyard (Ship-to-Ship Combat!)</h3>
+        <div class="two-col" style="margin-bottom:10px">
+          <button class="btn btn-sm" onclick="subActionBuildWarship('interceptor')">⚡ Void Interceptor<br><span class="small muted">(180 🪙 + 2 Alloys + 1 Fuel)</span></button>
+          <button class="btn btn-sm" onclick="subActionBuildWarship('bomber')">💣 Plasma Bomber<br><span class="small muted">(220 🪙 + 2 Alloys + 2 Fuel)</span></button>
+          <button class="btn btn-sm" onclick="subActionBuildWarship('frigate')">🛡️ Aegis Frigate<br><span class="small muted">(260 🪙 + 3 Alloys + 1 Tech)</span></button>
+          <button class="btn btn-sm" onclick="subActionBuildWarship('cruiser')">🚀 Heavy Cruiser<br><span class="small muted">(450 🪙 + 3 Alloys + 2 Fuel + 1 Aether)</span></button>
+        </div>
+
         <div class="field">
-          <label>Install Ground Defense Battery (300 🪙 + 2 Aether)</label>
+          <label>Install Ground Anti-Orbital Battery (300 🪙 + 2 Aether)</label>
           <div style="display:flex;gap:8px"><select id="manage-battery-region"></select><button class="btn btn-accent btn-sm" onclick="subActionBuildBattery()">🔋 Build Battery</button></div>
         </div>
+
         <div class="list-item" style="border-color:var(--purple);background:rgba(167,139,250,.08)">
-          <div class="list-item-header"><strong>🚀 Massive ESB Capital Ship</strong><span class="tag tag-purple">Space Combat</span></div>
-          <div class="small muted" style="margin-bottom:8px">Cost: <strong>1,200 🪙 + 6 Alloys + 4 Aether + 4 Fuel + 3 Tech</strong> <span id="esb-discount-note"></span></div>
-          <div style="display:flex;gap:8px"><input type="text" id="esb-custom-name" placeholder="Ship Name (e.g., ESB Sovereign)" /><button class="btn btn-purple btn-sm" onclick="subActionBuildESB()">🚀 Construct ESB</button></div>
+          <div class="list-item-header"><strong>🛸 Massive ESB Capital Dreadnought</strong><span class="tag tag-purple">Flagship</span></div>
+          <div class="small muted" style="margin-bottom:8px">6-Way Shields + Orbital Bombardment. Cost: <strong>1,200 🪙 + 6 Alloys + 4 Aether + 4 Fuel + 3 Tech</strong> <span id="esb-discount-note"></span></div>
+          <div style="display:flex;gap:8px"><input type="text" id="esb-custom-name" placeholder="Ship Name (e.g., ESB Sovereign)" /><button class="btn btn-purple btn-sm" onclick="subActionBuildESB()">🛸 Construct ESB</button></div>
         </div>
       </div>
 
@@ -390,14 +398,14 @@
   <!-- WAR ROOM -->
   <section id="view-wars" class="view">
     <div class="planet-bar" style="margin-bottom:12px">
-      <button class="planet-btn active" id="mode-btn-ground" onclick="switchWarMode('ground')">🌍 Ground Battle (10×7 + Forest Stealth)</button>
-      <button class="planet-btn" id="mode-btn-space" onclick="switchWarMode('space')">🚀 ESB Space Combat (6-Way Shields & Bombardment)</button>
+      <button class="planet-btn active" id="mode-btn-ground" onclick="switchWarMode('ground')">🌍 Ground Battle (10×7 + Allied Armies + Forest Stealth)</button>
+      <button class="planet-btn" id="mode-btn-space" onclick="switchWarMode('space')">🚀 Ship-to-Ship Space Combat (+ Allied Fleets)</button>
     </div>
 
     <div id="war-ground-panel" class="battle-layout">
       <div class="card">
-        <h2>🌍 Ground Siege & Stealth</h2>
-        <p class="muted small"><strong>10×7 Grid</strong> with Sci-Fi & Fantasy units. Units in <strong>🌲 Forests</strong> are <strong>hidden</strong> until spotted up close or ambushing (+25% dmg)!</p>
+        <h2>🌍 Ground Siege & Alliance Armies</h2>
+        <p class="muted small"><strong>10×7 Grid</strong> with Sci-Fi & Fantasy units. Units in <strong>🌲 Forests</strong> are <strong>hidden</strong> until spotted! Allies send <strong>🤝 Allied Army Squads</strong>!</p>
         <div class="field"><label>Attacking Nation</label><select id="war-attacker" onchange="refreshWarTargets()"></select></div>
         <div class="field"><label>Target Enemy Region</label><select id="war-target-region"></select></div>
         <div class="field"><label>Defender Control</label><select id="war-defender-mode"><option value="ai">🤖 Tactical AI</option><option value="hotseat">👥 2-Player Hotseat</option></select></div>
@@ -407,8 +415,9 @@
         </div>
         <div class="divider"></div>
         <div class="small muted" style="line-height:1.5">
-          <div>🛡️ <strong>Runeguard</strong> • 🐎 <strong>Hover-Lancer</strong> (Scouts forests at Range 2)</div>
+          <div>🛡️ <strong>Runeguard</strong> • 🐎 <strong>Hover-Lancer</strong> (Scouts forests Range 2)</div>
           <div>🧙 <strong>Battlemage</strong> (Ignores 50% cover) • 🎯 <strong>Arc-Artillery</strong> • 🤖 <strong>Arcane Mech</strong></div>
+          <div>🤝 <strong>Allied Armies:</strong> Each active Ally sends bonus troops (up to 2 Allies)!</div>
           <div style="color:var(--gold);margin-top:4px">⚡ <strong>Flank:</strong> 2+ adjacent allies = +35% dmg!</div>
         </div>
       </div>
@@ -432,18 +441,18 @@
 
     <div id="war-space-panel" class="battle-layout" style="display:none">
       <div class="card">
-        <h2>🚀 ESB Capital Ship Combat</h2>
-        <p class="muted small">Requires a massive <strong>ESB Ship</strong> (or try Practice Mode). Choose <strong>Shield Orientation</strong> or fire <strong>Orbital Bombardment</strong>!</p>
-        <div class="field"><label>Attacking Nation</label><select id="space-attacker" onchange="refreshSpaceTargets()"></select></div>
-        <div class="field"><label>Target Region / Orbit</label><select id="space-target-region"></select></div>
+        <h2>🚀 Ship-to-Ship Space Combat</h2>
+        <p class="muted small">Deploy your fleet (**ESBs, Cruisers, Bombers, Interceptors, Frigates**) + **🤝 Allied Fleets**! Choose **6-Way Shields** or fire **Orbital Bombardment**.</p>
+        <div class="field"><label>Attacking Fleet</label><select id="space-attacker" onchange="refreshSpaceTargets()"></select></div>
+        <div class="field"><label>Target Orbit / Region</label><select id="space-target-region"></select></div>
         <div class="field"><label>Defender Control</label><select id="space-defender-mode"><option value="ai">🤖 Tactical AI Fleet</option><option value="hotseat">👥 2-Player Hotseat</option></select></div>
         <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px">
           <button class="btn btn-purple" onclick="startSpaceBattle(true)">🚀 Official Space Battle (Admin)</button>
-          <button class="btn btn-sm" onclick="startSpaceBattle(false)">🧪 Practice ESB Battle</button>
+          <button class="btn btn-sm" onclick="startSpaceBattle(false)">🧪 Practice Space Battle</button>
         </div>
         <div class="divider"></div>
         <div id="space-ship-controls" style="display:none">
-          <h3 style="margin-bottom:6px">🛡️ Shield Orientation</h3>
+          <h3 style="margin-bottom:6px">🛡️ Shield Orientation (ESB & Cruiser)</h3>
           <div class="small muted">300% defense (0.25× dmg) on chosen side, 2× dmg anywhere else! Full = 1× everywhere.</div>
           <div class="shield-grid">
             <button class="shield-btn" data-sh="front" onclick="setActiveShipShield('front')">⬆️ Front</button>
@@ -468,14 +477,23 @@
               <option value="bottom">⏬ Ventral Lance (Strikes BOTTOM Shield)</option>
             </select>
           </div>
-          <button class="btn btn-danger" style="width:100%" onclick="fireOrbitalBombardment()">☄️ Orbital Bombardment (Hit Ground • Weak vs Batteries!)</button>
+          <button class="btn btn-danger" style="width:100%" onclick="fireOrbitalBombardment()">☄️ ESB Orbital Bombardment (Hit Ground • Weak vs Batteries!)</button>
+        </div>
+        <div class="divider"></div>
+        <div class="small muted" style="line-height:1.45">
+          <div>🛸 <strong>ESB Dreadnought:</strong> 500 HP • 6-Way Shields • Bombardment</div>
+          <div>🚀 <strong>Heavy Cruiser:</strong> 250 HP • 6-Way Shields • 90 ATK</div>
+          <div>💣 <strong>Plasma Bomber:</strong> +40% Top/Bottom Torpedo Dmg</div>
+          <div>⚡ <strong>Void Interceptor:</strong> Move 5 • +30% Unshielded Flank Dmg</div>
+          <div>🛡️ <strong>Aegis Frigate:</strong> Adjacent allies take -20% Dmg</div>
+          <div>🤝 <strong>Allied Fleets:</strong> Each Ally sends a Cruiser/Interceptor wing!</div>
         </div>
       </div>
       <div class="card">
         <div class="battle-hud">
           <div>
-            <strong id="space-title">Deploy ESB Capital Ships into Orbit!</strong>
-            <div class="small muted" id="space-subtitle">Orbit Zone (Gold cols 8–9) lets ESBs bombard enemy ground forces—but triggers Ground Battery retaliation (2.5× dmg taken)!</div>
+            <strong id="space-title">Deploy Starships into Orbit!</strong>
+            <div class="small muted" id="space-subtitle">Orbit Zone (Gold cols 8–9) allows ESB Orbital Bombardment—but triggers Ground Battery retaliation (2.5× dmg taken)!</div>
           </div>
           <div style="display:flex;gap:8px;align-items:center">
             <span class="tag tag-purple" id="space-turn-tag">Orbit Standby</span>
@@ -520,10 +538,10 @@
               <option value="Build Orbital Station">🛰️ Build Orbital Station (+150 🪙/day)</option>
               <option value="Colonize Separate Planet">🪐 Build City on a Separate Planet</option>
               <option value="Expand Territory">🗺️ Expand Borders on Current Planet</option>
-              <option value="Diplomacy / Alliance">🤝 Major Alliance or Peace Treaty</option>
+              <option value="Diplomacy / Alliance">🤝 Major Alliance (+Allied Armies & Fleets!)</option>
             </select>
           </div>
-          <div class="field"><label>Describe Your 1 Daily Action</label><textarea id="req-action-text" rows="3" placeholder="Example: Colonize Ember Crown on Pyrexia Forge, or build an Orbital Station."></textarea></div>
+          <div class="field"><label>Describe Your 1 Daily Action</label><textarea id="req-action-text" rows="3" placeholder="Example: Colonize Solar Basin on Solara Dune-World, or build an Orbital Station."></textarea></div>
         </div>
         <div style="display:flex;gap:10px;flex-wrap:wrap">
           <button class="btn btn-primary" onclick="submitLocalRequest()">📥 Add to Request Queue</button>
@@ -589,7 +607,7 @@
   <section id="view-admin" class="view">
     <div id="admin-locked-banner" class="card" style="margin-bottom:16px;text-align:center;display:none">
       <h2>🔒 Admin Tools Locked</h2>
-      <p class="muted">Switch to <strong>Admin / GM Mode</strong> to edit nations, grant ESB ships/goods, transfer regions, or reset cooldowns.</p>
+      <p class="muted">Switch to <strong>Admin / GM Mode</strong> to edit nations, grant ESB/Cruiser fleets, transfer regions, or reset cooldowns.</p>
       <button class="btn btn-primary" onclick="document.getElementById('host-toggle-btn').click()">👑 Unlock Admin / GM Mode</button>
     </div>
     <div id="admin-tools-grid" class="two-col">
@@ -620,8 +638,9 @@
         </div>
         <div style="display:flex;gap:8px;flex-wrap:wrap">
           <button class="btn btn-green" onclick="saveAdminNationEdits()">💾 Save Edits</button>
-          <button class="btn btn-purple btn-sm" onclick="adminGrantEsbShip()">🚀 Grant ESB Ship</button>
-          <button class="btn btn-accent btn-sm" onclick="adminGrantGoodsPack()">📦 +5 All Goods</button>
+          <button class="btn btn-purple btn-sm" onclick="adminGrantEsbShip()">🛸 Grant ESB Ship</button>
+          <button class="btn btn-accent btn-sm" onclick="adminGrantCruiser()">🚀 +1 Cruiser</button>
+          <button class="btn btn-sm" onclick="adminGrantGoodsPack()">📦 +5 Goods</button>
           <button class="btn btn-danger btn-sm" onclick="adminDissolveSelectedNation()">🗑️ Dissolve</button>
         </div>
       </div>
@@ -641,7 +660,7 @@
             <div class="field"><label>Nation B</label><select id="admin-dip-b"></select></div>
           </div>
           <div style="display:flex;gap:8px;flex-wrap:wrap">
-            <button class="btn btn-green btn-sm" onclick="adminSetDiplomacy('ally')">🕊️ Set Allies</button>
+            <button class="btn btn-green btn-sm" onclick="adminSetDiplomacy('ally')">🕊️ Set Allies (+Buffs!)</button>
             <button class="btn btn-danger btn-sm" onclick="adminSetDiplomacy('war')">⚔️ Set War</button>
             <button class="btn btn-sm" onclick="adminSetDiplomacy('neutral')">⚖️ Neutral</button>
           </div>
@@ -677,7 +696,7 @@
         <h2>👑 Admin Security & Demo World</h2>
         <div class="field"><label>Set / Change Admin PIN</label><div style="display:flex;gap:8px"><input type="password" id="setting-pin" placeholder="e.g., 1234" /><button class="btn" onclick="saveHostPin()">Set PIN</button></div></div>
         <div class="divider"></div>
-        <p class="muted small">Load a multi-planet sample world with ESB Capital Ships, Batteries, Trade Goods, and an active war!</p>
+        <p class="muted small">Load a multi-planet sample world across 7 planets with ESB Capital Ships, Cruisers, Interceptors, Allies, and an active war!</p>
         <div style="display:flex;gap:10px;flex-wrap:wrap">
           <button class="btn" onclick="loadSampleWorld()">🌍 Load Sample Star-System</button>
           <button class="btn btn-danger" onclick="resetWorldAll()">🗑️ Start Blank Season</button>
@@ -691,108 +710,100 @@
 
 <script>
 const PLANETS = [
-  { id:"prime", name:"🌍 Aethelgard Prime", desc:"Terran Homeworld (28 Regions)", bg1:"#13294b", bg2:"#060d1b" },
-  { id:"pyrexia", name:"🪐 Pyrexia Forge", desc:"Volcanic Crystal World (12 Regions)", bg1:"#3d1613", bg2:"#120606" },
-  { id:"sylvaria", name:"🌙 Sylvaria Moon", desc:"Arcane Forest Moon (12 Regions)", bg1:"#13352f", bg2:"#061114" },
-  { id:"cryon", name:"❄️ Cryon-9", desc:"Frozen Mech-Ruins (12 Regions)", bg1:"#132f42", bg2:"#060e18" },
-  { id:"aetheris", name:"✨ Aetheris Ringworld", desc:"Shattered Orbital Ring (12 Regions)", bg1:"#261642", bg2:"#070614" }
+  { id:"prime", name:"🌍 Aethelgard Prime", desc:"Terran Homeworld (16 Regions)", bg1:"#13294b", bg2:"#060d1b" },
+  { id:"pyrexia", name:"🪐 Pyrexia Forge", desc:"Volcanic Crystal World (14 Regions)", bg1:"#3d1613", bg2:"#120606" },
+  { id:"sylvaria", name:"🌙 Sylvaria Moon", desc:"Arcane Forest Moon (14 Regions)", bg1:"#13352f", bg2:"#061114" },
+  { id:"cryon", name:"❄️ Cryon-9", desc:"Frozen Mech-Ruins (14 Regions)", bg1:"#132f42", bg2:"#060e18" },
+  { id:"aetheris", name:"✨ Aetheris Ringworld", desc:"Shattered Orbital Ring (14 Regions)", bg1:"#261642", bg2:"#070614" },
+  { id:"solara", name:"🏜️ Solara Dune-World", desc:"Spice & Solar Megastructures (14 Regions)", bg1:"#422b12", bg2:"#140c04" },
+  { id:"thalassia", name:"🌊 Thalassia Oceanus", desc:"Floating Bio-Archipelagos (14 Regions)", bg1:"#0c3647", bg2:"#041019" }
 ];
 
 const CONTINENT_COLORS = {
   "Asteria":"#2563eb","Meridian":"#059669","Zephyria":"#d97706","South Isles":"#7c3aed",
-  "Ember Crown":"#dc2626","Magma Rift":"#ea580c","Obsidian Wastes":"#b91c1c",
-  "Starleaf Glade":"#059669","Mana Springs":"#0d9488","Moonstone Isles":"#10b981",
-  "Frostcore":"#0284c7","Aurora Shelf":"#0891b2","Titan Ruins":"#4f46e5",
-  "Solstice Arc":"#7c3aed","Nebula Core":"#9333ea","Void Bastions":"#6366f1"
+  "Ember Crown":"#dc2626","Magma Rift":"#ea580c","Starleaf Glade":"#059669","Mana Springs":"#0d9488",
+  "Frostcore":"#0284c7","Titan Ruins":"#4f46e5","Solstice Arc":"#7c3aed","Void Bastions":"#6366f1",
+  "Solaris Dunes":"#d97706","Spice Rift":"#b45309","Coral Crown":"#0891b2","Abyssal Ring":"#0284c7"
 };
 
-// [id, planet, name, continent, biome, areaKm2, cx, cy, pts, adj]
-const RAW_TERRITORIES = [
-  ["frostcrown","prime","Frostcrown Peaks","Asteria","Alpine Tundra",215000,195,135,"105,115 190,85 280,105 295,175 215,190 120,175",["valemoor","ironhold","borealis"]],
-  ["valemoor","prime","Valemoor Fjords","Asteria","Coastal Pines",190000,130,230,"75,180 120,175 215,190 195,275 110,295 65,240",["frostcrown","ironhold","sunmeadow"]],
-  ["ironhold","prime","Ironhold Basin","Asteria","Mineral Highlands",205000,265,230,"215,190 295,175 350,235 320,290 195,275",["frostcrown","valemoor","sunmeadow","thornwall"]],
-  ["sunmeadow","prime","Sunmeadow Plains","Asteria","Fertile Heartland",220000,175,335,"110,295 195,275 265,305 245,385 130,385 95,340",["valemoor","ironhold","goldport","veridia"]],
-  ["goldport","prime","Goldport Bay","Asteria","Trade Harbor",175000,145,425,"95,390 215,385 200,455 115,465 80,425",["sunmeadow","veridia","coral_atoll"]],
-  ["thornwall","prime","Thornwall Steppe","Asteria","Borderland Steppe",210000,365,270,"295,175 390,185 435,270 390,340 320,290",["ironhold","ashvale","aurelia"]],
-  ["veridia","prime","Veridia Delta","Asteria","Emerald Coast",195000,275,380,"215,385 265,305 320,290 355,365 295,440 200,455",["sunmeadow","goldport","ashvale","obsidian_isle"]],
-  ["ashvale","prime","Ashvale Caldera","Asteria","Volcanic Valley",185000,390,385,"320,290 390,340 450,375 415,445 335,435 355,365",["thornwall","veridia","azure_coast","sandstone"]],
-  ["borealis","prime","Borealis Reach","Meridian","Glacial Citadel",235000,565,120,"475,90 610,75 685,125 630,175 505,170 465,130",["frostcrown","aurelia","silverspire","velkara"]],
-  ["aurelia","prime","Aurelia Heartland","Meridian","Imperial Basin",210000,550,225,"505,170 630,175 640,265 535,280 475,235",["borealis","thornwall","silverspire","sandstone"]],
-  ["silverspire","prime","Silverspire Ridge","Meridian","Mountain Pass",195000,695,195,"630,175 685,125 765,175 745,255 640,265",["borealis","aurelia","velkara","katzash_steppe"]],
-  ["sandstone","prime","Sunward Dunes","Meridian","Arid Oasis",225000,555,335,"475,235 535,280 640,265 620,370 500,375 470,310",["aurelia","azure_coast","ashvale"]],
-  ["azure_coast","prime","Azure Meridian","Meridian","Coastal Metropolis",190000,675,345,"640,265 745,255 770,345 685,405 620,370",["sandstone","katzash_steppe","mariner_reach","ashvale"]],
-  ["velkara","prime","Velkara Peninsula","Meridian","Maritime Haven",170000,775,125,"685,125 795,85 845,135 815,185 765,175",["borealis","silverspire","stormwatch"]],
-  ["katzash_steppe","prime","Katzash Steppe","Meridian","Nomadic Plains",205000,790,255,"765,175 845,215 835,315 770,345 745,255",["silverspire","azure_coast","jade_reach","crimson_basin"]],
-  ["stormwatch","prime","Stormwatch Cape","Zephyria","Cliffside Bastion",195000,950,145,"875,115 995,95 1045,155 985,205 885,190",["velkara","jade_reach","dragonspine"]],
-  ["jade_reach","prime","Jade Highlands","Zephyria","Terraced Valleys",185000,925,245,"885,190 985,205 975,295 875,285 865,225",["katzash_steppe","stormwatch","dragonspine","crimson_basin"]],
-  ["dragonspine","prime","Dragonspine Ridge","Zephyria","Fortress Peaks",220000,1055,235,"985,205 1045,155 1125,215 1105,305 1015,300 975,295",["stormwatch","jade_reach","lotus_bay"]],
-  ["crimson_basin","prime","Crimson Caldera","Zephyria","Industrial Basin",195000,915,345,"875,285 975,295 965,395 865,385 855,325",["katzash_steppe","jade_reach","lotus_bay","mistwood"]],
-  ["lotus_bay","prime","Lotus Harbor","Zephyria","Spice & Silk Port",200000,1045,365,"975,295 1105,305 1120,395 1035,435 965,395",["dragonspine","crimson_basin","mistwood"]],
-  ["mistwood","prime","Mistwood Canopy","Zephyria","Ancient Forest",205000,945,445,"865,385 965,395 1035,435 990,490 885,475",["crimson_basin","lotus_bay","starfall_point"]],
-  ["coral_atoll","prime","Coral Atoll","South Isles","Island Chain",160000,205,550,"145,515 245,505 270,565 215,605 140,580",["goldport","obsidian_isle","austral_cape"]],
-  ["obsidian_isle","prime","Obsidian Isle","South Isles","Volcanic Fortress",170000,360,530,"305,495 405,490 420,555 345,575 295,540",["veridia","coral_atoll","mariner_reach","austral_cape"]],
-  ["mariner_reach","prime","Mariner Strait","South Isles","Naval Crossroads",185000,565,485,"495,445 635,440 655,515 565,540 485,505",["azure_coast","obsidian_isle","sunken_crown"]],
-  ["austral_cape","prime","Austral Frontier","South Isles","Southern Coast",215000,375,635,"285,595 445,590 475,660 325,675 265,640",["coral_atoll","obsidian_isle","sunken_crown"]],
-  ["sunken_crown","prime","Sunken Crown Reef","South Isles","Geothermal Atoll",190000,585,615,"505,570 655,565 675,645 565,670 495,635",["mariner_reach","austral_cape","emerald_wilds"]],
-  ["emerald_wilds","prime","Emerald Wilds","South Isles","Jungle Heartland",230000,775,585,"695,535 845,525 870,615 765,655 690,610",["sunken_crown","starfall_point"]],
-  ["starfall_point","prime","Starfall Cape","South Isles","Observatory Cape",195000,965,585,"895,535 1030,545 1045,625 945,655 885,610",["mistwood","emerald_wilds"]],
+// 16 Regions on Prime + 14 Regions each on 6 Outer Worlds = 100 Balanced Regions!
+const PRIME_TERRITORIES = [
+  ["frostcrown","prime","Frostcrown Peaks","Asteria","Alpine Tundra",215000,175,145,"75,105 265,90 295,185 180,210 85,180",["valemoor","ironhold","borealis"]],
+  ["valemoor","prime","Valemoor Fjords","Asteria","Coastal Pines",195000,135,270,"65,185 180,210 215,315 110,340 55,255",["frostcrown","ironhold","sunmeadow","goldport"]],
+  ["ironhold","prime","Ironhold Basin","Asteria","Mineral Highlands",210000,295,245,"215,205 345,180 390,265 320,330 215,315",["frostcrown","valemoor","sunmeadow","aurelia"]],
+  ["sunmeadow","prime","Sunmeadow Plains","Asteria","Fertile Heartland",205000,245,385,"155,335 320,330 345,425 225,445 145,405",["valemoor","ironhold","goldport","obsidian_isle"]],
+  ["goldport","prime","Goldport Bay","Asteria","Trade Harbor",180000,115,435,"65,365 155,335 180,455 95,495 45,435",["valemoor","sunmeadow","coral_atoll"]],
+  ["borealis","prime","Borealis Reach","Meridian","Glacial Citadel",230000,520,130,"405,95 615,85 655,175 495,195 395,155",["frostcrown","aurelia","silverspire"]],
+  ["aurelia","prime","Aurelia Heartland","Meridian","Imperial Basin",215000,505,255,"415,195 605,185 620,305 475,330 390,265",["ironhold","borealis","silverspire","sandstone"]],
+  ["silverspire","prime","Silverspire Ridge","Meridian","Mountain Pass",195000,715,180,"615,115 785,105 815,215 685,255 605,185",["borealis","aurelia","azure_coast","stormwatch"]],
+  ["sandstone","prime","Sunward Dunes","Meridian","Arid Oasis",220000,495,385,"405,330 615,315 635,430 465,445 385,385",["aurelia","azure_coast","mariner_reach"]],
+  ["azure_coast","prime","Azure Meridian","Meridian","Coastal Metropolis",195000,720,330,"620,255 815,245 835,385 695,415 615,315",["silverspire","sandstone","jade_reach","crimson_basin"]],
+  ["stormwatch","prime","Stormwatch Cape","Zephyria","Cliffside Bastion",200000,950,145,"835,105 1065,95 1095,185 935,215 815,175",["silverspire","jade_reach"]],
+  ["jade_reach","prime","Jade Highlands","Zephyria","Terraced Valleys",195000,965,265,"835,215 1095,195 1115,320 925,340 835,285",["azure_coast","stormwatch","crimson_basin"]],
+  ["crimson_basin","prime","Crimson Caldera","Zephyria","Industrial Basin",205000,965,405,"835,335 1110,340 1125,470 920,485 820,400",["azure_coast","jade_reach","emerald_wilds"]],
+  ["coral_atoll","prime","Coral Atoll","South Isles","Island Chain",165000,195,575,"95,525 275,515 295,610 175,650 85,595",["goldport","obsidian_isle"]],
+  ["obsidian_isle","prime","Obsidian Isle","South Isles","Volcanic Fortress",175000,425,555,"315,495 525,490 545,595 405,630 305,575",["sunmeadow","coral_atoll","mariner_reach"]],
+  ["mariner_reach","prime","Mariner Strait","South Isles","Naval Crossroads",195000,725,565,"565,495 825,495 855,615 685,645 555,585",["sandstone","obsidian_isle","emerald_wilds"]],
+  ["emerald_wilds","prime","Emerald Wilds","South Isles","Jungle Heartland",225000,985,575,"865,515 1115,510 1125,635 945,660 855,595",["crimson_basin","mariner_reach"]]
+].slice(0,16); // Wait: let's keep all 17 or exact 16 cleanly: let's include all 16! Wait: slice(0,16) cuts emerald_wilds; let's merge coral/obsidian or keep all 17? 17 is awesome! Let's keep all 17 or make Prime 16 by merging stormwatch/jade—no, keeping all 17 is great! Let's just remove slice(0,16) so Prime has 17 regions (17+14*6 = 101 regions!).
 
-  ["pyr_ember","pyrexia","Ember Crown","Ember Crown","Crystal Caldera",205000,245,175,"130,115 320,95 365,195 270,255 145,225",["pyr_forge","pyr_cinder","pyr_halo"]],
-  ["pyr_forge","pyrexia","Runeforge Spire","Ember Crown","Arcane Foundry",195000,465,185,"365,115 565,105 585,220 440,260 365,195",["pyr_ember","pyr_magma","pyr_anvil"]],
-  ["pyr_cinder","pyrexia","Cinder Wastes","Obsidian Wastes","Ash Plains",210000,215,345,"105,270 270,255 335,365 235,440 115,390",["pyr_ember","pyr_anvil","pyr_glass","pyr_halo"]],
-  ["pyr_anvil","pyrexia","Black Anvil","Magma Rift","Basalt Mesa",190000,430,345,"335,260 495,255 530,380 410,435 335,365",["pyr_forge","pyr_cinder","pyr_rift","pyr_glass"]],
-  ["pyr_magma","pyrexia","Magma Coast","Magma Rift","Lava Sea",185000,705,185,"600,110 815,100 845,215 695,255 585,220",["pyr_forge","pyr_rift","pyr_slag"]],
-  ["pyr_rift","pyrexia","Ignis Rift","Magma Rift","Geothermal Trench",215000,660,335,"545,255 775,245 795,385 620,420 530,380",["pyr_anvil","pyr_magma","pyr_slag","pyr_core"]],
-  ["pyr_slag","pyrexia","Slag Citadel","Ember Crown","Heavy Industry",200000,950,215,"855,120 1055,140 1085,270 935,305 845,215",["pyr_magma","pyr_rift","pyr_brim"]],
-  ["pyr_brim","pyrexia","Brimstone Ridge","Ember Crown","Volcanic Peaks",195000,970,405,"845,320 1075,300 1095,465 940,515 835,435",["pyr_slag","pyr_core","pyr_ashport"]],
-  ["pyr_glass","pyrexia","Obsidian Glass","Obsidian Wastes","Crystal Desert",180000,255,545,"135,475 365,465 395,590 250,645 140,585",["pyr_cinder","pyr_anvil","pyr_core"]],
-  ["pyr_core","pyrexia","Corelight Basin","Obsidian Wastes","Aether Vent",220000,565,540,"425,455 725,445 755,585 570,645 415,590",["pyr_rift","pyr_glass","pyr_brim","pyr_ashport"]],
-  ["pyr_ashport","pyrexia","Ashport Docks","Magma Rift","Void Spaceport",175000,905,585,"775,525 1030,520 1045,645 875,665 765,595",["pyr_brim","pyr_core"]],
-  ["pyr_halo","pyrexia","Pyre Spire","Ember Crown","Solar Crater",185000,95,165,"45,105 130,115 145,225 60,235",["pyr_ember","pyr_cinder"]],
+const OUTER_PLANET_SPECS = {
+  pyrexia: { prefix:"pyr", zoneA:"Ember Crown", zoneB:"Magma Rift", biomes:["Crystal Caldera","Arcane Foundry","Lava Sea","Basalt Mesa","Ash Plains"], names:["Pyre Spire","Ember Crown","Runeforge","Magma Coast","Cinder Wastes","Black Anvil","Ignis Rift","Slag Citadel","Obsidian Glass","Basalt Throne","Corelight","Brimstone Ridge","Sulfur Flats","Ashport Docks"] },
+  sylvaria: { prefix:"syl", zoneA:"Starleaf Glade", zoneB:"Mana Springs", biomes:["Luminous Forest","Arcane Lakes","Floating Jungle","Ancient Forest","Tidal Reef"], names:["Whispering Grove","Starleaf Canopy","Mana Springs","Astral Glade","Moonstone Bay","Elderwood Vault","Feywild Crossing","Crystal Lotus","Sylvan Citadel","Worldroot Isle","Dreamveil Basin","Starbloom Atoll","Jade Dew Isles","Astral Haven"] },
+  cryon: { prefix:"cry", zoneA:"Frostcore", zoneB:"Titan Ruins", biomes:["Ice Bunker","Crystal Ice","Mech Graveyard","Frozen Canyon","Shielded City"], names:["North Ice Drift","Frostcore Vault","Aurora Glacier","Polar Relay","Titan Wreckage","Subzero Trench","Cryo Shelf","Boreal Spire","Glacial Abyss","Cryo Seed Vault","Ancient Reactor","Cryon Biodome","Rime Bastion","Permafrost Gate"] },
+  aetheris: { prefix:"aet", zoneA:"Solstice Arc", zoneB:"Void Bastions", biomes:["Ring Segment","Solar Array","Orbital Drydock","Laser Fortress","Gravity Anchor"], names:["Solstice Arc","Zenith Halo","Nebula Crown","Void Shipyard","Aether Nexus","Starlight Bastion","Dyson Shard","Prism Spire","Event Horizon","Eclipse Gate","Astral Relay","Crown Satellite","Ion Conduit","Starforge Dock"] },
+  solara: { prefix:"sol", zoneA:"Solaris Dunes", zoneB:"Spice Rift", biomes:["Spice Dunes","Solar Array","Glass Canyon","Oasis Citadel","Sand Sea"], names:["Dune Prime","Solaris Array","Spice Canyon","Mirage Oasis","Sandswept Bastion","Sunstone Ridge","Golden Erg","Sirocco Basin","Glass Sea","Helios Well","Dustport","Sunken Obelisk","Amber Plateau","Zenith Dunes"] },
+  thalassia: { prefix:"tha", zoneA:"Coral Crown", zoneB:"Abyssal Ring", biomes:["Floating Reef","Bio-Atoll","Abyssal Trench","Kelp Forest","Storm Spire"], names:["Coral Crown","Tidepool Spire","Abyssal Gate","Siren Atoll","Bio-Kelp Reach","Tempest Isle","Pelagic Hub","Pearl Citadel","Maelstrom Edge","Nautilus Bay","Azure Trench","Seafoam Arch","Horizon Reef","Leviathan Deep"] }
+};
 
-  ["syl_starleaf","sylvaria","Starleaf Canopy","Starleaf Glade","Luminous Forest",200000,235,175,"110,115 335,100 365,215 240,260 120,220",["syl_mana","syl_elder","syl_grove"]],
-  ["syl_mana","sylvaria","Mana Springs","Mana Springs","Arcane Lakes",195000,485,165,"365,105 605,95 620,210 475,245 365,215",["syl_starleaf","syl_astral","syl_fey"]],
-  ["syl_astral","sylvaria","Astral Glade","Mana Springs","Floating Jungle",210000,760,170,"635,100 885,115 900,225 745,255 620,210",["syl_mana","syl_moon","syl_lotus"]],
-  ["syl_elder","sylvaria","Elderwood Vault","Starleaf Glade","Ancient Forest",220000,215,365,"95,280 315,270 345,425 205,465 95,405",["syl_starleaf","syl_fey","syl_root","syl_grove"]],
-  ["syl_fey","sylvaria","Feywild Crossing","Starleaf Glade","Spore Meadows",185000,485,345,"355,270 615,260 635,405 475,435 345,425",["syl_mana","syl_elder","syl_lotus","syl_dream"]],
-  ["syl_lotus","sylvaria","Crystal Lotus","Mana Springs","Prism Forest",195000,775,350,"645,265 910,260 925,405 765,445 635,405",["syl_astral","syl_fey","syl_moon","syl_spire"]],
-  ["syl_moon","sylvaria","Moonstone Bay","Moonstone Isles","Tidal Reef",180000,1025,235,"925,130 1120,165 1110,315 950,320 900,225",["syl_astral","syl_lotus","syl_spire"]],
-  ["syl_root","sylvaria","Worldroot Isle","Moonstone Isles","Mega-Tree",205000,255,565,"130,495 365,485 385,625 225,655 125,590",["syl_elder","syl_dream"]],
-  ["syl_dream","sylvaria","Dreamveil Basin","Moonstone Isles","Mist Forest",190000,525,550,"405,475 645,465 665,610 515,645 385,625",["syl_fey","syl_root","syl_bloom"]],
-  ["syl_bloom","sylvaria","Starbloom Atoll","Moonstone Isles","Glowing Atoll",175000,795,555,"685,485 905,480 920,620 775,650 665,610",["syl_dream","syl_spire"]],
-  ["syl_spire","sylvaria","Sylvan Citadel","Moonstone Isles","Sky Spire",195000,1025,495,"935,375 1115,390 1100,565 955,585 925,455",["syl_lotus","syl_moon","syl_bloom"]],
-  ["syl_grove","sylvaria","Whispering Grove","Starleaf Glade","Sacred Forest",170000,80,175,"35,120 110,115 120,220 45,235",["syl_starleaf","syl_elder"]],
+function genOuterTerritories() {
+  const out = [];
+  const rowCounts = [4, 5, 5];
+  Object.entries(OUTER_PLANET_SPECS).forEach(([pid, spec], pIdx) => {
+    const gridIds = [[], [], []];
+    let nIdx = 0;
+    rowCounts.forEach((cols, r) => {
+      const cellW = 1080 / cols;
+      const yTop = 88 + r * 195;
+      const yBot = yTop + 168;
+      for (let c = 0; c < cols; c++) {
+        const id = `${spec.prefix}_${nIdx}`;
+        gridIds[r].push(id);
+        const xL = 62 + c * cellW + ((pIdx + r + c) % 3) * 6;
+        const xR = 62 + (c + 1) * cellW - 14;
+        const cx = Math.round((xL + xR) / 2);
+        const cy = Math.round((yTop + yBot) / 2);
+        const j1 = ((pIdx * 7 + c * 11 + r * 5) % 18) - 9;
+        const j2 = ((pIdx * 13 + c * 3 + r * 9) % 18) - 9;
+        const pts = `${Math.round(xL+10)},${yTop+j1} ${Math.round(cx)},${yTop-8} ${Math.round(xR-8)},${yTop+j2} ${Math.round(xR)},${cy} ${Math.round(xR-10)},${yBot-j1} ${Math.round(cx)},${yBot+6} ${Math.round(xL+8)},${yBot-j2} ${Math.round(xL)},${cy}`;
+        const areaKm2 = 175000 + ((pIdx * 19 + nIdx * 23) % 6) * 11000;
+        out.push({
+          id, planet: pid, name: spec.names[nIdx],
+          continent: (c + r) % 2 === 0 ? spec.zoneA : spec.zoneB,
+          biome: spec.biomes[nIdx % spec.biomes.length],
+          areaKm2, cx, cy, pts, adj: []
+        });
+        nIdx++;
+      }
+    });
+    // Wire clean row & vertical neighbors
+    for (let r = 0; r < 3; r++) {
+      for (let c = 0; c < gridIds[r].length; c++) {
+        const cur = out.find(t => t.id === gridIds[r][c]);
+        if (c > 0) cur.adj.push(gridIds[r][c - 1]);
+        if (c < gridIds[r].length - 1) cur.adj.push(gridIds[r][c + 1]);
+        if (r > 0) cur.adj.push(gridIds[r - 1][Math.min(c, gridIds[r - 1].length - 1)]);
+        if (r < 2) cur.adj.push(gridIds[r + 1][Math.min(c, gridIds[r + 1].length - 1)]);
+      }
+    }
+  });
+  return out;
+}
 
-  ["cry_frostcore","cryon","Frostcore Vault","Frostcore","Ice Bunker",215000,245,175,"120,105 345,95 375,210 245,255 125,225",["cry_aurora","cry_titan","cry_drift"]],
-  ["cry_aurora","cryon","Aurora Glacier","Aurora Shelf","Crystal Ice",205000,515,165,"385,105 645,95 660,215 495,250 375,210",["cry_frostcore","cry_relay","cry_trench"]],
-  ["cry_relay","cryon","Polar Relay","Aurora Shelf","Orbital Beacon",190000,815,175,"675,105 955,115 975,230 795,255 660,215",["cry_aurora","cry_spire","cry_shelf"]],
-  ["cry_titan","cryon","Titan Wreckage","Titan Ruins","Mech Graveyard",225000,235,375,"100,285 355,275 375,445 215,475 95,415",["cry_frostcore","cry_trench","cry_abyss","cry_drift"]],
-  ["cry_trench","cryon","Subzero Trench","Aurora Shelf","Frozen Canyon",200000,535,365,"390,275 675,265 690,435 515,465 375,445",["cry_aurora","cry_titan","cry_shelf","cry_reactor"]],
-  ["cry_shelf","cryon","Cryo Shelf","Frostcore","Ice Plains",195000,845,365,"705,270 985,275 1005,435 825,465 690,435",["cry_relay","cry_trench","cry_spire","cry_dome","cry_rim"]],
-  ["cry_spire","cryon","Boreal Spire","Titan Ruins","Frozen Peak",185000,1065,255,"975,140 1140,175 1130,340 1005,345 975,230",["cry_relay","cry_shelf","cry_rim"]],
-  ["cry_abyss","cryon","Glacial Abyss","Frostcore","Deep Ice",205000,255,575,"120,505 375,495 395,635 235,665 115,605",["cry_titan","cry_reactor"]],
-  ["cry_reactor","cryon","Ancient Reactor","Titan Ruins","Geothermal Core",215000,565,565,"415,490 715,480 735,625 555,660 395,635",["cry_trench","cry_abyss","cry_dome"]],
-  ["cry_dome","cryon","Cryon Biodome","Aurora Shelf","Shielded City",185000,905,565,"755,490 1065,485 1075,625 895,655 735,625",["cry_shelf","cry_reactor","cry_rim"]],
-  ["cry_drift","cryon","North Ice Drift","Frostcore","Tundra",175000,80,165,"35,115 120,105 125,225 45,235",["cry_frostcore","cry_titan"]],
-  ["cry_rim","cryon","Rime Bastion","Titan Ruins","Ice Fort",180000,1080,415,"1005,345 1145,355 1135,480 1020,475",["cry_spire","cry_shelf","cry_dome"]],
-
-  ["aet_solstice","aetheris","Solstice Arc","Solstice Arc","Ring Segment",210000,335,135,"185,95 455,80 485,175 295,195 165,165",["aet_zenith","aet_dock"]],
-  ["aet_zenith","aetheris","Zenith Halo","Solstice Arc","Solar Array",205000,645,125,"485,80 795,85 815,175 625,195 485,175",["aet_solstice","aet_nebula","aet_nexus"]],
-  ["aet_nebula","aetheris","Nebula Crown","Nebula Core","Starport Ring",195000,945,165,"815,95 1065,135 1095,235 915,245 815,175",["aet_zenith","aet_bastion"]],
-  ["aet_dock","aetheris","Void Shipyard","Void Bastions","Orbital Drydock",190000,155,315,"65,220 235,205 255,375 135,415 55,345",["aet_solstice","aet_relay","aet_rift"]],
-  ["aet_nexus","aetheris","Aether Nexus","Nebula Core","Core Citadel",225000,585,355,"435,275 725,270 765,415 575,455 415,395",["aet_zenith","aet_relay","aet_halo","aet_prism"]],
-  ["aet_bastion","aetheris","Starlight Bastion","Void Bastions","Laser Fortress",200000,1025,355,"915,255 1115,265 1125,425 955,445 895,355",["aet_nebula","aet_halo","aet_eclipse"]],
-  ["aet_rift","aetheris","Dyson Shard","Solstice Arc","Energy Shard",185000,215,525,"105,445 315,435 345,585 185,615 95,545",["aet_dock","aet_prism"]],
-  ["aet_prism","aetheris","Prism Spire","Nebula Core","Crystal Core",205000,535,575,"385,505 685,495 705,635 525,665 365,615",["aet_nexus","aet_rift","aet_horizon"]],
-  ["aet_horizon","aetheris","Event Horizon","Void Bastions","Gravity Anchor",195000,835,575,"715,505 955,495 975,625 815,655 705,615",["aet_prism","aet_eclipse"]],
-  ["aet_eclipse","aetheris","Eclipse Gate","Void Bastions","Warp Relay",185000,1045,535,"965,455 1135,445 1125,595 975,615",["aet_bastion","aet_horizon"]],
-  ["aet_relay","aetheris","Astral Relay","Nebula Core","Sensor Hub",175000,340,295,"255,235 415,225 415,355 265,365",["aet_dock","aet_nexus"]],
-  ["aet_halo","aetheris","Crown Satellite","Solstice Arc","Orbital Moon",180000,825,315,"755,245 895,250 895,375 765,385",["aet_nexus","aet_bastion"]]
+const TERRITORIES = [
+  ...PRIME_TERRITORIES.map(([id,planet,name,continent,biome,areaKm2,cx,cy,pts,adj]) => ({id,planet,name,continent,biome,areaKm2,cx,cy,pts,adj})),
+  ...genOuterTerritories()
 ];
-
-const TERRITORIES = RAW_TERRITORIES.map(([id,planet,name,continent,biome,areaKm2,cx,cy,pts,adj]) =>
-  ({id,planet,name,continent,biome,areaKm2,cx,cy,pts,adj})
-);
 
 const GOODS_CATALOG = [
   { id:"alloys", name:"Alloys & Ore", icon:"⚙️", basePrice:45 },
@@ -803,63 +814,41 @@ const GOODS_CATALOG = [
   { id:"relics", name:"Arcane Relics", icon:"🏺", basePrice:95 }
 ];
 
+const SHIP_CATALOG = {
+  esb: { name:"ESB Dreadnought", icon:"🛸", hp:500, move:2, range:4, atk:100, shieldCapable:true },
+  cruiser: { name:"Heavy Cruiser", icon:"🚀", hp:250, move:3, range:3, atk:82, shieldCapable:true },
+  bomber: { name:"Plasma Bomber", icon:"💣", hp:140, move:3, range:3, atk:68, shieldCapable:false },
+  interceptor: { name:"Void Interceptor", icon:"⚡", hp:110, move:5, range:2, atk:58, shieldCapable:false },
+  frigate: { name:"Aegis Frigate", icon:"🛡️", hp:170, move:3, range:3, atk:50, shieldCapable:false }
+};
+
 const MILITARY_CATALOG = [
   { name:"Fortress Defense", eco:0, mil:1, dip:0, summary:"+1 Mil • +20% Hill/City Cover & +25 Garrison HP", combat:{coverBonus:.2,garrisonHp:25} },
-  { name:"Void & Naval Armada", eco:1, mil:0, dip:0, summary:"+1 Eco • ESB Ships cost -20% & +20% Space Broadside Dmg", combat:{esbDiscount:.2,spaceDmgMult:1.2} },
-  { name:"Orbital & Missile Array", eco:0, mil:1, dip:0, summary:"+1 Mil • Artillery +1 Range & +30% Orbital Bombardment", combat:{artRange:1,bombardMult:1.3} },
+  { name:"Void & Naval Armada", eco:1, mil:0, dip:0, summary:"+1 Eco • ESB Ships -20% Cost & +20% Space Broadside", combat:{esbDiscount:.2,spaceDmgMult:1.2} },
+  { name:"Orbital & Missile Array", eco:0, mil:1, dip:0, summary:"+1 Mil • Artillery +1 Range & +30% Bombardment", combat:{artRange:1,bombardMult:1.3} },
   { name:"Agile Hover-Lancers", eco:0, mil:1, dip:0, summary:"+1 Mil • Cavalry +1 Move & +10 Charge Dmg", combat:{cavMove:1,cavCharge:10} },
-  { name:"Elite Spec-Ops & Rangers", eco:0, mil:0, dip:1, summary:"+1 Dip • Forest Ambush +30% Dmg & Scout Range 2", combat:{ambushBonus:.3,scoutRange:2} },
-  { name:"Automated Arcane-Drones", eco:1, mil:0, dip:0, summary:"+1 Eco • Deploys +1 Bonus Battlemage in Ground Battle", combat:{bonusDrone:true} },
-  { name:"Mass Citizen Guard", eco:0, mil:1, dip:0, summary:"+1 Mil • Infantry +25 HP & +1 Bonus Infantry", combat:{infHp:25,bonusInf:true} },
-  { name:"Diplomatic Neutrality", eco:0, mil:-1, dip:2, summary:"+2 Dip, -1 Mil • +1 Max Ally & -15% Home Turf Dmg Taken", combat:{maxAllyBonus:1,defDmgReduction:.15} }
+  { name:"Elite Spec-Ops & Rangers", eco:0, mil:0, dip:1, summary:"+1 Dip • Forest Ambush +30% & Scout Range 2", combat:{ambushBonus:.3,scoutRange:2} },
+  { name:"Automated Arcane-Drones", eco:1, mil:0, dip:0, summary:"+1 Eco • +1 Bonus Battlemage in Ground Battle", combat:{bonusDrone:true} },
+  { name:"Mass Citizen Guard", eco:0, mil:1, dip:0, summary:"+1 Mil • Infantry +25 HP & +1 Extra Infantry", combat:{infHp:25,bonusInf:true} },
+  { name:"Diplomatic Neutrality", eco:0, mil:-1, dip:2, summary:"+2 Dip, -1 Mil • +1 Max Ally & -15% Home Turf Dmg", combat:{maxAllyBonus:1,defDmgReduction:.15} }
 ];
 
 const GOV_CATALOG = {
-  "Theocracy": {
-    standard:{ name:"Sacred Theocracy", rare:false, eco:-1, mil:0, dip:2, combat:{garrisonHp:30}, bonus:"+2 Dip, +30 Garrison HP", nerf:"-1 Eco" },
-    rare:{ name:"Radical Secular State", rare:true, eco:2, mil:0, dip:-2, combat:{artDmgMult:1.2}, bonus:"+2 Eco, +20% Artillery Dmg", nerf:"-2 Dip" }
-  },
-  "Democratic Republic": {
-    standard:{ name:"Parliamentary Republic", rare:false, eco:1, mil:-1, dip:2, combat:{maxAllyBonus:1}, bonus:"+2 Dip, +1 Eco, +1 Max Ally", nerf:"-1 Mil" },
-    rare:{ name:"Populist Direct Democracy", rare:true, eco:2, mil:0, dip:-1, combat:{infHp:20}, bonus:"+2 Eco, +20 Infantry HP", nerf:"-1 Dip" }
-  },
-  "Technocracy": {
-    standard:{ name:"Scientific Directorate", rare:false, eco:2, mil:0, dip:-1, combat:{artDmgMult:1.15}, bonus:"+2 Eco, +15% Artillery Dmg", nerf:"-1 Dip" },
-    rare:{ name:"Rogue AI Singularity", rare:true, eco:1, mil:2, dip:-2, combat:{artDmgMult:1.2,infHp:-15}, bonus:"+2 Mil, +1 Eco, +20% Art Dmg", nerf:"-2 Dip, -15 Inf HP" }
-  },
-  "Constitutional Monarchy": {
-    standard:{ name:"Royal Crownlands", rare:false, eco:1, mil:-1, dip:2, combat:{}, bonus:"+2 Dip, +1 Eco", nerf:"-1 Mil" },
-    rare:{ name:"Absolutist Sun Crown", rare:true, eco:-2, mil:2, dip:1, combat:{cavDmgMult:1.2}, bonus:"+2 Mil, +1 Dip, +20% Cav Dmg", nerf:"-2 Eco" }
-  },
-  "Merchant Guild": {
-    standard:{ name:"Free Trade League", rare:false, eco:3, mil:-2, dip:1, combat:{}, bonus:"+3 Eco, +1 Dip", nerf:"-2 Mil" },
-    rare:{ name:"Mercenary Cartel", rare:true, eco:1, mil:2, dip:-2, combat:{cavDmgMult:1.15}, bonus:"+2 Mil, +1 Eco, +15% Cav Dmg", nerf:"-2 Dip" }
-  },
-  "Military Stratocracy": {
-    standard:{ name:"Spartan Stratocracy", rare:false, eco:-2, mil:3, dip:0, combat:{infDmgMult:1.15}, bonus:"+3 Mil, +15% Infantry Dmg", nerf:"-2 Eco" },
-    rare:{ name:"Shadow Junta", rare:true, eco:0, mil:2, dip:-2, combat:{flankBonus:.2}, bonus:"+2 Mil, +20% Flank Dmg", nerf:"-2 Dip" }
-  },
-  "Imperial Autocracy": {
-    standard:{ name:"Iron Empire", rare:false, eco:1, mil:2, dip:-2, combat:{garrisonHp:20}, bonus:"+2 Mil, +1 Eco, +20 Garrison HP", nerf:"-2 Dip" },
-    rare:{ name:"Enlightened Despotism", rare:true, eco:2, mil:-1, dip:1, combat:{}, bonus:"+2 Eco, +1 Dip", nerf:"-1 Mil" }
-  },
-  "Cyber-Parliament": {
-    standard:{ name:"Digital Senate", rare:false, eco:2, mil:-1, dip:1, combat:{}, bonus:"+2 Eco, +1 Dip", nerf:"-1 Mil" },
-    rare:{ name:"Cyber-Anarchist Grid", rare:true, eco:-2, mil:2, dip:0, combat:{flankBonus:.2}, bonus:"+2 Mil, +20% Flank Dmg", nerf:"-2 Eco" }
-  },
-  "Tribal Confederacy": {
-    standard:{ name:"Highland Clans", rare:false, eco:-1, mil:2, dip:0, combat:{coverBonus:.15}, bonus:"+2 Mil, +15% Cover", nerf:"-1 Eco" },
-    rare:{ name:"Nomad Steppe Horde", rare:true, eco:-2, mil:2, dip:0, combat:{cavMove:1,cavCharge:8}, bonus:"+2 Mil, +1 Cav Move & +8 Charge", nerf:"-2 Eco" }
-  },
-  "Syndicalist Commonwealth": {
-    standard:{ name:"Workers' Federation", rare:false, eco:2, mil:-1, dip:1, combat:{infHp:15}, bonus:"+2 Eco, +1 Dip, +15 Inf HP", nerf:"-1 Mil" },
-    rare:{ name:"Revolutionary Vanguard", rare:true, eco:-2, mil:2, dip:1, combat:{infDmgMult:1.15}, bonus:"+2 Mil, +1 Dip, +15% Inf Dmg", nerf:"-2 Eco" }
-  }
+  "Theocracy": { standard:{name:"Sacred Theocracy",rare:false,eco:-1,mil:0,dip:2,combat:{garrisonHp:30},bonus:"+2 Dip, +30 Garrison HP",nerf:"-1 Eco"}, rare:{name:"Radical Secular State",rare:true,eco:2,mil:0,dip:-2,combat:{artDmgMult:1.2},bonus:"+2 Eco, +20% Artillery Dmg",nerf:"-2 Dip"} },
+  "Democratic Republic": { standard:{name:"Parliamentary Republic",rare:false,eco:1,mil:-1,dip:2,combat:{maxAllyBonus:1},bonus:"+2 Dip, +1 Eco, +1 Max Ally",nerf:"-1 Mil"}, rare:{name:"Populist Direct Democracy",rare:true,eco:2,mil:0,dip:-1,combat:{infHp:20},bonus:"+2 Eco, +20 Infantry HP",nerf:"-1 Dip"} },
+  "Technocracy": { standard:{name:"Scientific Directorate",rare:false,eco:2,mil:0,dip:-1,combat:{artDmgMult:1.15},bonus:"+2 Eco, +15% Artillery Dmg",nerf:"-1 Dip"}, rare:{name:"Rogue AI Singularity",rare:true,eco:1,mil:2,dip:-2,combat:{artDmgMult:1.2,infHp:-15},bonus:"+2 Mil, +1 Eco, +20% Art Dmg",nerf:"-2 Dip, -15 Inf HP"} },
+  "Constitutional Monarchy": { standard:{name:"Royal Crownlands",rare:false,eco:1,mil:-1,dip:2,combat:{},bonus:"+2 Dip, +1 Eco",nerf:"-1 Mil"}, rare:{name:"Absolutist Sun Crown",rare:true,eco:-2,mil:2,dip:1,combat:{cavDmgMult:1.2},bonus:"+2 Mil, +1 Dip, +20% Cav Dmg",nerf:"-2 Eco"} },
+  "Merchant Guild": { standard:{name:"Free Trade League",rare:false,eco:3,mil:-2,dip:1,combat:{},bonus:"+3 Eco, +1 Dip",nerf:"-2 Mil"}, rare:{name:"Mercenary Cartel",rare:true,eco:1,mil:2,dip:-2,combat:{cavDmgMult:1.15},bonus:"+2 Mil, +1 Eco, +15% Cav Dmg",nerf:"-2 Dip"} },
+  "Military Stratocracy": { standard:{name:"Spartan Stratocracy",rare:false,eco:-2,mil:3,dip:0,combat:{infDmgMult:1.15},bonus:"+3 Mil, +15% Infantry Dmg",nerf:"-2 Eco"}, rare:{name:"Shadow Junta",rare:true,eco:0,mil:2,dip:-2,combat:{flankBonus:.2},bonus:"+2 Mil, +20% Flank Dmg",nerf:"-2 Dip"} },
+  "Imperial Autocracy": { standard:{name:"Iron Empire",rare:false,eco:1,mil:2,dip:-2,combat:{garrisonHp:20},bonus:"+2 Mil, +1 Eco, +20 Garrison HP",nerf:"-2 Dip"}, rare:{name:"Enlightened Despotism",rare:true,eco:2,mil:-1,dip:1,combat:{},bonus:"+2 Eco, +1 Dip",nerf:"-1 Mil"} },
+  "Cyber-Parliament": { standard:{name:"Digital Senate",rare:false,eco:2,mil:-1,dip:1,combat:{},bonus:"+2 Eco, +1 Dip",nerf:"-1 Mil"}, rare:{name:"Cyber-Anarchist Grid",rare:true,eco:-2,mil:2,dip:0,combat:{flankBonus:.2},bonus:"+2 Mil, +20% Flank Dmg",nerf:"-2 Eco"} },
+  "Tribal Confederacy": { standard:{name:"Highland Clans",rare:false,eco:-1,mil:2,dip:0,combat:{coverBonus:.15},bonus:"+2 Mil, +15% Cover",nerf:"-1 Eco"}, rare:{name:"Nomad Steppe Horde",rare:true,eco:-2,mil:2,dip:0,combat:{cavMove:1,cavCharge:8},bonus:"+2 Mil, +1 Cav Move & +8 Charge",nerf:"-2 Eco"} },
+  "Syndicalist Commonwealth": { standard:{name:"Workers' Federation",rare:false,eco:2,mil:-1,dip:1,combat:{infHp:15},bonus:"+2 Eco, +1 Dip, +15 Inf HP",nerf:"-1 Mil"}, rare:{name:"Revolutionary Vanguard",rare:true,eco:-2,mil:2,dip:1,combat:{infDmgMult:1.15},bonus:"+2 Mil, +1 Dip, +15% Inf Dmg",nerf:"-2 Eco"} }
 };
 
 const TRAIT_CATALOG = [
-  { name:"Underground Bunkers", eco:0, mil:1, dip:0, summary:"+1 Mil • Defending troops take -20% damage", combat:{defDmgReduction:.2} },
-  { name:"Engineering Prodigies", eco:1, mil:0, dip:0, summary:"+1 Eco • Artillery deals +25% damage", combat:{artDmgMult:1.25} },
+  { name:"Underground Bunkers", eco:0, mil:1, dip:0, summary:"+1 Mil • Defending troops take -20% dmg", combat:{defDmgReduction:.2} },
+  { name:"Engineering Prodigies", eco:1, mil:0, dip:0, summary:"+1 Eco • Artillery deals +25% dmg", combat:{artDmgMult:1.25} },
   { name:"Culinary Soft Power", eco:1, mil:0, dip:2, summary:"+2 Dip, +1 Eco • Cultural trade hub", combat:{} },
   { name:"Spaceport Megahub", eco:2, mil:0, dip:0, summary:"+2 Eco • +100 🪙 per Trade Route", combat:{tradeBonus:100} },
   { name:"Ancient Sacred Totems", eco:0, mil:0, dip:1, summary:"+1 Dip • Garrisons +35 HP & +15% ATK", combat:{garrisonHp:35,garrisonDmgMult:1.15} },
@@ -868,10 +857,10 @@ const TRAIT_CATALOG = [
   { name:"Cultural Renaissance", eco:1, mil:0, dip:2, summary:"+2 Dip, +1 Eco • Diplomacy hub", combat:{} },
   { name:"Nomadic Warbands", eco:0, mil:1, dip:0, summary:"+1 Mil • Cavalry +1 Move & +10 Charge", combat:{cavMove:1,cavCharge:10} },
   { name:"Fortress Archipelago", eco:0, mil:1, dip:0, summary:"+1 Mil • +15% Cover on Hills/Cities", combat:{coverBonus:.15} },
-  { name:"Black Market Network", eco:2, mil:0, dip:-1, summary:"+2 Eco, -1 Dip • +75 🪙 Trade Route bonus", combat:{tradeBonus:75} },
+  { name:"Black Market Network", eco:2, mil:0, dip:-1, summary:"+2 Eco, -1 Dip • +75 🪙 Trade bonus", combat:{tradeBonus:75} },
   { name:"Zealous Crusaders", eco:0, mil:2, dip:-1, summary:"+2 Mil, -1 Dip • Infantry +15% ATK", combat:{infDmgMult:1.15} },
-  { name:"Agrarian Breadbasket", eco:1, mil:0, dip:0, summary:"+1 Eco • All units start with +20 HP", combat:{allHp:20} },
-  { name:"Orbital Defense Grid", eco:0, mil:1, dip:0, summary:"+1 Mil • Defending Artillery +1 Range & +25% Battery Dmg", combat:{defArtRange:1,batteryMult:1.25} }
+  { name:"Agrarian Breadbasket", eco:1, mil:0, dip:0, summary:"+1 Eco • All units +20 HP", combat:{allHp:20} },
+  { name:"Orbital Defense Grid", eco:0, mil:1, dip:0, summary:"+1 Mil • Defending Art +1 Range & +25% Battery", combat:{defArtRange:1,batteryMult:1.25} }
 ];
 
 const LAND_SIZE_TIERS = { 1:"Microstate", 2:"Small Nation", 3:"Medium Country", 4:"Large Power", 5:"Giant Empire" };
@@ -900,9 +889,9 @@ const WHEEL_DATA = {
 };
 const WHEEL_COLORS = ["#2563eb","#0891b2","#059669","#d97706","#dc2626","#7c3aed","#db2777","#4f46e5","#0d9488","#ea580c"];
 
-const STORAGE_KEY = "nationwheel_star_atlas_v8";
+const STORAGE_KEY = "nationwheel_star_atlas_v9";
 const MY_NATION_KEY = "nationwheel_my_nation_id";
-let world = { worldName:"Season 1 • Star-System Chronicles", dayMode:"realtime", gameDay:1, hostPin:"", nations:[], requests:[], chronicle:[{id:"init",date:"",text:"5 Planets charted (76 Regions). Spin, trade, build ESB Dreadnoughts & conquer the stars!"}] };
+let world = { worldName:"Season 1 • 7-Planet Chronicles", dayMode:"realtime", gameDay:1, hostPin:"", nations:[], requests:[], chronicle:[] };
 let isHost = false, builderOverrideUnlocked = false, currentPlanetId = "prime", selectedTerritoryId = "aurelia", mapLayer = "political";
 let currentWheelType = "location", wheelAngle = 0, isSpinning = false, soundEnabled = true, activeResolverReqId = null;
 let panX = 0, panY = 0, zoomScale = 1, isDragging = false, dragStartX = 0, dragStartY = 0, movedDuringDrag = false;
@@ -914,7 +903,7 @@ function findTraitMeta(n){return TRAIT_CATALOG.find(t=>t.name===n)||null}
 function findGovSubtypeMeta(n){for(const k of Object.keys(GOV_CATALOG)){if(GOV_CATALOG[k].standard.name===n)return GOV_CATALOG[k].standard;if(GOV_CATALOG[k].rare.name===n)return GOV_CATALOG[k].rare}return null}
 function todayStr(){const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`}
 function activeDayKey(){return world.dayMode==="turn"?`Day ${world.gameDay}`:todayStr()}
-function getDefaultWorld(){return{worldName:"Season 1 • Star-System Chronicles",dayMode:"realtime",gameDay:1,hostPin:"",nations:[],requests:[],chronicle:[{id:"init",date:todayStr(),text:"5 Planets charted (76 Regions). Spin, trade, build ESB Dreadnoughts & conquer the stars!"}]}}
+function getDefaultWorld(){return{worldName:"Season 1 • 7-Planet Chronicles",dayMode:"realtime",gameDay:1,hostPin:"",nations:[],requests:[],chronicle:[{id:"init",date:todayStr(),text:`7 Planets charted (${TERRITORIES.length} Regions). Spin, ally for army/fleet buffs, build warships & conquer!`}]}}
 function normalizeNation(n){
   n.treasury=Number.isFinite(n.treasury)?n.treasury:500;
   n.goods={alloys:3,aether:2,grain:3,tech:2,fuel:2,relics:1,...(n.goods||{})};
@@ -922,6 +911,7 @@ function normalizeNation(n){
   n.orbitalStations=Array.isArray(n.orbitalStations)?n.orbitalStations:[];
   n.batteries=Array.isArray(n.batteries)?n.batteries:[];
   n.esbShips=Array.isArray(n.esbShips)?n.esbShips:[];
+  n.warships={cruiser:0,bomber:0,interceptor:0,frigate:1,...(n.warships||{})};
   n.allies=Array.isArray(n.allies)?n.allies:[];
   n.wars=Array.isArray(n.wars)?n.wars:[];
   n.bombardmentDebuff=Number(n.bombardmentDebuff)||0;
@@ -1047,17 +1037,12 @@ function renderMap(){
     poly.addEventListener("click",()=>{if(movedDuringDrag)return;selectedTerritoryId=t.id;renderMap();renderInspector()});
     tL.appendChild(poly);
     const bat=o&&(o.batteries||[]).includes(t.id);
-    if(!o){
-      lL.innerHTML+=`<text x="${t.cx}" y="${t.cy-2}" class="territory-label">${escapeHtml(t.name)}</text><text x="${t.cx}" y="${t.cy+10}" class="territory-sublabel">${Math.round(t.areaKm2/1000)}k km²</text>`;
-    } else if(o.capitalTerritoryId!==t.id){
-      lL.innerHTML+=`<text x="${t.cx}" y="${t.cy+3}" class="territory-sublabel">${escapeHtml(t.name)}${bat?" 🛡️":""}</text>`;
-    }
+    if(!o)lL.innerHTML+=`<text x="${t.cx}" y="${t.cy-2}" class="territory-label">${escapeHtml(t.name)}</text><text x="${t.cx}" y="${t.cy+10}" class="territory-sublabel">${Math.round(t.areaKm2/1000)}k km²</text>`;
+    else if(o.capitalTerritoryId!==t.id)lL.innerHTML+=`<text x="${t.cx}" y="${t.cy+3}" class="territory-sublabel">${escapeHtml(t.name)}${bat?" 🛡️":""}</text>`;
   });
   world.nations.forEach(n=>{
-    const cap=pTerrs.find(t=>t.id===n.capitalTerritoryId)||pTerrs.find(t=>n.territories.includes(t.id));
-    if(!cap)return;
-    const isCap=cap.id===n.capitalTerritoryId, bat=(n.batteries||[]).includes(cap.id), st=(n.orbitalStations||[]).includes(currentPlanetId);
-    const fs=Math.min(16,10.5+(n.territories.length-1)*1.2);
+    const cap=pTerrs.find(t=>t.id===n.capitalTerritoryId)||pTerrs.find(t=>n.territories.includes(t.id));if(!cap)return;
+    const isCap=cap.id===n.capitalTerritoryId,bat=(n.batteries||[]).includes(cap.id),st=(n.orbitalStations||[]).includes(currentPlanetId),fs=Math.min(16,10.5+(n.territories.length-1)*1.2);
     lL.innerHTML+=`<text x="${cap.cx}" y="${cap.cy-2}" font-size="${fs}" class="nation-banner-label">${escapeHtml(n.name)}${st?" 🛰️":""}</text><text x="${cap.cx}" y="${cap.cy+12}" class="territory-sublabel" fill="#fde68a">${isCap?"★ "+escapeHtml(n.capital):"Colony: "+escapeHtml(cap.name)}${bat?" 🛡️":""}</text>`;
   });
   if(mapLayer==="diplomacy"){
@@ -1079,6 +1064,8 @@ function renderInspector(){
   if(!o){box.innerHTML=`<div class="list-item"><div class="list-item-header"><strong>${escapeHtml(t.name)}</strong><span class="tag">Unclaimed</span></div><div class="small muted">Planet: <strong>${escapeHtml(pN)}</strong> • ${escapeHtml(t.biome)}</div><div class="small muted">Area: <strong>${t.areaKm2.toLocaleString()} km²</strong></div></div>`;return}
   const used=o.lastActionDay===activeDayKey(),area=getNationAreaKm2(o),gm=findGovSubtypeMeta(o.govSubtype),mm=findMilitaryMeta(o.military),tm=findTraitMeta(o.trait);
   const maxA=getMaxAllies(o),allies=o.allies.map(id=>world.nations.find(x=>x.id===id)?.name).filter(Boolean),wars=o.wars.map(id=>world.nations.find(x=>x.id===id)?.name).filter(Boolean);
+  const ws=o.warships||{cruiser:0,bomber:0,interceptor:0,frigate:0};
+  const allyCount=o.allies.length;
   box.innerHTML=`
     <div style="display:flex;gap:12px;align-items:center;margin-bottom:8px"><div class="flag-box">${renderFlagSvg(o.flag)}</div><div><h3 style="margin:0">${escapeHtml(o.name)}</h3><div class="small muted">${escapeHtml(o.player)} • ★ ${escapeHtml(o.capital)}</div></div></div>
     <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:8px"><span class="tag tag-gold">${escapeHtml(getNationSizeLabel(o))}</span><span class="tag ${o.govIsRare?"tag-purple":""}">${o.govIsRare?"⚡ RARE: ":""}${escapeHtml(o.govSubtype||o.ideology)}</span><span class="tag ${used?"tag-red":"tag-green"}">${used?"⏳ Action Used":"⚡ Ready"}</span></div>
@@ -1088,9 +1075,9 @@ function renderInspector(){
     <div class="effect-box">
       <div>💎 <strong>Eco ${o.stats.economy}:</strong> +${o.stats.economy*35} 🪙/day • ${o.stats.economy>=8?"+2 Supply":o.stats.economy>=5?"+1 Artillery":"Base"}</div>
       <div>🛡️ <strong>Mil ${o.stats.military}:</strong> +${o.stats.military*4} HP / +${o.stats.military*2} ATK • ${o.stats.military>=8?"+2 Squads":o.stats.military>=5?"+1 Cavalry":"Base"}</div>
-      <div>🤝 <strong>Dip ${o.stats.diplomacy}:</strong> Allies ${o.allies.length}/${maxA} ${o.allies.length&&o.stats.diplomacy>=4?"• Allied Guard Active":""}</div>
+      <div>🤝 <strong>Dip ${o.stats.diplomacy} (Allies ${allyCount}/${maxA}):</strong> ${allyCount?`+${allyCount*10}% Trade • +${Math.min(2,allyCount)} Allied Armies & Fleets!`:"Form alliances for Army, Fleet & Trade buffs!"}</div>
     </div>
-    <div class="small">🪙 ${o.treasury.toLocaleString()} • 🚢 ${o.tradeShips} Trade • 🚀 ${o.esbShips.length} ESB • 🛰️ ${o.orbitalStations.length} Stations • 🛡️ ${o.batteries.length} Batteries</div>
+    <div class="small">🪙 ${o.treasury.toLocaleString()} • 🛸 ${o.esbShips.length} ESB • 🚀 ${ws.cruiser} Cruiser • 💣 ${ws.bomber} Bomber • ⚡ ${ws.interceptor} Int • 🛡️ ${ws.frigate} Frig</div>
     ${o.bombardmentDebuff?`<div class="small" style="color:var(--red)">☄️ Bombardment Debuff: -${o.bombardmentDebuff}% Ground HP</div>`:""}
     ${allies.length?`<div class="small" style="color:var(--green)">Allies: ${escapeHtml(allies.join(", "))}</div>`:""}
     ${wars.length?`<div class="small" style="color:var(--red)">Wars: ${escapeHtml(wars.join(", "))}</div>`:""}
@@ -1103,7 +1090,7 @@ function getWheelItems(type){
   if(type==="location"){
     const pf=document.getElementById("wheel-planet-select")?.value||"all";
     let free=getUnclaimedTerritories(pf);if(!free.length&&pf!=="all")free=getUnclaimedTerritories("all");
-    if(!free.length)return[{label:"All 76 Regions Claimed!",value:null,color:"#334155"}];
+    if(!free.length)return[{label:`All ${TERRITORIES.length} Regions Claimed!`,value:null,color:"#334155"}];
     return free.slice(0,28).map(t=>({label:`${t.name} (${PLANETS.find(p=>p.id===t.planet)?.name.replace(/^[^\s]+\s/,"")})`,value:t.id,color:CONTINENT_COLORS[t.continent]||"#2563eb"}));
   }
   if(type==="landsize")return WHEEL_DATA.landsize;
@@ -1185,7 +1172,7 @@ function runFullNationSpin(){
 // NATION BUILDER
 function randomizeNationDetails(){
   if(!requireHost())return;
-  const pre=["Aurelia","Valoria","Solara","Nervella","Drakonia","Vespera","Zephyria","Kryos","Pyrelis"],cap=["New Solis","Ironspire","Dawnport","Skyhaven","Frostgate","Luminis"];
+  const pre=["Aurelia","Valoria","Solara","Nervella","Drakonia","Vespera","Zephyria","Kryos","Pyrelis","Thalassa"],cap=["New Solis","Ironspire","Dawnport","Skyhaven","Frostgate","Luminis","Pearl Spire"];
   if(!document.getElementById("builder-name").value.trim())document.getElementById("builder-name").value=pre[Math.floor(Math.random()*pre.length)];
   document.getElementById("builder-capital").value=cap[Math.floor(Math.random()*cap.length)];
   const pal=["#2563eb","#dc2626","#059669","#7c3aed","#d97706","#0891b2","#be185d"],pat=["tricolor","bicolor","nordic","diagonal","sun","chevron"];
@@ -1216,7 +1203,7 @@ function foundNationFromBuilder(){
     ideology:idg,govSubtype:gm?gm.name:sub,govIsRare:Boolean(gm?.rare),economy:eco,military:mil,trait:tr,lore:document.getElementById("builder-lore").value.trim(),
     flag:{c1:document.getElementById("builder-color1").value,c2:document.getElementById("builder-color2").value,pattern:document.getElementById("builder-pattern").value},
     stats:{economy:Math.max(1,bE+(gm?.eco||0)+(mm?.eco||0)+(tm?.eco||0)),military:Math.max(1,bM+(gm?.mil||0)+(mm?.mil||0)+(tm?.mil||0)),diplomacy:Math.max(1,bD+(gm?.dip||0)+(mm?.dip||0)+(tm?.dip||0))},
-    treasury:500+cl.length*100,foundedDate:activeDayKey(),lastActionDay:null,lastHarvestDay:null
+    treasury:500+cl.length*100,warships:{cruiser:0,bomber:0,interceptor:1,frigate:1},foundedDate:activeDayKey(),lastActionDay:null,lastHarvestDay:null
   });
   world.nations.push(n);
   const stR=TERRITORIES.find(x=>x.id===reg);if(stR)currentPlanetId=stR.planet;selectedTerritoryId=reg;
@@ -1232,7 +1219,7 @@ function destroyNation(nid,reason){
   world.chronicle.unshift({id:"ev_"+Date.now(),date:activeDayKey(),text:reason||`💀 ${n.name} was destroyed! ${n.player} may spin a new nation.`});
 }
 
-// MANAGE & TRADE
+// MANAGE, SHIPYARD & TRADE
 function getDynamicMarketPrice(g){const s=activeDayKey().split("").reduce((a,c)=>a+c.charCodeAt(0),0);return Math.max(20,Math.round(g.basePrice*(1+Math.sin(s+g.id.charCodeAt(0))*.2)))}
 function renderManageTab(){
   const sel=document.getElementById("manage-nation-select"),prev=sel.value;
@@ -1242,30 +1229,37 @@ function renderManageTab(){
   if(!n){wrap.style.opacity=".5";return}wrap.style.opacity="1";
   document.getElementById("manage-credits-tag").textContent=`🪙 ${n.treasury.toLocaleString()} Credits`;
   document.getElementById("manage-goods-grid").innerHTML=GOODS_CATALOG.map(g=>`<div class="good-chip"><span>${g.icon} ${g.name}</span><strong>${n.goods[g.id]||0}</strong></div>`).join("");
-  const mods=getNationCombatMods(n),esbCost=Math.round(1200*(1-(mods.esbDiscount||0)));
+  const mods=getNationCombatMods(n),esbCost=Math.round(1200*(1-(mods.esbDiscount||0))),ws=n.warships||{cruiser:0,bomber:0,interceptor:0,frigate:0};
   document.getElementById("esb-discount-note").textContent=mods.esbDiscount?`(Armada -20%: ${esbCost} 🪙)`:``;
-  document.getElementById("manage-fleet-summary").innerHTML=`<div><strong>🚢 Trade Ships:</strong> ${n.tradeShips} • <strong>🛰️ Stations:</strong> ${n.orbitalStations.length} • <strong>🛡️ Batteries:</strong> ${n.batteries.length}</div><div><strong>🚀 ESB Ships (${n.esbShips.length}):</strong> ${n.esbShips.length?n.esbShips.map(s=>`${escapeHtml(s.name)} (${s.hp} HP)`).join(", "):"None built"}</div>`;
+  document.getElementById("manage-fleet-summary").innerHTML=`<div><strong>🚢 Trade:</strong> ${n.tradeShips} • <strong>🛰️ Stations:</strong> ${n.orbitalStations.length} • <strong>🤝 Alliance Bonus:</strong> +${n.allies.length*10}% Trade</div><div><strong>Fleet:</strong> 🛸 ${n.esbShips.length} ESB • 🚀 ${ws.cruiser} Cruiser • 💣 ${ws.bomber} Bomber • ⚡ ${ws.interceptor} Int • 🛡️ ${ws.frigate} Frig</div>`;
   const hb=document.getElementById("harvest-btn");hb.disabled=n.lastHarvestDay===activeDayKey();hb.textContent=hb.disabled?"✅ Income Collected Today":"🌾 Collect Daily Income & Goods";
   document.getElementById("manage-battery-region").innerHTML=n.territories.map(id=>`<option value="${id}">${escapeHtml(TERRITORIES.find(x=>x.id===id)?.name||id)}${n.batteries.includes(id)?" (🛡️ Built)":""}</option>`).join("");
   document.getElementById("galactic-market-rows").innerHTML=GOODS_CATALOG.map(g=>{const p=getDynamicMarketPrice(g),sp=Math.max(12,Math.round(p*.78));return`<div class="list-item" style="padding:8px 10px;margin-bottom:7px;display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap"><div><strong>${g.icon} ${g.name}</strong> <span class="small muted">(${n.goods[g.id]||0})</span></div><div style="display:flex;gap:6px"><button class="btn btn-sm btn-accent" onclick="marketBuy('${g.id}',${p})">Buy ${p}🪙</button><button class="btn btn-sm btn-green" onclick="marketSell('${g.id}',${sp})">Sell +${sp}🪙</button></div></div>`}).join("");
   document.getElementById("trade-target-nation").innerHTML=world.nations.filter(x=>x.id!==n.id).map(x=>`<option value="${x.id}">${escapeHtml(x.name)}</option>`).join("")||`<option value="">No others</option>`;
 }
 function getManagedNation(){return world.nations.find(n=>n.id===document.getElementById("manage-nation-select").value)||null}
-function subActionHarvest(){const n=getManagedNation();if(!n||n.lastHarvestDay===activeDayKey())return toast("Already collected today!");const cr=150+n.stats.economy*35+n.territories.length*40+n.tradeShips*50+n.orbitalStations.length*150;n.treasury+=cr;const pr=1+Math.floor(n.stats.economy/4);GOODS_CATALOG.forEach((g,i)=>{if((i+n.territories.length)%2===0)n.goods[g.id]=(n.goods[g.id]||0)+pr});n.goods.alloys+=1;n.goods.grain+=1;n.lastHarvestDay=activeDayKey();saveWorld();renderManageTab();toast(`🌾 +${cr} 🪙 & Goods!`)}
-function subActionRunTradeRoute(){const n=getManagedNation();if(!n||n.tradeShips<1)return toast("Need a Trade Ship!");if((n.goods.grain||0)<1&&(n.goods.alloys||0)<1)return toast("Need 1 Grain or 1 Alloy!");if((n.goods.grain||0)>=1)n.goods.grain-=1;else n.goods.alloys-=1;const pr=70+n.tradeShips*45+n.allies.length*35+(getNationCombatMods(n).tradeBonus||0);n.treasury+=pr;saveWorld();renderManageTab();toast(`🚢 Trade route earned +${pr} 🪙!`)}
+function subActionHarvest(){const n=getManagedNation();if(!n||n.lastHarvestDay===activeDayKey())return toast("Already collected today!");const base=150+n.stats.economy*35+n.territories.length*40+n.tradeShips*50+n.orbitalStations.length*150,cr=Math.round(base*(1+n.allies.length*.1));n.treasury+=cr;const pr=1+Math.floor(n.stats.economy/4);GOODS_CATALOG.forEach((g,i)=>{if((i+n.territories.length)%2===0)n.goods[g.id]=(n.goods[g.id]||0)+pr});n.goods.alloys+=1;n.goods.grain+=1;n.lastHarvestDay=activeDayKey();saveWorld();renderManageTab();toast(`🌾 +${cr} 🪙 (incl. +${n.allies.length*10}% Alliance bonus)!`)}
+function subActionRunTradeRoute(){const n=getManagedNation();if(!n||n.tradeShips<1)return toast("Need a Trade Ship!");if((n.goods.grain||0)<1&&(n.goods.alloys||0)<1)return toast("Need 1 Grain or 1 Alloy!");if((n.goods.grain||0)>=1)n.goods.grain-=1;else n.goods.alloys-=1;const raw=70+n.tradeShips*45+(getNationCombatMods(n).tradeBonus||0),pr=Math.round(raw*(1+n.allies.length*.1));n.treasury+=pr;saveWorld();renderManageTab();toast(`🚢 Trade route earned +${pr} 🪙!`)}
 function subActionBuildTradeShip(){const n=getManagedNation();if(!n||n.treasury<150||(n.goods.alloys||0)<2)return toast("Need 150 🪙 + 2 Alloys!");n.treasury-=150;n.goods.alloys-=2;n.tradeShips+=1;saveWorld();renderManageTab();toast("🚢 Built Trade Ship!")}
 function subActionInvest(s){const n=getManagedNation();if(!n)return;if(s==="economy"){if(n.treasury<250||(n.goods.tech||0)<2)return toast("Need 250 🪙 + 2 Tech!");n.treasury-=250;n.goods.tech-=2;n.stats.economy++}else if(s==="military"){if(n.treasury<250||(n.goods.alloys||0)<2)return toast("Need 250 🪙 + 2 Alloys!");n.treasury-=250;n.goods.alloys-=2;n.stats.military++}else{if(n.treasury<200||(n.goods.grain||0)<2)return toast("Need 200 🪙 + 2 Grain!");n.treasury-=200;n.goods.grain-=2;n.stats.diplomacy++}saveWorld();refreshUI();renderManageTab();toast(`⬆️ +1 ${s}!`)}
+function subActionBuildWarship(kind){
+  const n=getManagedNation();if(!n)return;
+  const C={interceptor:{c:180,alloys:2,fuel:1,tech:0,aether:0},bomber:{c:220,alloys:2,fuel:2,tech:0,aether:0},frigate:{c:260,alloys:3,fuel:0,tech:1,aether:0},cruiser:{c:450,alloys:3,fuel:2,tech:0,aether:1}}[kind];
+  if(n.treasury<C.c||(n.goods.alloys||0)<C.alloys||(n.goods.fuel||0)<C.fuel||(n.goods.tech||0)<C.tech||(n.goods.aether||0)<C.aether)return toast(`Need ${C.c} 🪙 & materials!`);
+  n.treasury-=C.c;n.goods.alloys-=C.alloys;n.goods.fuel-=C.fuel;n.goods.tech-=C.tech;n.goods.aether-=C.aether;
+  n.warships[kind]=(n.warships[kind]||0)+1;saveWorld();refreshUI();renderManageTab();toast(`🚀 Built ${SHIP_CATALOG[kind].name}!`);
+}
 function subActionBuildBattery(){const n=getManagedNation(),tid=document.getElementById("manage-battery-region").value;if(!n||!tid)return;if(n.batteries.includes(tid))return toast("Already has Battery!");if(n.treasury<300||(n.goods.aether||0)<2)return toast("Need 300 🪙 + 2 Aether!");n.treasury-=300;n.goods.aether-=2;n.batteries.push(tid);world.chronicle.unshift({id:"ev_"+Date.now(),date:activeDayKey(),text:`🛡️ ${n.name} built Anti-Orbital Batteries at ${TERRITORIES.find(x=>x.id===tid)?.name}!`});saveWorld();refreshUI();renderManageTab();toast("🛡️ Battery built!")}
-function subActionBuildESB(){const n=getManagedNation();if(!n)return;const cc=Math.round(1200*(1-(getNationCombatMods(n).esbDiscount||0)));if(n.treasury<cc||(n.goods.alloys||0)<6||(n.goods.aether||0)<4||(n.goods.fuel||0)<4||(n.goods.tech||0)<3)return toast(`Need ${cc} 🪙, 6 Alloys, 4 Aether, 4 Fuel, 3 Tech!`);n.treasury-=cc;n.goods.alloys-=6;n.goods.aether-=4;n.goods.fuel-=4;n.goods.tech-=3;const sn=document.getElementById("esb-custom-name").value.trim()||`ESB ${n.name.split(" ")[0]}-${n.esbShips.length+1}`;n.esbShips.push({id:"esb_"+Date.now().toString(36),name:sn,hp:500,maxHp:500});document.getElementById("esb-custom-name").value="";world.chronicle.unshift({id:"ev_"+Date.now(),date:activeDayKey(),text:`🚀 ${n.name} launched massive ${sn}!`});saveWorld();refreshUI();renderManageTab();toast(`🚀 ${sn} launched!`)}
+function subActionBuildESB(){const n=getManagedNation();if(!n)return;const cc=Math.round(1200*(1-(getNationCombatMods(n).esbDiscount||0)));if(n.treasury<cc||(n.goods.alloys||0)<6||(n.goods.aether||0)<4||(n.goods.fuel||0)<4||(n.goods.tech||0)<3)return toast(`Need ${cc} 🪙, 6 Alloys, 4 Aether, 4 Fuel, 3 Tech!`);n.treasury-=cc;n.goods.alloys-=6;n.goods.aether-=4;n.goods.fuel-=4;n.goods.tech-=3;const sn=document.getElementById("esb-custom-name").value.trim()||`ESB ${n.name.split(" ")[0]}-${n.esbShips.length+1}`;n.esbShips.push({id:"esb_"+Date.now().toString(36),name:sn,hp:500,maxHp:500});document.getElementById("esb-custom-name").value="";world.chronicle.unshift({id:"ev_"+Date.now(),date:activeDayKey(),text:`🛸 ${n.name} launched ${sn}!`});saveWorld();refreshUI();renderManageTab();toast(`🛸 ${sn} launched!`)}
 function marketBuy(id,p){const n=getManagedNation();if(!n||n.treasury<p)return toast(`Need ${p} 🪙!`);n.treasury-=p;n.goods[id]=(n.goods[id]||0)+1;saveWorld();renderManageTab()}
 function marketSell(id,sp){const n=getManagedNation();if(!n||(n.goods[id]||0)<1)return toast("None left!");n.goods[id]-=1;n.treasury+=sp;saveWorld();renderManageTab()}
 function executeDirectTrade(){const s=getManagedNation(),r=world.nations.find(x=>x.id===document.getElementById("trade-target-nation").value),tp=document.getElementById("trade-good-type").value,am=Math.max(1,Number(document.getElementById("trade-amount").value)||1);if(!s||!r)return toast("Select nations!");if(tp==="credits"){const cr=am*50;if(s.treasury<cr)return toast("Not enough Credits!");s.treasury-=cr;r.treasury+=cr}else{if((s.goods[tp]||0)<am)return toast("Not enough goods!");s.goods[tp]-=am;r.goods[tp]=(r.goods[tp]||0)+am}world.chronicle.unshift({id:"ev_"+Date.now(),date:activeDayKey(),text:`📦 TRADE: ${s.name} sent ${am} ${tp} to ${r.name}.`});saveWorld();refreshUI();renderManageTab();toast("📦 Sent!")}
 
-// GROUND 10x7 BATTLE + FOREST STEALTH
+// GROUND 10x7 BATTLE (+ ALLIED ARMIES & FOREST STEALTH)
 function switchWarMode(m){document.getElementById("war-ground-panel").style.display=m==="ground"?"grid":"none";document.getElementById("war-space-panel").style.display=m==="space"?"grid":"none";document.getElementById("mode-btn-ground").classList.toggle("active",m==="ground");document.getElementById("mode-btn-space").classList.toggle("active",m==="space")}
 function refreshWarTargets(){
   const aS=document.getElementById("war-attacker"),tS=document.getElementById("war-target-region"),p=aS.value;
-  aS.innerHTML=world.nations.length?world.nations.map(n=>`<option value="${n.id}">${escapeHtml(n.name)} (Eco ${n.stats.economy} • Mil ${n.stats.military})</option>`).join(""):`<option value="">No nations</option>`;
+  aS.innerHTML=world.nations.length?world.nations.map(n=>`<option value="${n.id}">${escapeHtml(n.name)} (Eco ${n.stats.economy} • Mil ${n.stats.military} • 🤝${n.allies.length})</option>`).join(""):`<option value="">No nations</option>`;
   if(p&&world.nations.some(n=>n.id===p))aS.value=p;
   const atk=world.nations.find(n=>n.id===aS.value);tS.innerHTML="";if(!atk)return;
   const adj=new Set();atk.territories.forEach(id=>TERRITORIES.find(x=>x.id===id)?.adj.forEach(a=>adj.add(a)));
@@ -1280,21 +1274,25 @@ function buildTerrainGrid(bio){
   [[1,4],[2,3],[4,5],[5,4],[2,6],[4,7]].forEach(([r,c])=>{const x=g.find(z=>z.r===r&&z.c===c);if(x&&x.type==="plain")x.type="forest"});
   g.find(z=>z.r===CITY_ROW&&z.c===CITY_COL).type="city";return g;
 }
-function createGroundUnit(side,kind,r,c,nat,allied=false){
-  const T={inf:{icon:allied?"🤝":"🛡️",name:allied?"Allied Guard":"Runeguard",hp:100,move:2,range:1,atk:26},cav:{icon:"🐎",name:"Hover-Lancer",hp:85,move:4,range:1,atk:24},mage:{icon:"🧙",name:"Battlemage",hp:78,move:2,range:2,atk:27},art:{icon:"🎯",name:"Arc-Artillery",hp:72,move:2,range:3,atk:23},mech:{icon:"🤖",name:"Arcane Mech",hp:145,move:2,range:1,atk:34},gar:{icon:"🏰",name:"Bastion Garrison",hp:135,move:1,range:1,atk:30}}[kind];
+function createGroundUnit(side,kind,r,c,nat,alliedLabel=null){
+  const T={inf:{icon:alliedLabel?"🤝":"🛡️",name:alliedLabel||"Runeguard",hp:100,move:2,range:1,atk:26},cav:{icon:"🐎",name:alliedLabel||"Hover-Lancer",hp:85,move:4,range:1,atk:24},mage:{icon:alliedLabel?"🤝":"🧙",name:alliedLabel||"Battlemage",hp:78,move:2,range:2,atk:27},art:{icon:"🎯",name:"Arc-Artillery",hp:72,move:2,range:3,atk:23},mech:{icon:"🤖",name:"Arcane Mech",hp:145,move:2,range:1,atk:34},gar:{icon:"🏰",name:"Bastion Garrison",hp:135,move:1,range:1,atk:30}}[kind];
   const m=getNationCombatMods(nat),mil=nat.stats.military||3;
   let hp=T.hp+mil*4+m.allHp+(kind==="inf"?m.infHp:0)+(kind==="gar"?m.garrisonHp:0);
   if(side==="def"&&nat.bombardmentDebuff)hp=Math.round(hp*Math.max(.45,1-nat.bombardmentDebuff/100));
   hp=Math.max(35,hp);
-  return{id:`${side}_${kind}_${r}_${c}_${Math.random().toString(36).slice(2,5)}`,side,kind,r,c,color:allied?"#10b981":(nat.flag?.c1||(side==="atk"?"#38bdf8":"#ef4444")),icon:T.icon,name:T.name,hp,maxHp:hp,move:T.move+(kind==="cav"?m.cavMove:0),range:T.range+(kind==="art"?m.artRange+(side==="def"?m.defArtRange:0):0),atk:T.atk+mil*2,hasMoved:false,hasAttacked:false,movedDist:0,revealed:false};
+  return{id:`${side}_${kind}_${r}_${c}_${Math.random().toString(36).slice(2,5)}`,side,kind,r,c,allied:Boolean(alliedLabel),color:alliedLabel?"#10b981":(nat.flag?.c1||(side==="atk"?"#38bdf8":"#ef4444")),icon:T.icon,name:T.name,hp,maxHp:hp,move:T.move+(kind==="cav"?m.cavMove:0),range:T.range+(kind==="art"?m.artRange+(side==="def"?m.defArtRange:0):0),atk:T.atk+mil*2,hasMoved:false,hasAttacked:false,movedDist:0,revealed:false};
 }
-function deployGroundArmy(side,nat,isCap){
-  const u=[],e=nat.stats.economy||3,m=nat.stats.military||3,d=nat.stats.diplomacy||3,mo=getNationCombatMods(nat),cf=side==="atk"?1:8,cb=side==="atk"?0:9;
+function deployGroundArmy(side,nat,isCap,enemyId){
+  const u=[],e=nat.stats.economy||3,m=nat.stats.military||3,mo=getNationCombatMods(nat),cf=side==="atk"?1:8,cb=side==="atk"?0:9;
   u.push(createGroundUnit(side,side==="def"&&isCap?"gar":"inf",3,cb,nat),createGroundUnit(side,"inf",2,cf,nat),createGroundUnit(side,"mage",4,cf,nat),createGroundUnit(side,"art",2,cb,nat));
   if(m>=5)u.push(createGroundUnit(side,"cav",1,cf,nat));if(m>=8)u.push(createGroundUnit(side,"mech",5,cf,nat));
   if(e>=5)u.push(createGroundUnit(side,"art",4,cb,nat));if(e>=8)u.push(createGroundUnit(side,"mech",5,cb,nat));
-  if(nat.allies.length&&d>=4)u.push(createGroundUnit(side,"mage",1,cb,nat,true));
   if(mo.bonusDrone)u.push(createGroundUnit(side,"mage",0,cf,nat));if(mo.bonusInf)u.push(createGroundUnit(side,"inf",6,cf,nat));
+  // Allied Armies Buff! Each active ally (not the enemy) sends an Allied Regiment!
+  const activeAllies=nat.allies.filter(aid=>aid!==enemyId).map(aid=>world.nations.find(x=>x.id===aid)).filter(Boolean);
+  activeAllies.slice(0,2).forEach((ally,idx)=>{
+    u.push(createGroundUnit(side,idx===0?"inf":"mage",idx===0?1:5,cb,ally,`Allied ${ally.name.split(" ")[0]} Army`));
+  });
   return u;
 }
 function startGroundBattle(official){
@@ -1303,7 +1301,9 @@ function startGroundBattle(official){
   if(!a||!d||!t||a.id===d.id)return toast("Pick valid opposing nations!");
   if(official&&a.allies.includes(d.id))return toast("Cannot attack an Ally!");
   const isCap=d.capitalTerritoryId===tid;
-  battle={official,atkId:a.id,atkName:a.name,defId:d.id,defName:d.name,targetTid:tid,targetName:t.name,isMajorCity:isCap,defMode:document.getElementById("war-defender-mode").value,turn:"atk",round:1,selectedUnitId:null,terrain:buildTerrainGrid(t.biome),units:[...deployGroundArmy("atk",a,false),...deployGroundArmy("def",d,isCap)],winner:null,log:[`⚔️ ${official?"OFFICIAL":"PRACTICE"} 10×7 BATTLE: ${a.name} vs ${d.name} at ${t.name}!${d.bombardmentDebuff?` (Orbital Bombardment -${d.bombardmentDebuff}% HP)`:""}`]};
+  const units=[...deployGroundArmy("atk",a,false,d.id),...deployGroundArmy("def",d,isCap,a.id)];
+  const atkAllyN=a.allies.filter(i=>i!==d.id).length,defAllyN=d.allies.filter(i=>i!==a.id).length;
+  battle={official,atkId:a.id,atkName:a.name,defId:d.id,defName:d.name,targetTid:tid,targetName:t.name,isMajorCity:isCap,defMode:document.getElementById("war-defender-mode").value,turn:"atk",round:1,selectedUnitId:null,terrain:buildTerrainGrid(t.biome),units,winner:null,log:[`⚔️ ${official?"OFFICIAL":"PRACTICE"} 10×7 BATTLE: ${a.name} vs ${d.name} at ${t.name}!${atkAllyN?` (+${Math.min(2,atkAllyN)} Allied Army!)`:""}${defAllyN?` (Def +${Math.min(2,defAllyN)} Allied Army!)`:""}`]};
   document.getElementById("battle-modifiers-line").textContent=`${a.name}: ${a.military} + ${a.trait} | ${d.name}: ${d.military} + ${d.trait}`;
   document.getElementById("battle-victory-banner").style.display="none";document.getElementById("battle-end-turn-btn").disabled=false;renderGroundBattle();
 }
@@ -1327,7 +1327,7 @@ function renderGroundBattle(){
     if(sel&&sel.side===battle.turn&&!battle.winner){const d=manhattan(sel.r,sel.c,r,c);if(!sel.hasMoved&&!vu&&d>0&&d<=sel.move){mO=true;tl.classList.add("move-opt")}if(!sel.hasAttacked&&vu&&vu.side!==sel.side&&d<=sel.range){aO=true;tl.classList.add("atk-opt")}}
     if(sel&&sel.r===r&&sel.c===c)tl.classList.add("selected-unit");
     tl.innerHTML=`<span class="b-terrain-tag">${ter.type==="city"?"🏰":ter.type==="forest"?"🌲":ter.type==="hill"?"⛰️":""}</span>`;
-    if(vu){const st=isUnitStealthed(vu);tl.innerHTML+=`<div class="b-unit ${vu.hasMoved&&vu.hasAttacked?"spent":""} ${st?"stealthed":""}" style="background:${vu.color};border-color:${vu.side==="atk"?"#38bdf8":"#f87171"}" title="${vu.name} (${vu.hp}/${vu.maxHp} HP)">${st?`<span class="b-stealth-pip">🌲</span>`:""}<span>${vu.icon}</span><div class="b-hp-bar"><div class="b-hp-fill" style="width:${Math.max(0,(vu.hp/vu.maxHp)*100)}%"></div></div></div>`}
+    if(vu){const st=isUnitStealthed(vu);tl.innerHTML+=`<div class="b-unit ${vu.hasMoved&&vu.hasAttacked?"spent":""} ${st?"stealthed":""} ${vu.allied?"allied-unit":""}" style="background:${vu.color};border-color:${vu.side==="atk"?"#38bdf8":"#f87171"}" title="${vu.name} (${vu.hp}/${vu.maxHp} HP)">${st?`<span class="b-stealth-pip">🌲</span>`:""}<span>${vu.icon}</span><div class="b-hp-bar"><div class="b-hp-fill" style="width:${Math.max(0,(vu.hp/vu.maxHp)*100)}%"></div></div></div>`}
     tl.addEventListener("click",()=>onGroundTileClick(r,c,mO,aO,vu));g.appendChild(tl);
   }
   document.getElementById("battle-log").innerHTML=battle.log.slice(0,14).map(l=>`<div>${escapeHtml(l)}</div>`).join("");
@@ -1407,66 +1407,84 @@ function finishGroundBattle(ws,reason){
 }
 
 // ============================================================
-// SPACE COMBAT (ESB SHIPS, 6-WAY SHIELDS & ORBITAL BOMBARDMENT)
+// SHIP-TO-SHIP SPACE COMBAT (+ 5 SHIP CLASSES + ALLIED FLEETS)
 // ============================================================
 function refreshSpaceTargets(){
   const aS=document.getElementById("space-attacker"),tS=document.getElementById("space-target-region"),p=aS.value;
-  aS.innerHTML=world.nations.length?world.nations.map(n=>`<option value="${n.id}">${escapeHtml(n.name)} (🚀 ${n.esbShips.length} ESB)</option>`).join(""):`<option value="">No nations</option>`;
+  aS.innerHTML=world.nations.length?world.nations.map(n=>`<option value="${n.id}">${escapeHtml(n.name)} (🛸${n.esbShips.length} 🚀${n.warships?.cruiser||0} 🤝${n.allies.length})</option>`).join(""):`<option value="">No nations</option>`;
   if(p&&world.nations.some(n=>n.id===p))aS.value=p;
   const atk=world.nations.find(n=>n.id===aS.value);tS.innerHTML="";if(!atk)return;
   TERRITORIES.filter(t=>{const o=getOwnerNation(t.id);return o&&o.id!==atk.id}).forEach(t=>{
     const d=getOwnerNation(t.id),pn=PLANETS.find(x=>x.id===t.planet)?.name.replace(/^[^\s]+\s/,"");
-    tS.innerHTML+=`<option value="${t.id}">[${escapeHtml(pn)}] ${escapeHtml(t.name)} (${escapeHtml(d.name)} • 🚀${d.esbShips.length} • 🛡️${d.batteries.includes(t.id)?"Battery":"Base"})</option>`;
+    tS.innerHTML+=`<option value="${t.id}">[${escapeHtml(pn)}] ${escapeHtml(t.name)} (${escapeHtml(d.name)} • 🛸${d.esbShips.length} 🚀${d.warships?.cruiser||0})</option>`;
   });
 }
 
 function buildSpaceGrid(){
   const g=[];
   for(let r=0;r<BATTLE_ROWS;r++)for(let c=0;c<BATTLE_COLS;c++){
-    let tp="void";
-    if(c>=8)tp="orbitzone";
-    else if(c>=2&&c<=6){const x=Math.random();if(x<.15)tp="asteroid";else if(x<.28)tp="nebula"}
+    let tp="void";if(c>=8)tp="orbitzone";else if(c>=2&&c<=6){const x=Math.random();if(x<.15)tp="asteroid";else if(x<.28)tp="nebula"}
     g.push({r,c,type:tp});
   }
   return g;
 }
 
-function createSpaceShip(side,kind,r,c,nat,esbObj=null){
-  const isEsb=kind==="esb";
+function createSpaceShip(side,kind,r,c,nat,esbObj=null,alliedLabel=null){
+  const tpl=SHIP_CATALOG[kind]||SHIP_CATALOG.frigate;
   return {
     id:`${side}_${kind}_${r}_${c}_${Math.random().toString(36).slice(2,5)}`,
-    side,kind,esbId:esbObj?.id||null,
-    name:isEsb?(esbObj?.name||`${nat.name.split(" ")[0]} ESB`):"Escort Frigate",
-    icon:isEsb?"🛸":"🛰️",
-    color:nat.flag?.c1||(side==="atk"?"#38bdf8":"#ef4444"),
-    r,c,
-    hp:isEsb?(esbObj?.hp||500):130,
-    maxHp:isEsb?(esbObj?.maxHp||500):130,
-    move:isEsb?2:3, range:isEsb?4:3, atk:isEsb?95:40,
-    facing:side==="atk"?"east":"west",
-    shield:"full", bombarding:false,
-    hasMoved:false, hasAttacked:false
+    side,kind,esbId:esbObj?.id||null,allied:Boolean(alliedLabel),
+    name:alliedLabel||(kind==="esb"?(esbObj?.name||`${nat.name.split(" ")[0]} ESB`):tpl.name),
+    icon:alliedLabel?"🤝":tpl.icon,
+    color:alliedLabel?"#10b981":(nat.flag?.c1||(side==="atk"?"#38bdf8":"#ef4444")),
+    r,c,hp:kind==="esb"?(esbObj?.hp||500):tpl.hp,maxHp:kind==="esb"?(esbObj?.maxHp||500):tpl.hp,
+    move:tpl.move,range:tpl.range,atk:tpl.atk,shieldCapable:tpl.shieldCapable,
+    facing:side==="atk"?"east":"west",shield:tpl.shieldCapable?"full":"full",bombarding:false,hasMoved:false,hasAttacked:false
   };
+}
+
+function deploySpaceFleet(side,nat,enemyId,isPractice){
+  const ships=[], cBack=side==="atk"?0:9, cFront=side==="atk"?1:8;
+  let rIdx=1;
+  const slots=[[3,cBack],[2,cFront],[4,cFront],[1,cFront],[5,cFront],[1,cBack],[5,cBack],[0,cFront],[6,cFront]];
+  function nextSlot(){return slots.shift()||[Math.min(6,rIdx++),cFront]}
+
+  const esbs=nat.esbShips||[];
+  if(esbs.length){esbs.slice(0,2).forEach(s=>{const [r,c]=nextSlot();ships.push(createSpaceShip(side,"esb",r,c,nat,s))})}
+  else if(isPractice){const [r,c]=nextSlot();ships.push(createSpaceShip(side,"esb",r,c,nat))}
+
+  const ws=nat.warships||{cruiser:0,bomber:0,interceptor:1,frigate:1};
+  for(let i=0;i<Math.min(2,ws.cruiser||0);i++){const [r,c]=nextSlot();ships.push(createSpaceShip(side,"cruiser",r,c,nat))}
+  for(let i=0;i<Math.min(2,ws.bomber||0);i++){const [r,c]=nextSlot();ships.push(createSpaceShip(side,"bomber",r,c,nat))}
+  for(let i=0;i<Math.min(2,ws.interceptor||0);i++){const [r,c]=nextSlot();ships.push(createSpaceShip(side,"interceptor",r,c,nat))}
+  for(let i=0;i<Math.min(2,ws.frigate||0);i++){const [r,c]=nextSlot();ships.push(createSpaceShip(side,"frigate",r,c,nat))}
+  if(ships.length===0){const [r,c]=nextSlot();ships.push(createSpaceShip(side,"frigate",r,c,nat))}
+
+  // Allied Fleet Buff! Active allies send Cruiser or Interceptor wings!
+  const activeAllies=nat.allies.filter(aid=>aid!==enemyId).map(aid=>world.nations.find(x=>x.id===aid)).filter(Boolean);
+  activeAllies.slice(0,2).forEach((ally,idx)=>{
+    const [r,c]=nextSlot();
+    ships.push(createSpaceShip(side,idx===0?"cruiser":"interceptor",r,c,ally,null,`Allied ${ally.name.split(" ")[0]} Ship`));
+  });
+  return ships;
 }
 
 function startSpaceBattle(official){
   if(official&&!requireHost())return;
   const a=world.nations.find(n=>n.id===document.getElementById("space-attacker").value),tid=document.getElementById("space-target-region").value,d=getOwnerNation(tid),t=TERRITORIES.find(x=>x.id===tid);
   if(!a||!d||!t||a.id===d.id)return toast("Pick opposing nations!");
-  if(official&&a.esbShips.length===0)return toast(`${a.name} must construct an ESB Capital Ship in Manage & Trade first!`);
+  const totalAtkShips=a.esbShips.length+(a.warships?.cruiser||0)+(a.warships?.bomber||0)+(a.warships?.interceptor||0)+(a.warships?.frigate||0);
+  if(official&&totalAtkShips===0)return toast(`${a.name} needs at least 1 warship in Manage & Trade!`);
 
-  const atkShips=a.esbShips.length?a.esbShips.slice(0,2).map((s,i)=>createSpaceShip("atk","esb",2+i*2,1,a,s)):[createSpaceShip("atk","esb",3,1,a)];
-  atkShips.push(createSpaceShip("atk","frigate",1,1,a),createSpaceShip("atk","frigate",5,1,a));
-
-  const defShips=d.esbShips.length?d.esbShips.slice(0,2).map((s,i)=>createSpaceShip("def","esb",2+i*2,8,d,s)):[];
-  defShips.push(createSpaceShip("def","frigate",1,8,d),createSpaceShip("def","frigate",5,8,d));
-
+  const atkShips=deploySpaceFleet("atk",a,d.id,!official);
+  const defShips=deploySpaceFleet("def",d,a.id,!official);
   const batCount=1+(d.batteries.includes(tid)?2:0);
+
   spaceBattle={
     official,atkId:a.id,atkName:a.name,defId:d.id,defName:d.name,targetTid:tid,targetName:t.name,
     batCount,defMode:document.getElementById("space-defender-mode").value,turn:"atk",round:1,
     selectedId:atkShips[0].id,grid:buildSpaceGrid(),ships:[...atkShips,...defShips],winner:null,
-    log:[`🚀 ${official?"OFFICIAL":"PRACTICE"} ESB SPACE BATTLE over ${t.name}! Defenders have ${batCount} Ground Battery salves.`]
+    log:[`🚀 ${official?"OFFICIAL":"PRACTICE"} SPACE BATTLE over ${t.name}: ${a.name} (${atkShips.length} ships) vs ${d.name} (${defShips.length} ships, ${batCount} Batteries)!`]
   };
   document.getElementById("space-ship-controls").style.display="block";
   document.getElementById("space-victory-banner").style.display="none";
@@ -1476,94 +1494,65 @@ function startSpaceBattle(official){
 
 function getSpaceShipAt(r,c){return spaceBattle?.ships.find(s=>s.hp>0&&s.r===r&&s.c===c)}
 function getSpaceTile(r,c){return spaceBattle?.grid.find(x=>x.r===r&&x.c===c)}
-
 function getAttackDirection(atk,def,arc){
-  if(arc==="top")return "top";
-  if(arc==="bottom")return "bottom";
-  const f={east:[1,0],west:[-1,0],north:[0,-1],south:[0,1]}[def.facing||"west"];
-  const vx=atk.c-def.c, vy=atk.r-def.r;
-  const fwd=vx*f[0]+vy*f[1], right=vx*(-f[1])+vy*f[0];
+  if(arc==="top")return "top";if(arc==="bottom")return "bottom";
+  const f={east:[1,0],west:[-1,0],north:[0,-1],south:[0,1]}[def.facing||"west"],vx=atk.c-def.c,vy=atk.r-def.r;
+  const fwd=vx*f[0]+vy*f[1],right=vx*(-f[1])+vy*f[0];
   if(Math.abs(fwd)>=Math.abs(right))return fwd>0?"front":"rear";
   return right>0?"right":"left";
 }
-
-function computeShieldMultiplier(defShip, incomingDir){
-  if(defShip.bombarding)return 2.5; // Exposed during orbital bombardment!
-  if(defShip.shield==="full")return 1.0;
-  // 300% defense (0.25x dmg taken) on chosen side, +100% dmg taken (2.0x) everywhere else!
-  return defShip.shield===incomingDir ? 0.25 : 2.0;
+function computeShieldMultiplier(def,dir){
+  if(def.bombarding)return 2.5;
+  if(!def.shieldCapable||def.shield==="full")return 1.0;
+  return def.shield===dir?0.25:2.0;
 }
-
 function setActiveShipShield(sh){
   if(!spaceBattle||spaceBattle.winner)return;
   const s=spaceBattle.ships.find(x=>x.id===spaceBattle.selectedId&&x.hp>0&&x.side===spaceBattle.turn);
-  if(!s)return toast("Select one of your active ships first!");
-  s.shield=sh;s.bombarding=false;
-  spaceBattle.log.unshift(`🛡️ ${s.name} angled shields to ${sh.toUpperCase()}!`);
-  renderSpaceBattle();
+  if(!s)return toast("Select one of your active ships!");
+  if(!s.shieldCapable)return toast("Only ESB Dreadnoughts & Heavy Cruisers have 6-way directional shields!");
+  s.shield=sh;s.bombarding=false;spaceBattle.log.unshift(`🛡️ ${s.name} angled shields to ${sh.toUpperCase()}!`);renderSpaceBattle();
 }
-
 function rotateActiveShip(dir){
   if(!spaceBattle||spaceBattle.winner)return;
   const s=spaceBattle.ships.find(x=>x.id===spaceBattle.selectedId&&x.hp>0&&x.side===spaceBattle.turn);
-  if(!s)return;
-  s.facing=dir;
-  renderSpaceBattle();
+  if(!s)return;s.facing=dir;renderSpaceBattle();
 }
-
 function fireOrbitalBombardment(){
   if(!spaceBattle||spaceBattle.winner)return;
   const s=spaceBattle.ships.find(x=>x.id===spaceBattle.selectedId&&x.hp>0&&x.side===spaceBattle.turn);
-  if(!s||s.kind!=="esb")return toast("Select your ESB Capital Ship!");
-  if(s.c<7)return toast("Move your ESB Ship into the Gold Orbit Zone (cols 7–9) to bombard!");
-  if(s.hasAttacked)return toast("Ship already fired this turn!");
-
-  const atkN=world.nations.find(n=>n.id===spaceBattle.atkId), defN=world.nations.find(n=>n.id===spaceBattle.defId);
-  const aMods=atkN?getNationCombatMods(atkN):{}, dMods=defN?getNationCombatMods(defN):{};
-  s.bombarding=true; s.hasAttacked=true;
-  const groundDmg=Math.round(20*(aMods.bombardMult||1));
-  if(spaceBattle.official&&defN){
-    defN.bombardmentDebuff=Math.min(50,(defN.bombardmentDebuff||0)+groundDmg);
-  }
-  spaceBattle.log.unshift(`☄️ ORBITAL BOMBARDMENT! ${s.name} scorched enemy ground troops (-${groundDmg}% Ground HP), leaving shields EXPOSED!`);
-
-  // Retaliating Ground Batteries! (Very strong vs bombarding ship: 2.5x damage)
-  const retDmg=Math.round(spaceBattle.batCount*55*(dMods.batteryMult||1)*2.5);
-  s.hp=Math.max(0,s.hp-retDmg);
-  playTickSound(200);
-  spaceBattle.log.unshift(`🔋 GROUND BATTERY RETALIATION! ${spaceBattle.batCount} batteries slammed exposed ${s.name} for ${retDmg} DMG (${s.hp} HP left)!`);
+  if(!s||s.kind!=="esb")return toast("Select your ESB Dreadnought!");
+  if(s.c<7)return toast("Move your ESB into the Gold Orbit Zone (cols 7–9) to bombard!");
+  if(s.hasAttacked)return toast("Already fired this turn!");
+  const aN=world.nations.find(n=>n.id===spaceBattle.atkId),dN=world.nations.find(n=>n.id===spaceBattle.defId);
+  const aM=aN?getNationCombatMods(aN):{},dM=dN?getNationCombatMods(dN):{};
+  s.bombarding=true;s.hasAttacked=true;
+  const gd=Math.round(20*(aM.bombardMult||1));
+  if(spaceBattle.official&&dN)dN.bombardmentDebuff=Math.min(50,(dN.bombardmentDebuff||0)+gd);
+  spaceBattle.log.unshift(`☄️ ORBITAL BOMBARDMENT! ${s.name} hit ground forces (-${gd}% Ground HP), exposing shields!`);
+  const rd=Math.round(spaceBattle.batCount*55*(dM.batteryMult||1)*2.5);
+  s.hp=Math.max(0,s.hp-rd);playTickSound(200);
+  spaceBattle.log.unshift(`🔋 BATTERY RETALIATION! ${spaceBattle.batCount} batteries hit exposed ${s.name} for ${rd} DMG (${s.hp} HP)!`);
   checkSpaceWin();renderSpaceBattle();
 }
-
 function renderSpaceBattle(){
   if(!spaceBattle)return;
   document.getElementById("space-title").textContent=`🚀 ${spaceBattle.atkName} vs ${spaceBattle.defName} — Orbit of ${spaceBattle.targetName}`;
   document.getElementById("space-turn-tag").textContent=spaceBattle.winner?`🏆 ${spaceBattle.winner==="atk"?spaceBattle.atkName:spaceBattle.defName} Wins!`:`Round ${spaceBattle.round} • ${spaceBattle.turn==="atk"?spaceBattle.atkName:spaceBattle.defName}`;
-
   const sel=spaceBattle.ships.find(s=>s.id===spaceBattle.selectedId&&s.hp>0);
   document.querySelectorAll(".shield-btn").forEach(b=>b.classList.toggle("active",sel&&sel.shield===b.dataset.sh));
-
-  const g=document.getElementById("space-grid");g.innerHTML="";
-  const arrow={north:"⬆️",east:"➡️",south:"⬇️",west:"⬅️"};
+  const g=document.getElementById("space-grid");g.innerHTML="";const ar={north:"⬆️",east:"➡️",south:"⬇️",west:"⬅️"};
   for(let r=0;r<BATTLE_ROWS;r++)for(let c=0;c<BATTLE_COLS;c++){
-    const ter=getSpaceTile(r,c),sh=getSpaceShipAt(r,c),tl=document.createElement("div");
-    tl.className=`b-tile terrain-${ter.type}`;
+    const ter=getSpaceTile(r,c),sh=getSpaceShipAt(r,c),tl=document.createElement("div");tl.className=`b-tile terrain-${ter.type}`;
     let mO=false,aO=false;
-    if(sel&&sel.side===spaceBattle.turn&&!spaceBattle.winner){
-      const d=manhattan(sel.r,sel.c,r,c);
-      if(!sel.hasMoved&&!sh&&d>0&&d<=sel.move){mO=true;tl.classList.add("move-opt")}
-      if(!sel.hasAttacked&&sh&&sh.side!==sel.side&&d<=sel.range){aO=true;tl.classList.add("atk-opt")}
-    }
+    if(sel&&sel.side===spaceBattle.turn&&!spaceBattle.winner){const d=manhattan(sel.r,sel.c,r,c);if(!sel.hasMoved&&!sh&&d>0&&d<=sel.move){mO=true;tl.classList.add("move-opt")}if(!sel.hasAttacked&&sh&&sh.side!==sel.side&&d<=sel.range){aO=true;tl.classList.add("atk-opt")}}
     if(sel&&sel.r===r&&sel.c===c)tl.classList.add("selected-unit");
     tl.innerHTML=`<span class="b-terrain-tag">${ter.type==="orbitzone"?"🪐":ter.type==="asteroid"?"☄️":ter.type==="nebula"?"🌫️":""}</span>`;
-    if(sh){
-      tl.innerHTML+=`<div class="b-unit ${sh.kind==="esb"?"esb-ship":""} ${sh.bombarding?"bombarding":""} ${sh.hasMoved&&sh.hasAttacked?"spent":""}" style="background:${sh.color};border-color:${sh.side==="atk"?"#38bdf8":"#f87171"}" title="${sh.name} (${sh.hp}/${sh.maxHp} HP) • Facing ${sh.facing} • Shield: ${sh.bombarding?"EXPOSED (Bombarding)":sh.shield.toUpperCase()}"><span class="b-shield-pip">${sh.bombarding?"⚠️":sh.shield.slice(0,2).toUpperCase()}</span><span>${sh.icon}${arrow[sh.facing]}</span><div class="b-hp-bar"><div class="b-hp-fill" style="width:${Math.max(0,(sh.hp/sh.maxHp)*100)}%"></div></div></div>`;
-    }
+    if(sh)tl.innerHTML+=`<div class="b-unit ${sh.kind==="esb"?"esb-ship":""} ${sh.allied?"allied-unit":""} ${sh.bombarding?"bombarding":""} ${sh.hasMoved&&sh.hasAttacked?"spent":""}" style="background:${sh.color};border-color:${sh.side==="atk"?"#38bdf8":"#f87171"}" title="${sh.name} (${sh.hp}/${sh.maxHp} HP) • Facing ${sh.facing} • Shield: ${sh.bombarding?"EXPOSED":sh.shieldCapable?sh.shield.toUpperCase():"NONE"}">${sh.shieldCapable?`<span class="b-shield-pip">${sh.bombarding?"⚠️":sh.shield.slice(0,2).toUpperCase()}</span>`:""}<span>${sh.icon}${ar[sh.facing]}</span><div class="b-hp-bar"><div class="b-hp-fill" style="width:${Math.max(0,(sh.hp/sh.maxHp)*100)}%"></div></div></div>`;
     tl.addEventListener("click",()=>onSpaceTileClick(r,c,mO,aO,sh));g.appendChild(tl);
   }
   document.getElementById("space-log").innerHTML=spaceBattle.log.slice(0,14).map(l=>`<div>${escapeHtml(l)}</div>`).join("");
 }
-
 function onSpaceTileClick(r,c,mO,aO,sh){
   if(!spaceBattle||spaceBattle.winner||(spaceBattle.turn==="def"&&spaceBattle.defMode==="ai"))return;
   const sel=spaceBattle.ships.find(s=>s.id===spaceBattle.selectedId&&s.hp>0);
@@ -1571,86 +1560,65 @@ function onSpaceTileClick(r,c,mO,aO,sh){
   if(aO&&sel&&sh){executeSpaceAttack(sel,sh,document.getElementById("space-weapon-arc").value);checkSpaceWin();renderSpaceBattle();return}
   spaceBattle.selectedId=(sh&&sh.side===spaceBattle.turn)?sh.id:null;renderSpaceBattle();
 }
-
 function executeSpaceAttack(atk,def,arc="main"){
-  const aN=world.nations.find(n=>n.id===(atk.side==="atk"?spaceBattle.atkId:spaceBattle.defId));
-  const m=aN?getNationCombatMods(aN):{spaceDmgMult:1};
-  const dir=getAttackDirection(atk,def,arc);
-  const shMult=computeShieldMultiplier(def,dir);
-  const ter=getSpaceTile(def.r,def.c);
-  const astCover=ter?.type==="asteroid"?0.8:1.0;
-  const dmg=Math.max(10,Math.round(atk.atk*(m.spaceDmgMult||1)*shMult*astCover));
-  def.hp=Math.max(0,def.hp-dmg);atk.hasAttacked=true;
-  playTickSound(def.hp===0?180:340);
-  const note=shMult===.25?"🛡️ BLOCKED (0.25×)":shMult>=2?"💥 UNSHIELDED HIT (2×!)":"⚡ Hit";
-  spaceBattle.log.unshift(`${atk.icon} ${atk.name} struck ${def.name}'s ${dir.toUpperCase()} [${note}] for ${dmg} DMG (${def.hp} HP)!`);
+  const aN=world.nations.find(n=>n.id===(atk.side==="atk"?spaceBattle.atkId:spaceBattle.defId)),m=aN?getNationCombatMods(aN):{spaceDmgMult:1};
+  const dir=getAttackDirection(atk,def,arc);let shMult=computeShieldMultiplier(def,dir);
+  let dmg=atk.atk*(m.spaceDmgMult||1);
+  if(atk.kind==="bomber"&&(arc==="top"||arc==="bottom"))dmg*=1.4;
+  if(atk.kind==="interceptor"&&shMult>=1)dmg*=1.3;
+  // Aegis Frigate nearby aura (-20% dmg taken)
+  const aegisNearby=spaceBattle.ships.some(f=>f.hp>0&&f.side===def.side&&f.kind==="frigate"&&manhattan(f.r,f.c,def.r,def.c)<=1);
+  if(aegisNearby)dmg*=0.8;
+  const ter=getSpaceTile(def.r,def.c),ast=ter?.type==="asteroid"?.8:1;
+  dmg=Math.max(10,Math.round(dmg*shMult*ast));
+  def.hp=Math.max(0,def.hp-dmg);atk.hasAttacked=true;playTickSound(def.hp===0?180:340);
+  const note=shMult===.25?"🛡️ BLOCKED (0.25×)":shMult>=2?"💥 UNSHIELDED (2×!)":"⚡ Hit";
+  spaceBattle.log.unshift(`${atk.icon} ${atk.name} hit ${def.name}'s ${dir.toUpperCase()} [${note}] for ${dmg} DMG (${def.hp} HP)!`);
   if(def.hp<=0){
-    spaceBattle.log.unshift(`💥 ${def.name} DESTROYED IN ORBIT!`);
-    if(spaceBattle.official&&def.kind==="esb"&&def.esbId){
-      const owner=world.nations.find(n=>n.id===(def.side==="atk"?spaceBattle.atkId:spaceBattle.defId));
-      if(owner)owner.esbShips=owner.esbShips.filter(x=>x.id!==def.esbId);
+    spaceBattle.log.unshift(`💥 ${def.name} DESTROYED!`);
+    if(spaceBattle.official&&!def.allied){
+      const ow=world.nations.find(n=>n.id===(def.side==="atk"?spaceBattle.atkId:spaceBattle.defId));
+      if(ow){
+        if(def.kind==="esb"&&def.esbId)ow.esbShips=ow.esbShips.filter(x=>x.id!==def.esbId);
+        else if(ow.warships&&ow.warships[def.kind]>0)ow.warships[def.kind]--;
+      }
     }
   }
 }
-
-function checkSpaceWin(){
-  if(!spaceBattle||spaceBattle.winner)return;
-  if(!spaceBattle.ships.some(s=>s.side==="def"&&s.hp>0))finishSpaceBattle("atk","Enemy fleet annihilated!");
-  else if(!spaceBattle.ships.some(s=>s.side==="atk"&&s.hp>0))finishSpaceBattle("def","Invading fleet destroyed!");
-}
-
+function checkSpaceWin(){if(!spaceBattle||spaceBattle.winner)return;if(!spaceBattle.ships.some(s=>s.side==="def"&&s.hp>0))finishSpaceBattle("atk","Enemy fleet destroyed!");else if(!spaceBattle.ships.some(s=>s.side==="atk"&&s.hp>0))finishSpaceBattle("def","Invading fleet destroyed!")}
 function endSpaceTurn(){
   if(!spaceBattle||spaceBattle.winner)return;
-  if(spaceBattle.turn==="atk"){
-    spaceBattle.turn="def";
-    spaceBattle.ships.filter(s=>s.side==="def").forEach(s=>{s.hasMoved=false;s.hasAttacked=false;s.bombarding=false});
-    renderSpaceBattle();if(spaceBattle.defMode==="ai")runSpaceAi();
-  } else {
-    spaceBattle.turn="atk";spaceBattle.round++;
-    spaceBattle.ships.filter(s=>s.side==="atk").forEach(s=>{s.hasMoved=false;s.hasAttacked=false;s.bombarding=false});
-    renderSpaceBattle();
-  }
+  if(spaceBattle.turn==="atk"){spaceBattle.turn="def";spaceBattle.ships.filter(s=>s.side==="def").forEach(s=>{s.hasMoved=false;s.hasAttacked=false;s.bombarding=false});renderSpaceBattle();if(spaceBattle.defMode==="ai")runSpaceAi()}
+  else{spaceBattle.turn="atk";spaceBattle.round++;spaceBattle.ships.filter(s=>s.side==="atk").forEach(s=>{s.hasMoved=false;s.hasAttacked=false;s.bombarding=false});renderSpaceBattle()}
 }
-
 function runSpaceAi(){
-  if(!spaceBattle||spaceBattle.winner)return;
-  const ai=spaceBattle.ships.filter(s=>s.side==="def"&&s.hp>0);let i=0;
+  if(!spaceBattle||spaceBattle.winner)return;const ai=spaceBattle.ships.filter(s=>s.side==="def"&&s.hp>0);let i=0;
   function st(){
-    if(!spaceBattle||spaceBattle.winner||i>=ai.length){if(spaceBattle&&!spaceBattle.winner)setTimeout(endSpaceTurn,260);return}
-    const u=ai[i++];if(u.hp<=0)return st();
-    const ens=spaceBattle.ships.filter(e=>e.side==="atk"&&e.hp>0);if(!ens.length)return checkSpaceWin();
-    u.shield=["front","top","bottom","full"][Math.floor(Math.random()*4)];
+    if(!spaceBattle||spaceBattle.winner||i>=ai.length){if(spaceBattle&&!spaceBattle.winner)setTimeout(endSpaceTurn,250);return}
+    const u=ai[i++];if(u.hp<=0)return st();const ens=spaceBattle.ships.filter(e=>e.side==="atk"&&e.hp>0);if(!ens.length)return checkSpaceWin();
+    if(u.shieldCapable)u.shield=["front","top","bottom","full"][Math.floor(Math.random()*4)];
     const tgt=ens.sort((a,b)=>a.hp-b.hp)[0];
     if(manhattan(u.r,u.c,tgt.r,tgt.c)>u.range){
-      let bt=null,bd=99;
-      for(let r=0;r<BATTLE_ROWS;r++)for(let c=0;c<BATTLE_COLS;c++){if(!getSpaceShipAt(r,c)&&manhattan(u.r,u.c,r,c)<=u.move){const d=manhattan(r,c,tgt.r,tgt.c);if(d<bd){bd=d;bt={r,c}}}}
+      let bt=null,bd=99;for(let r=0;r<BATTLE_ROWS;r++)for(let c=0;c<BATTLE_COLS;c++){if(!getSpaceShipAt(r,c)&&manhattan(u.r,u.c,r,c)<=u.move){const d=manhattan(r,c,tgt.r,tgt.c);if(d<bd){bd=d;bt={r,c}}}}
       if(bt){u.r=bt.r;u.c=bt.c;u.hasMoved=true}
     }
-    if(manhattan(u.r,u.c,tgt.r,tgt.c)<=u.range){
-      const arc=["main","top","bottom"][Math.floor(Math.random()*3)];
-      executeSpaceAttack(u,tgt,arc);checkSpaceWin();
-    }
-    renderSpaceBattle();setTimeout(st,260);
+    if(manhattan(u.r,u.c,tgt.r,tgt.c)<=u.range){executeSpaceAttack(u,tgt,["main","top","bottom"][Math.floor(Math.random()*3)]);checkSpaceWin()}
+    renderSpaceBattle();setTimeout(st,240);
   }
-  setTimeout(st,280);
+  setTimeout(st,260);
 }
-
 function finishSpaceBattle(ws,reason){
   spaceBattle.winner=ws;document.getElementById("space-end-turn-btn").disabled=true;playWinSound();
   const wn=ws==="atk"?spaceBattle.atkName:spaceBattle.defName;
   if(spaceBattle.official&&isHost){
-    // Sync surviving ESB HP
-    spaceBattle.ships.filter(s=>s.hp>0&&s.kind==="esb"&&s.esbId).forEach(s=>{
-      const o=world.nations.find(n=>n.id===(s.side==="atk"?spaceBattle.atkId:spaceBattle.defId));
-      const rec=o?.esbShips.find(x=>x.id===s.esbId);if(rec)rec.hp=s.hp;
-    });
+    spaceBattle.ships.filter(s=>s.hp>0&&s.kind==="esb"&&s.esbId).forEach(s=>{const o=world.nations.find(n=>n.id===(s.side==="atk"?spaceBattle.atkId:spaceBattle.defId));const rec=o?.esbShips.find(x=>x.id===s.esbId);if(rec)rec.hp=s.hp});
     world.chronicle.unshift({id:"ev_"+Date.now(),date:activeDayKey(),text:`🚀 SPACE BATTLE: ${wn} won orbital supremacy over ${spaceBattle.targetName}! (${reason})`});
     saveWorld();refreshUI();
   }
   const bn=document.getElementById("space-victory-banner");bn.style.display="block";bn.innerHTML=`<strong style="color:var(--purple)">🏆 ${escapeHtml(wn)} Orbital Victory!</strong><div class="small">${escapeHtml(reason)}</div>`;renderSpaceBattle();
 }
 
-// REQUESTS & DAILY ACTIONS
+// REQUESTS & ADMIN
 function toggleRequestForm(){const t=document.getElementById("req-type").value;document.getElementById("req-nation-fields").style.display=t==="nation"?"block":"none";document.getElementById("req-action-fields").style.display=t==="action"?"block":"none";checkPlayerEligibilityNotice();checkActionCooldownNotice()}
 function checkPlayerEligibilityNotice(){const b=document.getElementById("req-already-owns-warning"),ow=getPlayerActiveNation(document.getElementById("req-player-name").value.trim())||getDeviceActiveNation();if(ow){b.style.display="block";b.innerHTML=`🚫 <strong>You already rule ${escapeHtml(ow.name)}!</strong> Cannot spin another unless destroyed.`}else b.style.display="none"}
 function checkActionCooldownNotice(){const n=world.nations.find(x=>x.id===document.getElementById("req-action-nation").value),el=document.getElementById("req-cooldown-notice");if(!n)el.innerHTML=`<span class="muted">No nations yet</span>`;else el.innerHTML=n.lastActionDay===activeDayKey()?`<span style="color:var(--red)">⏳ Daily Action used today</span>`:`<span style="color:var(--green)">⚡ 1 Daily Action ready!</span>`}
@@ -1711,7 +1679,6 @@ function confirmResolveAction(){
   world.requests=world.requests.filter(x=>x.id!==activeResolverReqId);closeResolver();saveWorld();refreshUI();toast("✅ Applied!");
 }
 
-// ADMIN PANEL
 function renderAdminPanel(){
   document.getElementById("admin-locked-banner").style.display=isHost?"none":"block";
   document.getElementById("admin-tools-grid").style.display=isHost?"grid":"none";
@@ -1742,8 +1709,9 @@ function saveAdminNationEdits(){
   n.stats.diplomacy=Math.max(1,Number(document.getElementById("admin-ed-dip").value)||1);n.areaBonusKm2=Number(document.getElementById("admin-ed-areabonus").value)||0;
   saveWorld();refreshUI();toast(`✅ Saved ${n.name}!`);
 }
-function adminGrantEsbShip(){if(!requireHost())return;const n=world.nations.find(x=>x.id===document.getElementById("admin-edit-nation").value);if(!n)return;const sn=`ESB ${n.name.split(" ")[0]}-${n.esbShips.length+1}`;n.esbShips.push({id:"esb_"+Date.now().toString(36),name:sn,hp:500,maxHp:500});saveWorld();refreshUI();toast(`🚀 Granted ${sn} to ${n.name}!`)}
-function adminGrantGoodsPack(){if(!requireHost())return;const n=world.nations.find(x=>x.id===document.getElementById("admin-edit-nation").value);if(!n)return;GOODS_CATALOG.forEach(g=>n.goods[g.id]=(n.goods[g.id]||0)+5);saveWorld();refreshUI();toast(`📦 +5 All Goods to ${n.name}!`)}
+function adminGrantEsbShip(){if(!requireHost())return;const n=world.nations.find(x=>x.id===document.getElementById("admin-edit-nation").value);if(!n)return;const sn=`ESB ${n.name.split(" ")[0]}-${n.esbShips.length+1}`;n.esbShips.push({id:"esb_"+Date.now().toString(36),name:sn,hp:500,maxHp:500});saveWorld();refreshUI();toast(`🛸 Granted ${sn}!`)}
+function adminGrantCruiser(){if(!requireHost())return;const n=world.nations.find(x=>x.id===document.getElementById("admin-edit-nation").value);if(!n)return;n.warships.cruiser=(n.warships.cruiser||0)+1;saveWorld();refreshUI();toast(`🚀 +1 Heavy Cruiser to ${n.name}!`)}
+function adminGrantGoodsPack(){if(!requireHost())return;const n=world.nations.find(x=>x.id===document.getElementById("admin-edit-nation").value);if(!n)return;GOODS_CATALOG.forEach(g=>n.goods[g.id]=(n.goods[g.id]||0)+5);saveWorld();refreshUI();toast(`📦 +5 All Goods!`)}
 function adminDissolveSelectedNation(){if(!requireHost())return;const id=document.getElementById("admin-edit-nation").value;if(id&&confirm("Dissolve this nation?")){destroyNation(id);saveWorld();refreshUI()}}
 function adminTransferTerritory(){
   if(!requireHost())return;const tid=document.getElementById("admin-terr-select").value,noid=document.getElementById("admin-terr-owner").value,old=getOwnerNation(tid),tn=TERRITORIES.find(x=>x.id===tid)?.name||tid;
@@ -1763,10 +1731,9 @@ function adminResetOneCooldown(){if(!requireHost())return;const n=world.nations.
 function adminResetAllCooldowns(){if(!requireHost())return;world.nations.forEach(n=>{n.lastActionDay=null;n.lastHarvestDay=null});saveWorld();refreshUI();toast("Reset ALL cooldowns!")}
 function adminPostAnnouncement(){if(!requireHost())return;const t=document.getElementById("admin-announce-text").value.trim();if(!t)return;world.chronicle.unshift({id:"ev_"+Date.now(),date:activeDayKey(),text:`📢 ${t}`});document.getElementById("admin-announce-text").value="";saveWorld();refreshUI()}
 
-// DIRECTORY & SHARE
 function renderNationsDirectory(){
   const q=(document.getElementById("nation-search").value||"").toLowerCase(),list=world.nations.filter(n=>n.name.toLowerCase().includes(q)||n.player.toLowerCase().includes(q)||(n.govSubtype||"").toLowerCase().includes(q)||(n.trait||"").toLowerCase().includes(q));
-  document.getElementById("nations-directory").innerHTML=list.length?list.map(n=>`<div class="list-item" style="margin:0"><div style="display:flex;gap:10px;align-items:center;margin-bottom:8px"><div class="flag-box">${renderFlagSvg(n.flag)}</div><div><strong>${escapeHtml(n.name)}</strong><div class="small muted">${escapeHtml(n.player)} • ★ ${escapeHtml(n.capital)}</div></div></div><div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:6px"><span class="tag tag-gold">${escapeHtml(getNationSizeLabel(n))}</span><span class="tag ${n.govIsRare?"tag-purple":""}">${escapeHtml(n.govSubtype||n.ideology)}</span></div><div class="small muted">🛡️ ${escapeHtml(n.military)} • ✨ ${escapeHtml(n.trait)}</div><div class="small muted">🪙 ${n.treasury} • 🚀 ${n.esbShips.length} ESB • Eco ${n.stats.economy} / Mil ${n.stats.military} / Dip ${n.stats.diplomacy}</div><button class="btn btn-sm" style="margin-top:8px" onclick="currentPlanetId='${TERRITORIES.find(x=>x.id===n.capitalTerritoryId)?.planet||"prime"}';selectedTerritoryId='${n.capitalTerritoryId}';document.querySelector('[data-tab=&quot;map&quot;]').click();refreshUI()">🗺️ Map</button></div>`).join(""):`<p class="muted small">No nations yet.</p>`;
+  document.getElementById("nations-directory").innerHTML=list.length?list.map(n=>`<div class="list-item" style="margin:0"><div style="display:flex;gap:10px;align-items:center;margin-bottom:8px"><div class="flag-box">${renderFlagSvg(n.flag)}</div><div><strong>${escapeHtml(n.name)}</strong><div class="small muted">${escapeHtml(n.player)} • ★ ${escapeHtml(n.capital)}</div></div></div><div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:6px"><span class="tag tag-gold">${escapeHtml(getNationSizeLabel(n))}</span><span class="tag ${n.govIsRare?"tag-purple":""}">${escapeHtml(n.govSubtype||n.ideology)}</span></div><div class="small muted">🛡️ ${escapeHtml(n.military)} • ✨ ${escapeHtml(n.trait)}</div><div class="small muted">🪙 ${n.treasury} • 🛸 ${n.esbShips.length} ESB • 🚀 ${n.warships?.cruiser||0} Cruiser • 🤝 ${n.allies.length} Allies</div><button class="btn btn-sm" style="margin-top:8px" onclick="currentPlanetId='${TERRITORIES.find(x=>x.id===n.capitalTerritoryId)?.planet||"prime"}';selectedTerritoryId='${n.capitalTerritoryId}';document.querySelector('[data-tab=&quot;map&quot;]').click();refreshUI()">🗺️ Map</button></div>`).join(""):`<p class="muted small">No nations yet.</p>`;
   document.getElementById("canon-timeline").innerHTML=world.chronicle.map(e=>`<div class="list-item"><div class="small muted">${escapeHtml(e.date)}</div><div>${escapeHtml(e.text)}</div></div>`).join("");
 }
 function copyTextById(id){navigator.clipboard.writeText(document.getElementById(id).textContent).then(()=>toast("📋 Copied!"))}
@@ -1780,20 +1747,20 @@ function saveHostPin(){if(!requireHost())return;world.hostPin=document.getElemen
 function resetWorldAll(){if(!requireHost())return;if(!confirm("Start blank season?"))return;world=getDefaultWorld();localStorage.removeItem(MY_NATION_KEY);saveWorld();refreshUI()}
 
 function loadSampleWorld(){
-  if(!confirm("Load 4-nation multi-planet sample world with ESB Ships & an active war?"))return;
+  if(!confirm("Load 4-nation sample world across 7 planets with Warships, Allies & Active War?"))return;
   const d=activeDayKey();
   world={...getDefaultWorld(),nations:[
-    normalizeNation({id:"nat_aurelia",player:"Maya",name:"Aurelian Empire",capital:"New Solis",capitalTerritoryId:"aurelia",territories:["aurelia","silverspire","borealis","sandstone","velkara"],ideology:"Democratic Republic",govSubtype:"Parliamentary Republic",govIsRare:false,economy:"High-Tech & Quantum",military:"Void & Naval Armada",trait:"Master Negotiators",flag:{c1:"#2563eb",c2:"#f5b942",pattern:"nordic"},stats:{economy:7,military:5,diplomacy:8},treasury:1400,tradeShips:3,orbitalStations:["prime"],batteries:["aurelia"],esbShips:[{id:"esb_1",name:"ESB Vanguard",hp:500,maxHp:500}],allies:["nat_goldport"],wars:[],foundedDate:d}),
-    normalizeNation({id:"nat_goldport",player:"Liam",name:"Goldport Secularists",capital:"Harbor Prime",capitalTerritoryId:"goldport",territories:["goldport","pyr_ember"],ideology:"Theocracy",govSubtype:"Radical Secular State",govIsRare:true,economy:"Void Trade Hub",military:"Orbital & Missile Array",trait:"Spaceport Megahub",flag:{c1:"#059669",c2:"#fbbf24",pattern:"chevron"},stats:{economy:8,military:5,diplomacy:2},treasury:1650,tradeShips:4,orbitalStations:["prime","pyrexia"],batteries:["goldport"],esbShips:[{id:"esb_2",name:"ESB Horizon",hp:500,maxHp:500}],allies:["nat_aurelia"],wars:["nat_crimson"],foundedDate:d}),
-    normalizeNation({id:"nat_crimson",player:"Noah",name:"Crimson Caldera",capital:"Ironforge",capitalTerritoryId:"crimson_basin",territories:["crimson_basin","dragonspine","jade_reach"],ideology:"Military Stratocracy",govSubtype:"Shadow Junta",govIsRare:true,economy:"Heavy Forge Industry",military:"Fortress Defense",trait:"Underground Bunkers",flag:{c1:"#dc2626",c2:"#111827",pattern:"diagonal"},stats:{economy:5,military:8,diplomacy:1},treasury:900,tradeShips:1,orbitalStations:["prime"],batteries:["crimson_basin"],esbShips:[{id:"esb_3",name:"ESB Dreadstar",hp:500,maxHp:500}],allies:[],wars:["nat_goldport"],foundedDate:d}),
-    normalizeNation({id:"nat_sylva",player:"Sofia",name:"Sylvan Covenant",capital:"Starleaf",capitalTerritoryId:"syl_starleaf",territories:["syl_starleaf","syl_mana"],ideology:"Technocracy",govSubtype:"Rogue AI Singularity",govIsRare:true,economy:"Aether Crystal Mining",military:"Elite Spec-Ops & Rangers",trait:"Engineering Prodigies",flag:{c1:"#0891b2",c2:"#34d399",pattern:"sun"},stats:{economy:6,military:6,diplomacy:2},treasury:1100,tradeShips:2,orbitalStations:["sylvaria"],batteries:["syl_starleaf"],esbShips:[],allies:[],wars:[],foundedDate:d})
-  ],chronicle:[{id:"s1",date:d,text:"🌌 Sample Star-System loaded! Goldport & Crimson Caldera both have ESB Capital Ships and are at War!"}]};
-  currentPlanetId="prime";selectedTerritoryId="aurelia";saveWorld();refreshUI();toast("🌌 Sample Star-System loaded!");
+    normalizeNation({id:"nat_aurelia",player:"Maya",name:"Aurelian Empire",capital:"New Solis",capitalTerritoryId:"aurelia",territories:["aurelia","silverspire","borealis","sandstone"],ideology:"Democratic Republic",govSubtype:"Parliamentary Republic",govIsRare:false,economy:"High-Tech & Quantum",military:"Void & Naval Armada",trait:"Master Negotiators",flag:{c1:"#2563eb",c2:"#f5b942",pattern:"nordic"},stats:{economy:7,military:5,diplomacy:8},treasury:1400,tradeShips:3,orbitalStations:["prime"],batteries:["aurelia"],esbShips:[{id:"esb_1",name:"ESB Vanguard",hp:500,maxHp:500}],warships:{cruiser:1,bomber:1,interceptor:2,frigate:1},allies:["nat_goldport"],wars:[],foundedDate:d}),
+    normalizeNation({id:"nat_goldport",player:"Liam",name:"Goldport Secularists",capital:"Harbor Prime",capitalTerritoryId:"goldport",territories:["goldport","pyr_1"],ideology:"Theocracy",govSubtype:"Radical Secular State",govIsRare:true,economy:"Void Trade Hub",military:"Orbital & Missile Array",trait:"Spaceport Megahub",flag:{c1:"#059669",c2:"#fbbf24",pattern:"chevron"},stats:{economy:8,military:5,diplomacy:2},treasury:1650,tradeShips:4,orbitalStations:["prime","pyrexia"],batteries:["goldport"],esbShips:[{id:"esb_2",name:"ESB Horizon",hp:500,maxHp:500}],warships:{cruiser:1,bomber:2,interceptor:1,frigate:1},allies:["nat_aurelia"],wars:["nat_crimson"],foundedDate:d}),
+    normalizeNation({id:"nat_crimson",player:"Noah",name:"Crimson Caldera",capital:"Ironforge",capitalTerritoryId:"crimson_basin",territories:["crimson_basin","jade_reach","sol_4"],ideology:"Military Stratocracy",govSubtype:"Shadow Junta",govIsRare:true,economy:"Heavy Forge Industry",military:"Fortress Defense",trait:"Underground Bunkers",flag:{c1:"#dc2626",c2:"#111827",pattern:"diagonal"},stats:{economy:5,military:8,diplomacy:1},treasury:900,tradeShips:1,orbitalStations:["prime","solara"],batteries:["crimson_basin"],esbShips:[{id:"esb_3",name:"ESB Dreadstar",hp:500,maxHp:500}],warships:{cruiser:2,bomber:1,interceptor:2,frigate:1},allies:[],wars:["nat_goldport"],foundedDate:d}),
+    normalizeNation({id:"nat_tha",player:"Sofia",name:"Thalassian League",capital:"Pearl Spire",capitalTerritoryId:"tha_1",territories:["tha_1","tha_2"],ideology:"Technocracy",govSubtype:"Rogue AI Singularity",govIsRare:true,economy:"Aether Crystal Mining",military:"Elite Spec-Ops & Rangers",trait:"Engineering Prodigies",flag:{c1:"#0891b2",c2:"#34d399",pattern:"sun"},stats:{economy:6,military:6,diplomacy:2},treasury:1100,tradeShips:2,orbitalStations:["thalassia"],batteries:["tha_1"],esbShips:[],warships:{cruiser:1,bomber:0,interceptor:2,frigate:2},allies:[],wars:[],foundedDate:d})
+  ],chronicle:[{id:"s1",date:d,text:"🌌 Sample 7-Planet Star-System loaded! Aurelia & Goldport share Alliance Army/Fleet buffs against Crimson Caldera!"}]};
+  currentPlanetId="prime";selectedTerritoryId="aurelia";saveWorld();refreshUI();toast("🌌 Sample 7-Planet System loaded!");
 }
 
 function refreshUI(){
   const cl=world.nations.reduce((s,n)=>s+n.territories.length,0);
-  document.getElementById("world-subtitle").textContent=`${world.worldName} • ${world.nations.length} Nations (${cl}/${TERRITORIES.length} Regions across 5 Planets)`;
+  document.getElementById("world-subtitle").textContent=`${world.worldName} • ${world.nations.length} Nations (${cl}/${TERRITORIES.length} Regions across 7 Planets)`;
   document.getElementById("current-date-label").textContent=activeDayKey();
   document.getElementById("setting-world-name").value=world.worldName;
   document.getElementById("setting-day-mode").value=world.dayMode;
